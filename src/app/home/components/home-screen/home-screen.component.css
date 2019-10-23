@@ -1,0 +1,54 @@
+.header {
+    height: 60px;
+    border-style: solid;
+    border-color: #E8E8E8;
+    border-width:0 0 1px 0;
+}
+.TouchSmart {
+    display: inline-block;
+    width: 113px;
+    height: 27px;
+    /* font-family: SourceSansPro; */
+    font-size: 20px;
+    font-weight: bold;
+    color: #26335e;
+  }
+
+  .Headings {
+    padding-left: 25px;
+    font-weight: bold;
+  }
+  a {
+    color: black;
+    }
+
+.get-in-touch {
+  width: 176px;
+  height: 39px;
+  color: white;
+  float: right;
+  margin: 8px 8px 0 0;
+  background-color: #0040d5;
+}
+  p {
+    display: inline-block;
+  }
+
+.text-section {
+  margin: auto
+}
+
+.main-text {
+  font-family: SourceSansPro;
+  font-size: 40px;
+  font-weight: bold;
+  line-height: 0.95;
+  text-align: center;
+  color: #000000;
+  margin: auto
+}
+
+.sub-main-text {
+  margin: auto;
+  text-align: center;
+}

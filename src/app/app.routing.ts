@@ -5,12 +5,12 @@ export const appRoutes: Routes = [
 
     {
         path: '',
-        redirectTo: '/login',
+        redirectTo: '/auth',
         pathMatch: 'full'
     },
     {
-        path: 'login',
-        loadChildren: './login/login.module#LoginModule'
+        path: 'auth',
+        loadChildren: './auth/auth.module#AuthModule'
     }
  ];
  

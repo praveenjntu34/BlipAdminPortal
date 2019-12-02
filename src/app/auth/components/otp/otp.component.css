@@ -35,12 +35,12 @@ button {
     background: #3000B2;
 }
 
+button:hover {
+    background: #1B049A;
+}
+
 a {
     color: #DC2380;
     position: relative;
     left: 170px;
-}
-
-.confirm-pwd {
-    margin-top: 16px;
 }

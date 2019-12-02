@@ -56,6 +56,10 @@ button {
     background: #3000B2;
 }
 
+button:hover {
+    background: #1B049A;
+}
+
 .main-logo {
     width: 100px;
     height: 100px;

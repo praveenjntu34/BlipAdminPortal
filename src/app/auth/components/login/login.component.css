@@ -43,6 +43,7 @@
 input {
     height: 48px;
     background: rgba(242, 242, 242, 1);
+    border: none;
 }
 
 input:focus {
@@ -55,6 +56,10 @@ button {
     background: #3000B2;
 }
 
+button:hover {
+    background: #1B049A;
+}
+
 .main-logo {
     width: 100px;
     height: 100px;
@@ -64,4 +69,10 @@ button {
 img {
     margin-bottom: 20px;
     margin-left: 9px;
+}
+
+a {
+    color: #3000B2;
+    position: relative;
+    left: 150px;
 }

@@ -1,0 +1,35 @@
+.sidebar {
+    position: fixed;
+    height: 100%;
+    width: 200px;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: #111534;
+    overflow-x: hidden;
+}
+
+h2 {
+    color: white;
+    vertical-align: middle;
+    display: inline;
+}
+
+img {
+    display: inline-block;
+    vertical-align: middle;
+    width: 45px;
+    height: 45px;
+}
+
+.sidebar a {
+    display: inline;
+    padding: 6px 8px 6px 16px;
+    display: block;
+    text-decoration: none;
+    color: white;
+}
+
+.sidebar a:hover {
+    background-color: rgba(95, 111, 203, 0.23);
+}

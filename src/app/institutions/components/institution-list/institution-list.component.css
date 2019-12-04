@@ -1,0 +1,30 @@
+.side {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.content {
+    position: relative;
+    left: 250px;
+}
+
+.module-title {
+    margin: 25px;
+    display: inline-block;
+}
+
+button {
+    display: inline-block;
+    position: absolute;
+    z-index: 1;
+    right: 0;
+}
+
+.container-fluid {
+    margin: 0;
+    padding: 0;
+    background: #909090;
+    height: 200px;
+    z-index: 2;
+}

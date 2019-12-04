@@ -15,6 +15,10 @@ export const appRoutes: Routes = [
     {
         path: 'menu',
         loadChildren: './dashboard-menu/dashboard-menu.module#DashboardMenuModule'
+    },
+    {
+        path: 'institution',
+        loadChildren: './institutions/institutions.module#InstitutionsModule'
     }
  ];
  

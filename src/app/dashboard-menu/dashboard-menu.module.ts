@@ -11,6 +11,8 @@ import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
   imports: [
     CommonModule,
     MenuRoutingModule
-  ]
+  ],
+
+  exports: [SidebarComponent,MenuBarComponent]
 })
 export class DashboardMenuModule { }

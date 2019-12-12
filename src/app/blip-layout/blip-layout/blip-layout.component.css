@@ -1,0 +1,26 @@
+.wrapper {
+    position: relative;
+    top: 0;
+    height: 100vh;
+    /* border: solid slateblue 2px; */
+    box-sizing: border-box;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    height: 100%;
+    bottom: 0;
+    width: 260px;
+    left: 0;
+    /* border: solid sienna 2px; */
+    z-index: 1030;
+}
+
+.main-panel {
+    position: relative;
+    float: right;
+    width: calc(100% - 260px);
+    /* border: solid teal 2px; */
+    height: 100%;
+}

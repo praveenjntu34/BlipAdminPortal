@@ -22,28 +22,31 @@ export const appRoutes: Routes = [
 
     {
         path: '',
-        redirectTo: '/home',
+        redirectTo: '/institutions',
         pathMatch: 'full'
-    },
+    }
+    // ,
+    // {
+    //     path: 'auth',
+    //     loadChildren: './auth/auth.module#AuthModule'
+    // },
+    // {
+    //     path: 'menu',
+    //     loadChildren: './dashboard-menu/dashboard-menu.module#DashboardMenuModule'
+    // }
+    ,
     {
-        path: 'auth',
-        loadChildren: './auth/auth.module#AuthModule'
-    },
-    {
-        path: 'menu',
-        loadChildren: './dashboard-menu/dashboard-menu.module#DashboardMenuModule'
-    },
-    {
-        path: 'home',
+        path: '',
         component: BlipLayoutComponent,
         children: [
             {
                 path: '',
                 loadChildren: './blip-layout/blip-layout.module#BlipLayoutModule'
             }]
-    },
-    {
-        path: 'institution',
-        loadChildren: './institutions/institutions.module#InstitutionsModule'
     }
+    // ,
+    // {
+    //     path: 'institution',
+    //     loadChildren: './institutions/institutions.module#InstitutionsModule'
+    // }
 ];

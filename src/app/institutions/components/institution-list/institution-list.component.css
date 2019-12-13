@@ -10,6 +10,10 @@
     height: 200px;
 }
 
+.row {
+    margin: 0;
+}
+
 .section-head {
     margin-top: 20px
 }
@@ -39,11 +43,6 @@
     margin: 0;
     padding: 0;
     z-index: 2;
-}
-
-app-menu-bar {
-    margin: -20px;
-    width: 100%;
 }
 
 .institutions-filters {

@@ -6,7 +6,7 @@ const authRoutes: Routes = [
 
   {
     path: 'institutions',
-    component: InstitutionListComponent
+    loadChildren: '../institutions/institutions.module#InstitutionsModule'
   } 
 ];
 
@@ -14,4 +14,4 @@ const authRoutes: Routes = [
   imports: [ RouterModule.forChild(authRoutes) ],
   exports: [ RouterModule ]
 })
-export class AuthRoutingModule { } 
+export class BlipRoutingModule { } 

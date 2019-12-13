@@ -53,4 +53,13 @@ input:focus {
     padding: 8px;
 }
 
-.pincode-icon {}
+.pincode-icon {
+    background: #316AFF;
+    border-radius: 2px;
+}
+
+.pincode-icon img {
+    width: 100%;
+    height: 100%;
+    padding: 6px;
+}

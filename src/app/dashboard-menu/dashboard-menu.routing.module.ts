@@ -4,7 +4,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 const menuRoutes: Routes = [
 	{ 
-	  path: '',
+	  path: 'side',
       component: SidebarComponent,
   },
   { 

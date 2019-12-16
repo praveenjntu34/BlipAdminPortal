@@ -63,3 +63,42 @@ input:focus {
     height: 100%;
     padding: 6px;
 }
+
+.institution-list {
+    margin: 30px 10px 10px;
+    padding: 1px;
+}
+
+.institution-list--item {
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.institution-list--title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+.institution-list--status {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    color: #FF1E74;
+    font-weight: 500;
+}
+
+.institution-list--address {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    color: #42436A;
+    font-weight: 500;
+}
+
+.students-count {
+    position: relative;
+    float: right;
+}
+
+.pagination {
+    position: absolute;
+    left: calc(50% - 100px);
+}

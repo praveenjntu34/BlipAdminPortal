@@ -1,0 +1,102 @@
+<div class="main-content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-8">
+                    <h3>List of Institutions</h3>
+                </div>
+                <div class="col-md-4">
+                    <button class="default-button">Add Institutions</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row pincode-bar">
+                        <div class="col-md-4 col-lg-2 pincode-title">
+                            <p>Pincode Search</p>
+                        </div>
+                        <div class="col-md-6 col-lg-9 pincode-search">
+                            <input type="text" placeholder="Enter pincode ex(524002)">
+                        </div>
+                        <div class="col-md-2 col-lg-1 icon-img">
+                            <div class="pincode-icon">
+                                <img src="../../../../assets/search.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <select>
+                        <option value="0">Select car:</option>
+                        <option value="1">Audi</option>
+                        <option value="2">BMW</option>
+                        <option value="3">Citroen</option>
+                        <option value="4">Ford</option>
+                        <option value="5">Honda</option>
+                        <option value="6">Jaguar</option>
+                        <option value="7">Land Rover</option>
+                        <option value="8">Mercedes</option>
+                        <option value="9">Mini</option>
+                        <option value="10">Nissan</option>
+                        <option value="11">Toyota</option>
+                        <option value="12">Volvo</option>
+                      </select>
+                </div>
+                <div class="col-md-2">
+
+                </div>
+            </div>
+
+            <div class="institution-list">
+                <div class="row card-group">
+                    <div class="col-lg-3 col-md-4" *ngFor="let institution of institutions">
+                        <div class="card institution-list--item">
+                            <div class="row">
+                                <div class="col-md-8 col-lg-9">
+                                    <p class="institution-list--title">{{institution.name}}</p>
+                                </div>
+                                <div class="col-md-4 col-lg-3">
+                                    <img width="60" height="60" src="../../../../assets/newyork.gif">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p class="institution-list--status">{{institution.online_status}}</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <p class="institution-list--address">{{institution.address}}</p>
+                                </div>
+                                <div class="col-md-2">
+                                    <img width="12" height="12" src="../../../../assets/map-pin.png">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row pagination">
+                <nav aria-label="...">
+                    <ul class="pagination">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">Previous</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item active">
+                            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>

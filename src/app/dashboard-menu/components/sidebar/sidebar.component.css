@@ -1,0 +1,91 @@
+.logo {
+    position: relative;
+    padding: 8px 10px;
+    z-index: 4;
+    background-color: #111534;
+}
+
+.sidebar-wrapper {
+    position: relative;
+    height: calc(100% - 71px);
+    background-color: #111534;
+}
+
+
+/* .sidebar {
+    position: fixed;
+    height: 100%;
+    width: 220px;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    overflow-x: hidden;
+} */
+
+.title-line {
+    margin: 0 0;
+    border-top: 1px solid #909090;
+}
+
+h2 {
+    color: white;
+    vertical-align: middle;
+    display: inline;
+}
+
+img {
+    display: inline-block;
+    vertical-align: middle;
+    width: 45px;
+    height: 45px;
+    margin: 10px 0 0 25px;
+}
+
+.icon-dashboard {
+    background: url('../../../../assets/dashboard_icon.png');
+}
+
+.icon-institution {
+    background: url('../../../../assets/institutions.png');
+}
+
+.icon-banner {
+    background: url('../../../../assets/institutions.png');
+}
+
+.icon-post {
+    background: url('../../../../assets/posts.png');
+}
+
+.icon-setting {
+    background: url('../../../../assets/settings.png');
+}
+
+.icon-logout {
+    background: url('../../../../assets/logout.png');
+}
+
+.icon {
+    height: 20px;
+    width: 20px;
+    background-size: contain;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.sidebar-wrapper a {
+    display: inline;
+    padding: 6px 8px 6px 16px;
+    display: block;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    color: white;
+    margin: 0 0 20px 0;
+    vertical-align: middle;
+}
+
+.sidebar-wrapper a:hover {
+    background-color: rgba(95, 111, 203, 0.23);
+}

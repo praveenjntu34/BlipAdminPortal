@@ -4,11 +4,12 @@ import { LoginComponent }  from './components/login/login.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { OtpComponent } from './components/otp/otp.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { RoutedLoginComponent } from './pages/routed-login.component';
 
 const authRoutes: Routes = [
 	{ 
 	  path: '',
-    component: LoginComponent,
+    component: RoutedLoginComponent,
   }, 
   {
     path: 'forgot-password',

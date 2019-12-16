@@ -3,12 +3,16 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router'
 import { appRoutes } from './app.routing';
+import { BlipLayoutComponent } from './blip-layout/blip-layout/blip-layout.component';
+import { DashboardMenuModule } from './dashboard-menu/dashboard-menu.module';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BlipLayoutComponent
   ],
   imports: [
     BrowserModule,
+    DashboardMenuModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],

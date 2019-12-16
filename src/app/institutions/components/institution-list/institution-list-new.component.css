@@ -21,6 +21,7 @@ h3 {
 .pincode-bar {
     margin-left: 10px;
     border: solid rgba(144, 144, 144, 0.23) 1px;
+    height: 100%;
     padding: 1px;
 }
 
@@ -35,8 +36,13 @@ h3 {
 .pincode-title p {
     margin: 0;
     padding: 10px 0;
-    font-size: 15px;
+    padding: 12px 0;
+    font-size: 12px;
     color: white;
+}
+
+.icon-img {
+    padding-right: 0;
 }
 
 input {
@@ -56,6 +62,11 @@ input:focus {
 .pincode-icon {
     background: #316AFF;
     border-radius: 2px;
+    height: 100%;
+}
+
+select {
+    width: 100%;
 }
 
 .pincode-icon img {

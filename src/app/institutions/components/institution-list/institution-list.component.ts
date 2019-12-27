@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { from } from 'rxjs';
 import { Institutions } from './institution.data'
 
@@ -8,6 +8,8 @@ import { Institutions } from './institution.data'
   styleUrls: ['./institution-list-new.component.css']
 })
 export class InstitutionListComponent implements OnInit {
+
+  @Input() data: any;
 
   name:string;
 

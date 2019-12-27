@@ -49,11 +49,11 @@
 
             <div class="institution-list">
                 <div class="row card-group">
-                    <div class="col-md-6 col-lg-4 col-xl-3" *ngFor="let institution of institutions">
+                    <div class="col-md-6 col-lg-4 col-xl-3" *ngFor="let institution of data">
                         <div class="card institution-list--item">
                             <div class="row">
                                 <div class="col-md-8 col-lg-8 col-xl-7">
-                                    <p class="institution-list--title">{{institution.name}}</p>
+                                    <p class="institution-list--title">{{institution.institutionName}}</p>
                                 </div>
                                 <div class="col-md-4 col-lg-4 col-xl-5">
                                     <img width="60" height="60" src="../../../../assets/newyork.gif">
@@ -62,13 +62,13 @@
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <p class="institution-list--status">{{institution.online_status}}</p>
+                                    <p class="institution-list--status">NotActive</p>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-md-10">
-                                    <p class="institution-list--address">{{institution.address}}</p>
+                                    <p class="institution-list--address">California</p>
                                 </div>
                                 <div class="col-md-2">
                                     <img width="12" height="12" src="../../../../assets/map-pin.png">

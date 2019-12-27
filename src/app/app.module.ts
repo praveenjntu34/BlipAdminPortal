@@ -5,6 +5,8 @@ import { RouterModule } from '@angular/router'
 import { appRoutes } from './app.routing';
 import { BlipLayoutComponent } from './blip-layout/blip-layout/blip-layout.component';
 import { DashboardMenuModule } from './dashboard-menu/dashboard-menu.module';
+import { HttpClientModule } from '@angular/common/http'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -13,6 +15,7 @@ import { DashboardMenuModule } from './dashboard-menu/dashboard-menu.module';
   imports: [
     BrowserModule,
     DashboardMenuModule,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],

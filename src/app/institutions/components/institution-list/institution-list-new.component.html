@@ -1,4 +1,43 @@
 <div class="main-content">
+
+    <ng-template #mymodal let-modal>
+
+        <div class="modal-body super-modal">
+
+            <div class="col-xl-3 left-pane">
+                <div class="row tab tab-decorator">
+                    <div class="tab-item">
+                        <img *ngIf="false" src="../../../../assets/green-tick.png" alt="" width="15x" height="15px">
+                        <p>Institution Details</p>
+                    </div>
+                </div>
+                <div class="row tab">
+                    <div class="tab-item">
+                        <img *ngIf="false" src="../../../../assets/green-tick.png" alt="" width="15x" height="15px">
+                        <p>Point Of Contact</p>
+                    </div>
+                </div>
+                <div class="row tab">
+                    <div class="tab-item">
+                        <img *ngIf="false" src="../../../../assets/green-tick.png" alt="" width="15x" height="15px">
+                        <p>Branches</p>
+                    </div>
+                </div>
+                <div class="row tab">
+                    <div class="tab-item">
+                        <img *ngIf="false" src="../../../../assets/green-tick.png" alt="" width="15x" height="15px">
+                        <p>Section</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-9 right-pane">
+                <p>
+                    World
+                </p>
+            </div>
+        </div>
+    </ng-template>
+
     <div class="row">
         <div class="col-md-12">
             <div class="row">
@@ -6,7 +45,7 @@
                     <h3>List of Institutions</h3>
                 </div>
                 <div class="col-md-4">
-                    <button class="default-button">Add Institutions</button>
+                    <button class="default-button" (click)="open(mymodal)">Add Institutions</button>
                 </div>
             </div>
 

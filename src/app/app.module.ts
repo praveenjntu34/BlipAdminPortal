@@ -6,6 +6,8 @@ import { appRoutes } from './app.routing';
 import { BlipLayoutComponent } from './blip-layout/blip-layout/blip-layout.component';
 import { DashboardMenuModule } from './dashboard-menu/dashboard-menu.module';
 import { HttpClientModule } from '@angular/common/http'
+import { FormsModule } from '@angular/forms'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { HttpClientModule } from '@angular/common/http'
     BrowserModule,
     DashboardMenuModule,
     HttpClientModule,
+    FormsModule,
+    NgbModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],

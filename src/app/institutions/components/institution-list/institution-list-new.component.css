@@ -130,3 +130,36 @@ select {
     position: absolute;
     left: calc(50% - 100px);
 }
+
+.super-modal {
+    display: inherit;
+    padding: 0;
+    height: 650px;
+}
+
+.left-pane {
+    border-right: 1px solid rgba(144, 144, 144, 0.23);
+}
+
+.tab {
+    height: 130px;
+    border-bottom: 1px solid rgba(144, 144, 144, 0.23);
+    color: #909090;
+    display: block;
+}
+
+.tab-decorator {
+    background: #316AFF;
+    color: white;
+}
+
+.tab-item {
+    text-align: center;
+    position: relative;
+    margin: 0;
+    top: 40%;
+}
+
+.tab p {
+    display: inline-block;
+}

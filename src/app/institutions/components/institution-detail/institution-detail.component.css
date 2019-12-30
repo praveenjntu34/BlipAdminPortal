@@ -1,0 +1,15 @@
+.institution-wrapper {
+    padding: 20px 40px;
+}
+
+.institution-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+li a {
+    border-radius: 0;
+    text-align: center;
+}
+
+.institution-body {}

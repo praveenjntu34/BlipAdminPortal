@@ -4,11 +4,13 @@ import { InstitutionListComponent } from './components/institution-list/institut
 import { InstitutionListPageComponent } from './pages/institution-list-page/institution-list-page.component';
 import { InstitutionRoutingModule } from './institution-routing.module';
 import { DashboardMenuModule } from '../dashboard-menu/dashboard-menu.module';
+import { InstitutionDetailComponent } from './components/institution-detail/institution-detail.component';
+import { InstitutionDetailPageComponent } from './pages/institution-detail-page/institution-detail-page.component';
 
 
 
 @NgModule({
-  declarations: [InstitutionListComponent, InstitutionListPageComponent],
+  declarations: [InstitutionListComponent, InstitutionListPageComponent, InstitutionDetailComponent, InstitutionDetailPageComponent],
   imports: [
     CommonModule,
     InstitutionRoutingModule,

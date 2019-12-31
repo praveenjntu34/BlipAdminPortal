@@ -12,4 +12,15 @@ li a {
     text-align: center;
 }
 
+.edit-button {
+    position: relative;
+    float: right;
+}
+
+button>img {
+    margin-bottom: 4px;
+    width: 13px;
+    height: 13px;
+}
+
 .institution-body {}

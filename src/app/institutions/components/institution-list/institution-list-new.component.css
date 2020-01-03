@@ -160,6 +160,17 @@ select {
     top: 40%;
 }
 
+.tab a {
+    display: block;
+    position: relative;
+    top: 40%;
+    color: #909090
+}
+
+.tab-decorator a {
+    color: white;
+}
+
 .tab p {
     display: inline-block;
 }

@@ -6,16 +6,22 @@
 
             <div class="col-xl-3 left-pane">
                 <div class="row tab tab-decorator">
-                    <div class="tab-item">
-                        <img *ngIf="false" src="../../../../assets/green-tick.png" alt="" width="15x" height="15px">
-                        <p>Institution Details</p>
-                    </div>
+                    <a class="nav-link active" id="details-tab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="true">
+
+                        <div class="tab-item">
+                            <img *ngIf="false" src="../../../../assets/green-tick.png" alt="" width="15x" height="15px">
+                            <p>Institution Details</p>
+                        </div>
+                    </a>
                 </div>
                 <div class="row tab">
-                    <div class="tab-item">
-                        <img *ngIf="false" src="../../../../assets/green-tick.png" alt="" width="15x" height="15px">
-                        <p>Point Of Contact</p>
-                    </div>
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
+
+                        <div class="tab-item">
+                            <img *ngIf="false" src="../../../../assets/green-tick.png" alt="" width="15x" height="15px">
+                            <p>Point Of Contact</p>
+                        </div>
+                    </a>
                 </div>
                 <div class="row tab">
                     <div class="tab-item">
@@ -30,56 +36,69 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-9 right-pane">
-                <form class="blip-form">
-                    <div class="row">
-                        <div class="form-group col-6">
-                            <label for="exampleInputEmail1">Name of Institution*</label>
-                            <input type="email" class="form-control blip-input" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div class="col-xl-9 tab-content right-pane">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <form>
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="exampleInputEmail1">Name of Institution*</label>
+                                <input type="email" class="form-control blip-input" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="exampleInputEmail1">Email (Institution)</label>
+                                <input type="email" class="form-control blip-input" id="exampleInputEmail1">
+                            </div>
                         </div>
-                        <div class="form-group col-6">
-                            <label for="exampleInputEmail1">Email (Institution)</label>
-                            <input type="email" class="form-control blip-input" id="exampleInputEmail1">
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="exampleInputEmail1">Website</label>
+                                <input type="email" class="form-control blip-input" id="exampleInputEmail1">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="exampleInputEmail1">Institution Type</label>
+                                <input type="email" class="form-control blip-input" id="exampleInputEmail1">
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-6">
-                            <label for="exampleInputEmail1">Website</label>
-                            <input type="email" class="form-control blip-input" id="exampleInputEmail1">
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="exampleInputEmail1">Address1</label>
+                                <input type="email" class="form-control blip-input" id="exampleInputEmail1">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="exampleInputEmail1">Address2</label>
+                                <input type="email" class="form-control blip-input" id="exampleInputEmail1">
+                            </div>
                         </div>
-                        <div class="form-group col-6">
-                            <label for="exampleInputEmail1">Institution Type</label>
-                            <input type="email" class="form-control blip-input" id="exampleInputEmail1">
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="exampleInputEmail1">Country</label>
+                                <input type="email" class="form-control blip-input" id="exampleInputEmail1">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="exampleInputEmail1">State</label>
+                                <input type="email" class="form-control blip-input" id="exampleInputEmail1">
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-6">
-                            <label for="exampleInputEmail1">Address1</label>
-                            <input type="email" class="form-control blip-input" id="exampleInputEmail1">
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="exampleInputEmail1">City</label>
+                                <input type="email" class="form-control blip-input" id="exampleInputEmail1">
+                            </div>
                         </div>
-                        <div class="form-group col-6">
-                            <label for="exampleInputEmail1">Address2</label>
-                            <input type="email" class="form-control blip-input" id="exampleInputEmail1">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <form>
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="exampleInputEmail1">Name of Institution*</label>
+                                <input type="email" class="form-control blip-input" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-6">
-                            <label for="exampleInputEmail1">Country</label>
-                            <input type="email" class="form-control blip-input" id="exampleInputEmail1">
-                        </div>
-                        <div class="form-group col-6">
-                            <label for="exampleInputEmail1">State</label>
-                            <input type="email" class="form-control blip-input" id="exampleInputEmail1">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-6">
-                            <label for="exampleInputEmail1">City</label>
-                            <input type="email" class="form-control blip-input" id="exampleInputEmail1">
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
             </div>
         </div>
     </ng-template>

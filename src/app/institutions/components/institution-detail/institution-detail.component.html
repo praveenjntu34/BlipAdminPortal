@@ -31,17 +31,85 @@
                 </div>
                 <div class="row">
                     <div class="col-6">
-                        ghjk
+                        <p class="line-heading">Name of the Institution</p>
+                        <p>Arizona</p>
+                        <p class="line-heading">Website</p>
+                        <p>ariz0na.ac.us</p>
+                        <p class="line-heading">Address</p>
+                        <p>Arizona, Bakers street</p>
+                        <p class="line-heading">State</p>
+                        <p>Arizona</p>
+                        <p class="line-heading">Remarks</p>
+                        <p>Stanford is known for its academic achievements, wealth and selectivity known for its academic achievements, wealth and selectivity </p>
                     </div>
                     <div class="col-6">
-                        hjkl
+                        <p class="line-heading">Email(Institution)</p>
+                        <p>arizona.edu@gmal.com</p>
+                        <p class="line-heading">Institution Type</p>
+                        <p>College</p>
+                        <p class="line-heading">Country</p>
+                        <p>United States of America</p>
+                        <p class="line-heading">City</p>
+                        <p>Phoenix</p>
+                        <p class="line-heading">Image</p>
+                        <img src="../../../../assets/newyork.gif" width="80px" height="80px" alt="">
+                    </div>
+
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pills-poc" role="tabpanel" aria-labelledby="pills-poc-tab">
+                <div class="row">
+                    <div class="offset-md-11 offset-11">
+                        <button class="btn btn-primary edit-buton">Edit <img src="../../../../assets/pencil.png" alt=""></button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p class="line-heading">Primary POC First Name</p>
+                        <p>Arizona</p>
+                        <p class="line-heading">Primary POC PhoneNumber</p>
+                        <p>ariz0na.ac.us</p>
+                        <p class="line-heading">Secondary POC FirstName</p>
+                        <p>Arizona, Bakers street</p>
+                        <p class="line-heading">Secondary POC PhoneNumber</p>
+                        <p>Arizona</p>
+
+                    </div>
+                    <div class="col-6">
+                        <p class="line-heading">Primary POC LatstName</p>
+                        <p>arizona.edu@gmal.com</p>
+                        <p class="line-heading">Primary POC Email</p>
+                        <p>College</p>
+                        <p class="line-heading">Secondary POC LastName</p>
+                        <p>United States of America</p>
+                        <p class="line-heading">Secondary POC Email</p>
+                        <p>Phoenix</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pills-branch" role="tabpanel" aria-labelledby="pills-branch-tab">
+                <div class="shadow-sm p-3 mb-5 bg-white blip-chip" [ngStyle]="getRandomColor()" *ngFor="let branch of data">{{branch.branchName}}</div>
+            </div>
+            <div class="tab-pane fade" id="pills-section" role="tabpanel" aria-labelledby="pills-section-tab">
+                <div class="row">
+                    <div class="col-6 branch-wrapper">
+                        <ul class="blip-ul">
+                            <li class="blip-li blip-li--focused">Computer Science and Engineering</li>
+                            <li class="blip-li">Computer Science and Engineering</li>
+                            <li class="blip-li">Computer Science and Engineering</li>
+                            <li class="blip-li">Computer Science and Engineering</li>
+                        </ul>
+                    </div>
+                    <div class="col-4 section-wrapper">
+                        <div class="chip">
+                            <i class="fas fa-circle fa-dot"></i> 1A
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="pills-poc" role="tabpanel" aria-labelledby="pills-poc-tab">POC</div>
-            <div class="tab-pane fade" id="pills-branch" role="tabpanel" aria-labelledby="pills-branch-tab">Branch</div>
-            <div class="tab-pane fade" id="pills-section" role="tabpanel" aria-labelledby="pills-section-tab">Section</div>
             <div class="tab-pane fade" id="pills-instructor" role="tabpanel" aria-labelledby="pills-instructor-tab">instructor</div>
         </div>
     </div>
 </div>
+<i class="fas fa-circle"></i>

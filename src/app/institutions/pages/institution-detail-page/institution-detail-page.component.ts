@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { InstitutionService } from '../../shared/institution.service';
 
 @Component({
   selector: 'app-institution-detail-page',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InstitutionDetailPageComponent implements OnInit {
 
-  constructor() { }
+  data: any = [];
+  constructor(protected api: InstitutionService) {
+    
+   }
 
   ngOnInit() {
+    this.data = this.api.getInstitutionDetails();
+    console.log("data here", this.data)
   }
 
 }

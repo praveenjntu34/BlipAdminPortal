@@ -23,4 +23,60 @@ button>img {
     height: 13px;
 }
 
+.line-heading {
+    font-weight: bold;
+}
+
+.branch-wrapper {
+    padding-right: 0;
+}
+
+.section-wrapper {
+    padding-left: 0;
+}
+
+.blip-chip {
+    display: inline-block;
+    border-width: 0 0 0 6px;
+    border-style: solid;
+    margin: 0 15px 0 0 !important;
+    padding: 9px !important;
+}
+
+.chip {
+    display: inline-block;
+    padding: 0px 25px;
+    height: 39px;
+    font-size: 18px;
+    line-height: 36px;
+    margin: 14px;
+    border: 1px solid #f1f1f1;
+    border-radius: 21px;
+    box-shadow: 2px 2px #f1f1f1;
+    background-color: white;
+}
+
+.blip-ul {
+    border: 0.5px solid rgba(144, 144, 144, 0.46);
+    padding-left: 0px;
+    height: 350px;
+}
+
+.blip-li {
+    padding: 5px;
+}
+
+.blip-li--focused {
+    border-bottom: 4px solid #316AFF;
+}
+
+li {
+    list-style: none;
+}
+
+.fa-dot {
+    font-size: 12px;
+    color: #316AFF;
+}
+
 .institution-body {}

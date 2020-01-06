@@ -24,16 +24,20 @@
                     </a>
                 </div>
                 <div class="row tab">
-                    <div class="tab-item">
-                        <img *ngIf="false" src="../../../../assets/green-tick.png" alt="" width="15x" height="15px">
-                        <p>Branches</p>
-                    </div>
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#branch" role="tab" aria-controls="profile" aria-selected="false">
+                        <div class="tab-item">
+                            <img *ngIf="false" src="../../../../assets/green-tick.png" alt="" width="15x" height="15px">
+                            <p>Branches</p>
+                        </div>
+                    </a>
                 </div>
                 <div class="row tab">
-                    <div class="tab-item">
-                        <img *ngIf="false" src="../../../../assets/green-tick.png" alt="" width="15x" height="15px">
-                        <p>Section</p>
-                    </div>
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#section" role="tab" aria-controls="profile" aria-selected="false">
+                        <div class="tab-item">
+                            <img *ngIf="false" src="../../../../assets/green-tick.png" alt="" width="15x" height="15px">
+                            <p>Section</p>
+                        </div>
+                    </a>
                 </div>
             </div>
             <div class="col-xl-9 tab-content right-pane">
@@ -93,6 +97,28 @@
                         <div class="row">
                             <div class="form-group col-6">
                                 <label for="exampleInputEmail1">Name of Institution*</label>
+                                <input type="email" class="form-control blip-input" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="branch" role="tabpanel" aria-labelledby="profile-tab">
+                    <form>
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="exampleInputEmail1">Branch*</label>
+                                <input type="email" class="form-control blip-input" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="section" role="tabpanel" aria-labelledby="profile-tab">
+                    <form>
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="exampleInputEmail1">Section*</label>
                                 <input type="email" class="form-control blip-input" id="exampleInputEmail1" aria-describedby="emailHelp">
                             </div>
                         </div>

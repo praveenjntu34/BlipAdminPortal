@@ -9,7 +9,7 @@
                     <a class="nav-link active" id="details-tab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="true">
 
                         <div class="tab-item">
-                            <img *ngIf="stepCount==1" src="../../../../assets/green-tick.png" alt="" width="15x" height="15px">
+                            <img *ngIf="stepCount>1" src="../../../../assets/green-tick.png" alt="" width="15x" height="15px">
                             <p>Institution Details</p>
                         </div>
                     </a>
@@ -18,7 +18,7 @@
                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
 
                         <div class="tab-item">
-                            <img src="../../../../assets/green-tick.png" alt="" width="15x" height="15px">
+                            <img *ngIf="stepCount>2" src="../../../../assets/green-tick.png" alt="" width="15x" height="15px">
                             <p>Point Of Contact</p>
                         </div>
                     </a>
@@ -26,7 +26,7 @@
                 <div class="row tab">
                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#branch" role="tab" aria-controls="profile" aria-selected="false">
                         <div class="tab-item">
-                            <img *ngIf="false" src="../../../../assets/green-tick.png" alt="" width="15x" height="15px">
+                            <img *ngIf="stepCount>3" src="../../../../assets/green-tick.png" alt="" width="15x" height="15px">
                             <p>Branches</p>
                         </div>
                     </a>
@@ -96,7 +96,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary btn-next" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Next</button>
+                        <button (click)="incrementStep()" class="btn btn-primary btn-next" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Next</button>
                     </form>
                 </div>
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -118,7 +118,7 @@
                                 <input type="email" class="form-control blip-input" id="exampleInputEmail1" aria-describedby="emailHelp">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-next" data-toggle="tab" href="#section" role="tab" aria-controls="profile" aria-selected="false">Submit</button>
+                        <button class="btn btn-primary btn-next" data-toggle="tab" href="#section" role="tab" aria-controls="profile" aria-selected="false">Submit</button>
                     </form>
                 </div>
                 <div class="tab-pane fade" id="section" role="tabpanel" aria-labelledby="profile-tab">

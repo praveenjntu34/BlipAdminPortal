@@ -5,20 +5,20 @@
         <div class="modal-body super-modal">
 
             <div class="col-xl-3 left-pane">
-                <div class="row tab tab-decorator">
+                <div class="row tab" [ngClass]="{'tab-decorator': stepCount==1}">
                     <a class="nav-link active" id="details-tab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="true">
 
                         <div class="tab-item">
-                            <img *ngIf="false" src="../../../../assets/green-tick.png" alt="" width="15x" height="15px">
+                            <img *ngIf="stepCount==1" src="../../../../assets/green-tick.png" alt="" width="15x" height="15px">
                             <p>Institution Details</p>
                         </div>
                     </a>
                 </div>
-                <div class="row tab">
+                <div class="row tab" [ngClass]="{'tab-decorator': stepCount==2}">
                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
 
                         <div class="tab-item">
-                            <img *ngIf="false" src="../../../../assets/green-tick.png" alt="" width="15x" height="15px">
+                            <img src="../../../../assets/green-tick.png" alt="" width="15x" height="15px">
                             <p>Point Of Contact</p>
                         </div>
                     </a>
@@ -87,9 +87,16 @@
                             <div class="form-group col-6">
                                 <label for="exampleInputEmail1">City</label>
                                 <input type="email" class="form-control blip-input" id="exampleInputEmail1">
+                                <label for="exampleInputEmail1">Remarks</label>
+                                <textarea name="" id="" cols="30" rows="10"></textarea>
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="exampleInputEmail1">Image</label>
+                                <img class="image-create" src="../../../../assets/picture.png" alt="">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+
+                        <button type="submit" class="btn btn-primary btn-next" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Next</button>
                     </form>
                 </div>
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -100,7 +107,7 @@
                                 <input type="email" class="form-control blip-input" id="exampleInputEmail1" aria-describedby="emailHelp">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary btn-next" data-toggle="tab" href="#branch" role="tab" aria-controls="profile" aria-selected="false">Next</button>
                     </form>
                 </div>
                 <div class="tab-pane fade" id="branch" role="tabpanel" aria-labelledby="profile-tab">
@@ -111,7 +118,7 @@
                                 <input type="email" class="form-control blip-input" id="exampleInputEmail1" aria-describedby="emailHelp">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary btn-next" data-toggle="tab" href="#section" role="tab" aria-controls="profile" aria-selected="false">Submit</button>
                     </form>
                 </div>
                 <div class="tab-pane fade" id="section" role="tabpanel" aria-labelledby="profile-tab">

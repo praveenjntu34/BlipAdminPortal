@@ -13,6 +13,7 @@ export class InstitutionListComponent implements OnInit {
   @Input() data: any;
 
   name:string;
+  stepCount: number = 1;
 
   title = 'ng-bootstrap-modal-demo';
   closeResult: string;
@@ -39,6 +40,11 @@ export class InstitutionListComponent implements OnInit {
     });
   }
  
+  incrementStep(){
+    this.stepCount++;
+  }
+
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';

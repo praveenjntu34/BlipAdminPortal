@@ -47,8 +47,36 @@ h3 {
 
 input {
     border: none;
-    margin-left: 10px;
     width: 100%;
+}
+
+textarea {
+    isplay: block;
+    height: 80px;
+    border: none;
+    width: 100%;
+    background: #F6F8F9;
+}
+
+.image-create {
+    display: block;
+    width: 149px;
+    background: #F6F8F9;
+    padding: 37px;
+    opacity: 0.5;
+}
+
+.btn-next {
+    position: relative;
+    float: right;
+}
+
+textarea:focus {
+    outline: none;
+}
+
+form {
+    padding: 25px 15px 15px 15px;
 }
 
 input:focus {
@@ -169,6 +197,11 @@ select {
 
 .tab-decorator a {
     color: white;
+}
+
+.tab-item img {
+    display: inline-block;
+    margin-left: 5px
 }
 
 .tab p {

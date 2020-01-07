@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { from } from 'rxjs';
 import { Institutions } from './institution.data'
 import {NgbModal, ModalDismissReasons, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
+import { InstitutionService } from '../../shared/institution.service';
 
 @Component({
   selector: 'app-institution-list',
@@ -14,13 +15,17 @@ export class InstitutionListComponent implements OnInit {
 
   name:string;
   stepCount: number = 1;
+  loading: boolean = false;
+  loading_tab1: boolean = true;
+  img_url: string;
 
   title = 'ng-bootstrap-modal-demo';
   closeResult: string;
   modalOptions:NgbModalOptions;
  
   constructor(
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private instService: InstitutionService
   ){
     this.modalOptions = {
       backdrop: 'static',
@@ -40,10 +45,25 @@ export class InstitutionListComponent implements OnInit {
     });
   }
  
-  incrementStep(){
+  saveInstitutionDetails(){
     this.stepCount++;
+    this.loading = true;
   }
 
+  onFileChanged(event) {
+    let file: File = event.target.files[0];
+    let reader = new FileReader();
+    reader.readAsDataURL(file); 
+    reader.onload = (e: any) => {
+      this.img_url = e.target.result;
+    };
+    this.instService.uploadImage(file)
+          .subscribe(data => {
+            console.log("file uploaded succesfully", data);
+            this.loading_tab1 = false;
+          })
+
+  }
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {

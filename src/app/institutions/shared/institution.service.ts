@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 const localUrl = 'http://localhost:3400/institution/details'
-
+const baseUrl = 'http://localhost:3400/institution/upload-file'
 @Injectable({
   providedIn: 'root'
 })
@@ -12,6 +12,12 @@ export class InstitutionService {
 
   getAllInstitutions() {
     return this.http.get(localUrl);
+  }
+
+  uploadImage(fileToUpload){
+    const formData =  new FormData();
+    formData.append('file',fileToUpload, fileToUpload.name);
+    return this.http.post(baseUrl, formData);
   }
 
   getInstitutionDetails() {

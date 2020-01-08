@@ -6,6 +6,7 @@ import { InstitutionRoutingModule } from './institution-routing.module';
 import { DashboardMenuModule } from '../dashboard-menu/dashboard-menu.module';
 import { InstitutionDetailComponent } from './components/institution-detail/institution-detail.component';
 import { InstitutionDetailPageComponent } from './pages/institution-detail-page/institution-detail-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -14,7 +15,8 @@ import { InstitutionDetailPageComponent } from './pages/institution-detail-page/
   imports: [
     CommonModule,
     InstitutionRoutingModule,
-    DashboardMenuModule
+    DashboardMenuModule,
+    ReactiveFormsModule
   ]
 })
 export class InstitutionsModule { }

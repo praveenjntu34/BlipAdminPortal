@@ -3,7 +3,8 @@ import { from } from 'rxjs';
 import { Institutions } from './institution.data'
 import {NgbModal, ModalDismissReasons, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
 import { InstitutionService } from '../../shared/institution.service';
-
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { Institution } from '../../shared/institution-detail.model'
 @Component({
   selector: 'app-institution-list',
   templateUrl: './institution-list-new.component.html',
@@ -18,15 +19,14 @@ export class InstitutionListComponent implements OnInit {
   loading: boolean = false;
   loading_tab1: boolean = true;
   img_url: string;
+  institutionDetailForm: FormGroup;
 
   title = 'ng-bootstrap-modal-demo';
   closeResult: string;
   modalOptions:NgbModalOptions;
  
-  constructor(
-    private modalService: NgbModal,
-    private instService: InstitutionService
-  ){
+  constructor(private modalService: NgbModal,private instService: InstitutionService, private formBuilder: FormBuilder){
+
     this.modalOptions = {
       backdrop: 'static',
       centered: true,
@@ -41,13 +41,12 @@ export class InstitutionListComponent implements OnInit {
     this.modalService.open(content, this.modalOptions).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      // this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
  
   saveInstitutionDetails(){
-    this.stepCount++;
-    this.loading = true;
+    
   }
 
   onFileChanged(event) {
@@ -58,36 +57,40 @@ export class InstitutionListComponent implements OnInit {
       this.img_url = e.target.result;
     };
     this.instService.uploadImage(file)
-          .subscribe(data => {
-            console.log("file uploaded succesfully", data);
+          .subscribe((data:any) => {
+            console.log("file uploaded succesfully", data.pictureId);
+            localStorage.setItem("pictureId",data.pictureId);
             this.loading_tab1 = false;
           })
 
   }
 
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return  `with: ${reason}`;
-    }
-  }
 
-  institutions = [
-    new Institutions("Newyork University","Last active 15 Oct 2:00 PM","Bolshoy prospect,Petrogradskaya storona,12B","../../../../assets/newyork.jpg",28),
-    new Institutions("MIT University","Last active 15 Oct 2:00 PM","Bolshoy prospect,Petrogradskaya storona,12B","../../../../assets/newyork.jpg",28),
-    new Institutions("MIT University","Last active 15 Oct 2:00 PM","Bolshoy prospect,Petrogradskaya storona,12B","../../../../assets/newyork.jpg",28),
-    new Institutions("Newyork University","Last active 15 Oct 2:00 PM","Bolshoy prospect,Petrogradskaya storona,12B","../../../../assets/newyork.jpg",28),
-    new Institutions("Newyork University","Last active 15 Oct 2:00 PM","Bolshoy prospect,Petrogradskaya storona,12B","../../../../assets/newyork.jpg",28),
-    new Institutions("Newyork University","Last active 15 Oct 2:00 PM","Bolshoy prospect,Petrogradskaya storona,12B","../../../../assets/newyork.jpg",28),
-    new Institutions("Newyork University","Last active 15 Oct 2:00 PM","Bolshoy prospect,Petrogradskaya storona,12B","../../../../assets/newyork.jpg",28),
-    new Institutions("Newyork University","Last active 15 Oct 2:00 PM","Bolshoy prospect,Petrogradskaya storona,12B","../../../../assets/newyork.jpg",28),
-    new Institutions("Newyork University","Last active 15 Oct 2:00 PM","Bolshoy prospect,Petrogradskaya storona,12B","../../../../assets/newyork.jpg",28),
-  ]
 
   ngOnInit() {
+    this.institutionDetailForm = this.formBuilder.group({
+      institutionName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      website: ['', Validators.required],
+      institutionTypeId: ['', Validators.required],
+      address1: ['', Validators.required],
+      address2: ['', Validators.required],
+      cityId: ['', Validators.required],
+      stateId: ['', Validators.required],
+      countryId: ['', Validators.required],
+      remarks: ['', Validators.required], 
+      status: [''],
+      // pictureId: ['', Validators.required],
+    })
+  }
+
+  get f() {return this.institutionDetailForm.controls}
+
+  onSubmit() {
+    this.stepCount++;
+    this.loading = true;
+    console.log("test")
+    console.log("Success" + JSON.stringify(this.institutionDetailForm.value))
   }
 
 }

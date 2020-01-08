@@ -9,6 +9,11 @@ const baseUrl = 'http://localhost:3400/'
 export class InstitutionService {
 
 
+  addPOCDetails(pocData) {
+    return this.http.post(baseUrl + 'institution/poc',pocData )
+  }
+
+
   createInstitutionDetails(data : any) {
     return this.http.post(baseUrl + 'institution/details',data);
   }

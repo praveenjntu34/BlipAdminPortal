@@ -6,6 +6,7 @@ import { InstitutionService } from '../../shared/institution.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Institution } from '../../shared/institution-detail.model'
 import { State, City } from '../../shared/location.model';
+import { POC, PersonDto } from '../../shared/poc.model';
 @Component({
   selector: 'app-institution-list',
   templateUrl: './institution-list-new.component.html',
@@ -21,6 +22,7 @@ export class InstitutionListComponent implements OnInit {
   loading_tab1: boolean = true;
   img_url: string;
   institutionDetailForm: FormGroup;
+  institutionPOCForm: FormGroup;
   allStates: State [] = [];
   allCities: City[] = [];
   title = 'ng-bootstrap-modal-demo';
@@ -69,6 +71,17 @@ export class InstitutionListComponent implements OnInit {
 
 
 
+
+
+  getCities(stateId) {
+    this.instService.getAllCities(stateId)
+            .subscribe((data: City[]) => {
+              this.allCities = data;
+            })
+  }
+  get f() {return this.institutionDetailForm.controls}
+
+
   ngOnInit() {
     this.institutionDetailForm = this.formBuilder.group({
       institutionName: ['', Validators.required],
@@ -85,20 +98,22 @@ export class InstitutionListComponent implements OnInit {
       pictureId: [''],
     })
 
+    this.institutionPOCForm = this.formBuilder.group({
+      primaryPOCFirstName: ['',Validators.required],
+      primaryPOCLastName: ['',Validators.required],
+      primaryPOCPhoneNumber: ['',Validators.required],
+      primaryPOCEmail: ['',[Validators.required,Validators.email]],
+      secondaryPOCFirstName: ['',Validators.required],
+      secondaryPOCLastName: ['',Validators.required],
+      secondaryPOCPhoneNumber: ['',Validators.required],
+      secondaryPOCEmail: ['',[Validators.required,Validators.email]],
+    })
+
     this.instService.getAllStates()
           .subscribe((data: State[]) => {
             this.allStates = data;
           })
   }
-
-  getCities(stateId) {
-    this.instService.getAllCities(stateId)
-            .subscribe((data: City[]) => {
-              this.allCities = data;
-            })
-  }
-
-  get f() {return this.institutionDetailForm.controls}
 
   onSubmit() {
     this.stepCount++;
@@ -107,10 +122,36 @@ export class InstitutionListComponent implements OnInit {
       pictureId: localStorage.getItem('pictureId')
     })
     this.instService.createInstitutionDetails(this.institutionDetailForm.value)
-          .subscribe((response) => {
+          .subscribe((response: any) => {
+            this.loading = false
+            this.loading_tab1 = false;
             console.log("Succesfully added institution", response)
+            localStorage.setItem('currentRelTenantInstitutionId', response.relTenantInstitutionId)
           })
     console.log("After API")
+  }
+
+  addPOCForm(){
+    this.stepCount++;
+    this.loading = true;
+
+    console.log("poc form data",this.institutionPOCForm.value);
+    
+     let personDto = new PersonDto(this.institutionPOCForm.value.primaryPOCFirstName,
+      this.institutionPOCForm.value.primaryPOCLastName,2, 'M'
+      )
+     let personObject = new POC(personDto,+localStorage.getItem('currentRelTenantInstitutionId'),this.institutionPOCForm.value.secondaryPOCEmail
+     ,this.institutionPOCForm.value.secondaryPOCFirstName + " " + this.institutionPOCForm.value.secondaryPOCLastName,
+     this.institutionPOCForm.value.secondaryPOCPhoneNumber)
+
+     console.log("data to be posted", personObject)
+     this.instService.addPOCDetails(personObject)
+            .subscribe((response: any) => {
+              this.loading = false;
+              this.loading_tab1 = false
+              console.log("poc response", response)
+            })
+
   }
 
 }

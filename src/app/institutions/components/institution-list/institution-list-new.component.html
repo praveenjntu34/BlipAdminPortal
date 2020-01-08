@@ -15,7 +15,7 @@
                                 <div></div>
                                 <div></div>
                             </div>
-                            <img *ngIf="stepCount>1 && loading_tab1 == 'false'" src="../../../../assets/green-tick.png" alt="" width="15x" height="15px">
+                            <img *ngIf="stepCount>1 && loading_tab1 == false" src="../../../../assets/green-tick.png" alt="" width="15x" height="15px">
                             <p>Institution Details</p>
                         </div>
                     </a>
@@ -24,6 +24,12 @@
                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
 
                         <div class="tab-item">
+                            <div *ngIf="loading" class="lds-ring spinner">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
                             <img *ngIf="stepCount>2" src="../../../../assets/green-tick.png" alt="" width="15x" height="15px">
                             <p>Point Of Contact</p>
                         </div>
@@ -120,14 +126,48 @@
                     </form>
                 </div>
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                    <form [formGroup]="institutionDetailForm" (ngSubmit)="onSubmit()">
+                    <form [formGroup]="institutionPOCForm" (ngSubmit)="onSubmit()">
                         <div class="row">
                             <div class="form-group col-6">
-                                <label for="exampleInputEmail1">Name of Institution*</label>
-                                <input type="email" class="form-control blip-input" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <label for="primaryPOCFirstName">Primary POC FirstName*</label>
+                                <input type="text" formControlName="primaryPOCFirstName" class="form-control blip-input" id="primaryPOCFirstName" aria-describedby="emailHelp">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="primaryPOCLastName">Primary POC LastName</label>
+                                <input type="email" formControlName="primaryPOCLastName" class="form-control blip-input" id="primaryPOCLastName">
                             </div>
                         </div>
-                        <button (click)="saveStep()" class="btn btn-primary btn-next" data-toggle="tab" href="#branch" role="tab" aria-controls="profile" aria-selected="false">Next</button>
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="primaryPOCPhoneNumber">Primary POC PhoneNumber</label>
+                                <input type="text" formControlName="primaryPOCPhoneNumber" class="form-control blip-input" id="primaryPOCPhoneNumber" aria-describedby="emailHelp">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="primaryPOCEmail">Primary POC Email</label>
+                                <input type="email" formControlName="primaryPOCEmail" class="form-control blip-input" id="primaryPOCEmail">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="secondaryPOCFirstName">Secondary POC FirstName</label>
+                                <input type="text" formControlName="secondaryPOCFirstName" class="form-control blip-input" id="secondaryPOCFirstName" aria-describedby="emailHelp">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="secondaryPOCLastName">Secondary POC LastName</label>
+                                <input type="email" formControlName="secondaryPOCLastName" class="form-control blip-input" id="secondaryPOCLastName">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="secondaryPOCPhoneNumber">Secondary POC PhoneNumber</label>
+                                <input type="text" formControlName="secondaryPOCPhoneNumber" class="form-control blip-input" id="secondaryPOCPhoneNumber" aria-describedby="emailHelp">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="secondaryPOCEmail">Secondary POC Email</label>
+                                <input type="email" formControlName="secondaryPOCEmail" class="form-control blip-input" id="secondaryPOCEmail">
+                            </div>
+                        </div>
+                        <button type="submit" (click)="addPOCForm()" class="btn btn-primary btn-next" data-toggle="tab" href="#branch" role="tab" aria-controls="profile" aria-selected="false">Next</button>
                     </form>
                 </div>
                 <div class="tab-pane fade" id="branch" role="tabpanel" aria-labelledby="profile-tab">

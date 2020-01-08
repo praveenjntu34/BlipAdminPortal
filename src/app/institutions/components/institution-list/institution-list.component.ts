@@ -5,6 +5,7 @@ import {NgbModal, ModalDismissReasons, NgbModalOptions} from '@ng-bootstrap/ng-b
 import { InstitutionService } from '../../shared/institution.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Institution } from '../../shared/institution-detail.model'
+import { State, City } from '../../shared/location.model';
 @Component({
   selector: 'app-institution-list',
   templateUrl: './institution-list-new.component.html',
@@ -20,7 +21,8 @@ export class InstitutionListComponent implements OnInit {
   loading_tab1: boolean = true;
   img_url: string;
   institutionDetailForm: FormGroup;
-
+  allStates: State [] = [];
+  allCities: City[] = [];
   title = 'ng-bootstrap-modal-demo';
   closeResult: string;
   modalOptions:NgbModalOptions;
@@ -79,9 +81,21 @@ export class InstitutionListComponent implements OnInit {
       stateId: ['', Validators.required],
       countryId: ['', Validators.required],
       remarks: ['', Validators.required], 
-      status: [''],
+      status: [1],
       // pictureId: ['', Validators.required],
     })
+
+    this.instService.getAllStates()
+          .subscribe((data: State[]) => {
+            this.allStates = data;
+          })
+  }
+
+  getCities(stateId) {
+    this.instService.getAllCities(stateId)
+            .subscribe((data: City[]) => {
+              this.allCities = data;
+            })
   }
 
   get f() {return this.institutionDetailForm.controls}

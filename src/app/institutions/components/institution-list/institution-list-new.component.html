@@ -48,7 +48,7 @@
             </div>
             <div class="col-xl-9 tab-content right-pane">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <form [formGroup]="institutionDetailForm" (ngSubmit)="onSubmit()">
+                    <form [formGroup]="institutionDetailForm">
                         <div class="row">
                             <div class="form-group col-6">
                                 <label for="institutionName">Name of Institution*</label>
@@ -66,7 +66,11 @@
                             </div>
                             <div class="form-group col-6">
                                 <label for="institutionTypeId">Institution Type</label>
-                                <input type="text" formControlName="institutionTypeId" class="form-control blip-input" id="institutionTypeId">
+                                <select formControlName="institutionTypeId" class="form-control blip-input  blip-select">
+                                    <option value="1">College</option>
+                                    <option value="2">School</option>
+                                  </select>
+                                <!-- <input type="text" formControlName="institutionTypeId" class="form-control blip-input" id="institutionTypeId"> -->
                             </div>
                         </div>
                         <div class="row">
@@ -82,17 +86,26 @@
                         <div class="row">
                             <div class="form-group col-6">
                                 <label for="countryId">Country</label>
-                                <input type="text" formControlName="countryId" class="form-control blip-input" id="countryId">
+                                <select formControlName="countryId" class="form-control blip-input  blip-select">
+                                    <option value="1">India</option>
+                                  </select>
+                                <!-- <input type="text" formControlName="countryId" class="form-control blip-input" id="countryId"> -->
                             </div>
                             <div class="form-group col-6">
                                 <label for="stateId">State</label>
-                                <input type="text" formControlName="stateId" class="form-control blip-input" id="stateId">
+                                <select formControlName="stateId" #st (change)="getCities(st.value)" class="form-control blip-input  blip-select">
+                                    <option [value]="state.stateId" *ngFor="let state of allStates">{{state.stateName}}</option>
+                                  </select>
+                                <!-- <input type="text" formControlName="stateId" class="form-control blip-input" id="stateId"> -->
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-6">
                                 <label for="cityId">City</label>
-                                <input type="text" formControlName="cityId" class="form-control blip-input" id="cityId">
+                                <select formControlName="cityId" class="form-control blip-input  blip-select">
+                                    <option [value]="city.cityId" *ngFor="let city of allCities">{{city.cityName}}</option>
+                                  </select>
+                                <!-- <input type="text" formControlName="cityId" class="form-control blip-input" id="cityId"> -->
 
                                 <label for="remarks">Remarks</label>
                                 <textarea name="" id="remarks" formControlName="remarks" cols="30" rows="10"></textarea>
@@ -103,7 +116,7 @@
                                 <img class="image-create" [src]="img_url">
                             </div>
                         </div>
-                        <button type="button" (submit)="onSubmit()" class="btn btn-primary btn-next" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Next</button>
+                        <button type="submit" (click)="onSubmit()" class="btn btn-primary btn-next" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Next</button>
                     </form>
                 </div>
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">

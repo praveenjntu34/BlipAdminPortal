@@ -264,6 +264,13 @@ select {
     border: 0.5px solid rgba(222, 222, 222, 0.23);
 }
 
+.blip-select {
+    height: 38px;
+    left: -2px;
+    top: 0px;
+    width: 100%;
+}
+
 .form-control:focus {
     -webkit-box-shadow: none;
     box-shadow: none;

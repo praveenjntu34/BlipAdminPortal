@@ -8,6 +8,11 @@ const baseUrl = 'http://localhost:3400/'
 })
 export class InstitutionService {
 
+
+  createInstitutionDetails(data : any) {
+    return this.http.post(baseUrl + 'institution/details',data);
+  }
+
   constructor(private http: HttpClient) { }
 
   getAllInstitutions() {

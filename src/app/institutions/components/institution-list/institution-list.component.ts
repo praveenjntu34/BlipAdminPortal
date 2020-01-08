@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { from } from 'rxjs';
+import { from, Subscriber } from 'rxjs';
 import { Institutions } from './institution.data'
 import {NgbModal, ModalDismissReasons, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
 import { InstitutionService } from '../../shared/institution.service';
@@ -82,7 +82,7 @@ export class InstitutionListComponent implements OnInit {
       countryId: ['', Validators.required],
       remarks: ['', Validators.required], 
       status: [1],
-      // pictureId: ['', Validators.required],
+      pictureId: [''],
     })
 
     this.instService.getAllStates()
@@ -103,8 +103,14 @@ export class InstitutionListComponent implements OnInit {
   onSubmit() {
     this.stepCount++;
     this.loading = true;
-    console.log("test")
-    console.log("Success" + JSON.stringify(this.institutionDetailForm.value))
+    this.institutionDetailForm.patchValue({
+      pictureId: localStorage.getItem('pictureId')
+    })
+    this.instService.createInstitutionDetails(this.institutionDetailForm.value)
+          .subscribe((response) => {
+            console.log("Succesfully added institution", response)
+          })
+    console.log("After API")
   }
 
 }

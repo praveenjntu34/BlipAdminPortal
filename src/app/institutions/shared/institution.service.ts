@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 const localUrl = 'http://localhost:3400/institution/details'
 const baseUrl = 'http://localhost:3400/'
@@ -7,6 +7,20 @@ const baseUrl = 'http://localhost:3400/'
   providedIn: 'root'
 })
 export class InstitutionService {
+
+
+  addBranch(branchData: any) {
+    const branchFormData = new FormData();
+    let headers = new Headers();
+
+    console.log("req", branchData)
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }
+    return this.http.post(baseUrl + 'institution/branch', JSON.stringify(branchData), httpOptions )
+  }
 
 
   addPOCDetails(pocData) {

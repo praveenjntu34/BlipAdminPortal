@@ -1,5 +1,17 @@
 <div class="main-content">
 
+    <ng-template #branchmodal let-modal>
+        <div class="row">
+            <h5 style="margin: 5px 0 0 24px;">Add branch</h5>
+
+            <div class="" style="margin-left:24px; margin-bottom: 46px;">
+                <label for="institutionName">Name of Institution*</label>
+                <input type="text" [(ngModel)]="branchNameModel" class="branch-button" id="branchName">
+            </div>
+            <button class="btn btn-primary btn-branch" (click)="addBranch()" style="margin-left:24px">Add</button>
+        </div>
+
+    </ng-template>
     <ng-template #mymodal let-modal>
 
         <div class="modal-body super-modal">
@@ -9,7 +21,7 @@
                     <a class="nav-link active" id="details-tab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="true">
 
                         <div class="tab-item">
-                            <div *ngIf="loading" class="lds-ring spinner">
+                            <div *ngIf="loading1" class="lds-ring spinner">
                                 <div></div>
                                 <div></div>
                                 <div></div>
@@ -24,7 +36,7 @@
                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
 
                         <div class="tab-item">
-                            <div *ngIf="loading" class="lds-ring spinner">
+                            <div *ngIf="loading2" class="lds-ring spinner">
                                 <div></div>
                                 <div></div>
                                 <div></div>
@@ -171,15 +183,17 @@
                     </form>
                 </div>
                 <div class="tab-pane fade" id="branch" role="tabpanel" aria-labelledby="profile-tab">
-                    <form [formGroup]="institutionDetailForm" (ngSubmit)="onSubmit()">
-                        <div class="row">
-                            <div class="form-group col-6">
-                                <label for="exampleInputEmail1">Branch*</label>
-                                <input type="email" class="form-control blip-input" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            </div>
+                    <div class="row branch-tab">
+
+                        <div class="col-9">
+                            <h2>List of Branches</h2>
                         </div>
-                        <button (click)="saveStep()" class="btn btn-primary btn-next" data-toggle="tab" href="#section" role="tab" aria-controls="profile" aria-selected="false">Next</button>
-                    </form>
+                        <div class="col-3">
+                            <button class="btn btn-primary" (click)="openBranchModal(branchmodal)">Add</button>
+                        </div>
+                    </div>
+                    <div class="shadow-sm p-3 mb-5 bg-white blip-chip" [ngStyle]="getRandomColor()" *ngFor="let branch of branches">{{branch}}</div>
+                    <button type="submit" (click)="nextStep()" class="btn btn-primary">Submit</button>
                 </div>
                 <div class="tab-pane fade" id="section" role="tabpanel" aria-labelledby="profile-tab">
                     <form [formGroup]="institutionDetailForm" (ngSubmit)="onSubmit()">

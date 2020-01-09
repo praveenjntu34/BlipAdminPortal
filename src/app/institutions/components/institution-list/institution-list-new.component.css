@@ -280,3 +280,40 @@ input:focus {
     outline: none;
     border-bottom: 2px solid #3000B2;
 }
+
+.branch-tab {
+    margin-top: 10px;
+}
+
+.branch-form {
+    padding: 0;
+    margin-top: 10ox;
+}
+
+.blip-chip {
+    display: inline-block;
+    border-width: 0 0 0 6px;
+    border-style: solid;
+    margin: 10px 15px 0 0 !important;
+    padding: 9px !important;
+}
+
+.modal-sm {
+    position: absolute;
+    left: 127px;
+    top: 130px;
+}
+
+.btn-branch {
+    right: 14px;
+    bottom: 8px;
+    margin-top: 32px;
+    position: absolute;
+}
+
+.branch-button {
+    width: 80%;
+    background: #F6F8F9;
+    border: 0.5px solid rgba(222, 222, 222, 0.23);
+    margin-bottom: 23px;
+}

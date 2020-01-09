@@ -7,7 +7,8 @@ import { DashboardMenuModule } from '../dashboard-menu/dashboard-menu.module';
 import { InstitutionDetailComponent } from './components/institution-detail/institution-detail.component';
 import { InstitutionDetailPageComponent } from './pages/institution-detail-page/institution-detail-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { FormsModule } from '@angular/forms';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -16,7 +17,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     InstitutionRoutingModule,
     DashboardMenuModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    FormsModule
+  ],
+  providers: [NgbActiveModal]
 })
 export class InstitutionsModule { }

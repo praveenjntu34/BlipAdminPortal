@@ -317,3 +317,62 @@ input:focus {
     border: 0.5px solid rgba(222, 222, 222, 0.23);
     margin-bottom: 23px;
 }
+
+.branch-wrapper {
+    padding-right: 0;
+    padding: 0;
+    border: 0.5px solid rgba(144, 144, 144, 0.46);
+}
+
+.section-wrapper {
+    padding-left: 0;
+    border: 0.5px solid rgba(144, 144, 144, 0.46);
+}
+
+.chip {
+    display: inline-block;
+    padding: 0px 25px;
+    height: 39px;
+    font-size: 18px;
+    line-height: 36px;
+    margin: 14px;
+    border: 1px solid #f1f1f1;
+    border-radius: 21px;
+    box-shadow: 2px 2px #f1f1f1;
+    background-color: white;
+}
+
+.blip-ul {
+    padding-left: 0px;
+    height: 350px;
+    padding: 0;
+}
+
+.blip-li {
+    padding: 5px;
+}
+
+.blip-li--focused {
+    border-bottom: 4px solid #316AFF;
+}
+
+li {
+    list-style: none;
+}
+
+.fa-dot {
+    font-size: 12px;
+    color: #316AFF;
+}
+
+.section-area {
+    margin: 10px 0 0 0;
+}
+
+.section-padding {
+    margin: 10px 0 0 14px;
+}
+
+.blip-ul li:hover {
+    background: rgba(144, 144, 144, 0.46);
+}

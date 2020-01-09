@@ -37,8 +37,15 @@ export class InstitutionListComponent implements OnInit {
   modalRef: NgbModalRef;
   loading_tab3: boolean = true;
   loading_tab2: boolean = true;
+  selectedBranchIndex: number = -1;
 
- 
+ sectionBranches: Array<string> = [
+   "Computee Science",
+   "Electrical",
+   "Civil"
+ ]
+
+
   constructor(private modalService: NgbModal ,private instService: InstitutionService, private formBuilder: FormBuilder){
 
     this.modalOptions = {
@@ -76,6 +83,10 @@ export class InstitutionListComponent implements OnInit {
     }
   }
 
+  selectedBranch(event,index){
+    console.log("see index", index)
+    this.selectedBranch = index;
+  }
   onFileChanged(event) {
     let file: File = event.target.files[0];
     let reader = new FileReader();

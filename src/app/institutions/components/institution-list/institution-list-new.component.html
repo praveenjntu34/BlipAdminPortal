@@ -209,8 +209,10 @@
                     <div class="row section-area">
                         <div class="col-6 branch-wrapper">
                             <ul class="blip-ul">
-                                <!-- <li class="blip-li blip-li--focused"> <a>Science and Engineering</a></li> -->
-                                <li class="blip-li" *ngFor="let b of sectionBranches; let i = index" [class.blip-li--focused]="selectedBranchIndex === i" (click)="selectedBranch($event,i)"><a>{{b}}</a></li>
+
+                                <li class="blip-li" *ngFor="let b of sectionBranches; let i = index" (click)="getBranch(i)" [ngClass]="{'blip-li--focused':selectedBranchIndex === i}">
+                                    <a>{{b}}</a>
+                                </li>
 
                             </ul>
                         </div>
@@ -221,15 +223,7 @@
                         </div>
                     </div>
 
-                    <!-- <form [formGroup]="institutionDetailForm">
-                        <div class="row">
-                            <div class="form-group col-6">
-                                <label for="exampleInputEmail1">Section*</label>
-                                <input type="email" class="form-control blip-input" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form> -->
+
                 </div>
             </div>
         </div>

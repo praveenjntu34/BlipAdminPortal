@@ -83,10 +83,15 @@ export class InstitutionListComponent implements OnInit {
     }
   }
 
-  selectedBranch(event,index){
+  selectedBranch(index){
     console.log("see index", index)
     this.selectedBranch = index;
   }
+
+  public getBranch(i) {
+    console.log("got index", i)
+  }
+
   onFileChanged(event) {
     let file: File = event.target.files[0];
     let reader = new FileReader();

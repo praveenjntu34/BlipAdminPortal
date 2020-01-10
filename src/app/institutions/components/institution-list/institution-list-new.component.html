@@ -5,13 +5,27 @@
             <h5 style="margin: 5px 0 0 24px;">Add branch</h5>
 
             <div class="" style="margin-left:24px; margin-bottom: 46px;">
-                <label for="institutionName">Name of Institution*</label>
+                <label for="institutionName">Name of Branch*</label>
                 <input type="text" [(ngModel)]="branchNameModel" class="branch-button" id="branchName">
             </div>
             <button class="btn btn-primary btn-branch" (click)="addBranch()" style="margin-left:24px">Add</button>
         </div>
 
     </ng-template>
+    <ng-template #sectionmodal let-modal>
+        <div class="row">
+            <h5 style="margin: 5px 0 0 24px;">Add section</h5>
+
+            <div class="" style="margin-left:24px; margin-bottom: 46px;">
+                <label for="institutionName">Name of Section*</label>
+                <!-- <input type="text" [(ngModel)]="branchNameModel" class="branch-button" id="branchName"> -->
+            </div>
+            <button class="btn btn-primary btn-branch" (click)="addBranch()" style="margin-left:24px">Add</button>
+        </div>
+
+    </ng-template>
+
+
     <ng-template #mymodal let-modal>
 
         <div class="modal-body super-modal">
@@ -192,7 +206,7 @@
                             <button class="btn btn-primary" (click)="openBranchModal(branchmodal)">Add</button>
                         </div>
                     </div>
-                    <div class="shadow-sm p-3 mb-5 bg-white blip-chip" [ngStyle]="getRandomColor()" *ngFor="let branch of branches">{{branch}}</div>
+                    <div class="shadow-sm p-3 mb-5 bg-white blip-chip" [ngStyle]="getRandomColor()" *ngFor="let branch of branches">{{branch.branchName}}</div>
                     <button type="submit" (click)="nextStep()" class="btn btn-primary" data-toggle="tab" href="#section" role="tab" aria-controls="section" aria-selected="false">Next</button>
                 </div>
                 <div class="tab-pane fade" id="section" role="tabpanel" aria-labelledby="profile-tab">
@@ -210,8 +224,8 @@
                         <div class="col-6 branch-wrapper">
                             <ul class="blip-ul">
 
-                                <li class="blip-li" *ngFor="let b of sectionBranches; let i = index" (click)="getBranch(i)" [ngClass]="{'blip-li--focused':selectedBranchIndex === i}">
-                                    <a>{{b}}</a>
+                                <li class="blip-li" *ngFor="let b of branches; let i = index" (click)="getBranch(i)" [ngClass]="{'blip-li--focused':selectedBranchIndex === i}">
+                                    <a>{{b.branchName}}</a>
                                 </li>
 
                             </ul>

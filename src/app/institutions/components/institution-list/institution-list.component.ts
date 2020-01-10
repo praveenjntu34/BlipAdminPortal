@@ -7,6 +7,8 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { Institution } from '../../shared/institution-detail.model'
 import { State, City } from '../../shared/location.model';
 import { POC, PersonDto } from '../../shared/poc.model';
+import { TestBed } from '@angular/core/testing';
+import { BranchSection, Branch, Section } from '../../shared/branch-section.model';
 @Component({
   selector: 'app-institution-list',
   templateUrl: './institution-list-new.component.html',
@@ -32,7 +34,11 @@ export class InstitutionListComponent implements OnInit {
   branchModalOptions: NgbModalOptions;
   branchNameModel: string;
 
-  branches: Array<string> = [];
+  branches: Array<Branch> = new Array<Branch>();
+  sections: Array<Section>;
+
+  branchSection: BranchSection = new BranchSection(this.branches);
+
   myArray: any = ['#3F51B5 ', '#F44336', '#FF5722','#FFC107','#4CAF50','#607D8B'];  
   modalRef: NgbModalRef;
   loading_tab3: boolean = true;
@@ -83,13 +89,9 @@ export class InstitutionListComponent implements OnInit {
     }
   }
 
-  selectedBranch(index){
-    console.log("see index", index)
-    this.selectedBranch = index;
-  }
-
   public getBranch(i) {
     console.log("got index", i)
+    this.selectedBranchIndex = i;
   }
 
   onFileChanged(event) {
@@ -107,9 +109,6 @@ export class InstitutionListComponent implements OnInit {
           })
 
   }
-
-
-
 
 
   getCities(stateId) {
@@ -193,7 +192,12 @@ export class InstitutionListComponent implements OnInit {
   }
 
   addBranch() {
-    this.branches.push(this.branchNameModel)
+
+    this.branches.push(new Branch(this.branchNameModel))
+
+
+    this.branchSection.branch = this.branches;
+    // this.branches.push(this.branchNameModel)
     this.modalRef.close();
     console.log(this.branchNameModel)
     var branchData = {
@@ -202,12 +206,30 @@ export class InstitutionListComponent implements OnInit {
     }
     this.instService.addBranch(branchData)
           .subscribe(data => {
+              this.branchNameModel = null;
               console.log(data);
           })
   }
 
+  addSection(){
+
+  }
   nextStep() {
     this.stepCount++;
     this.loading_tab3 = false;
   }
+
+  test() {
+    let arr = [
+      {
+        branchName: 'Branch A',
+        sections: [
+          'a',
+          'b'
+        ]
+      }
+    ]
+  }
 }
+
+ 

@@ -231,8 +231,8 @@
                             </ul>
                         </div>
                         <div class="col-4 section-wrapper">
-                            <div class="chip">
-                                <i class="fas fa-circle fa-dot"></i> 1A
+                            <div class="chip" *ngFor="let sec of bSectionsArray">
+                                <i class="fas fa-circle fa-dot"></i> {{sec.sections[0]}}
                             </div>
                         </div>
                     </div>

@@ -8,7 +8,16 @@ import { Institution } from '../../shared/institution-detail.model'
 import { State, City } from '../../shared/location.model';
 import { POC, PersonDto } from '../../shared/poc.model';
 import { TestBed } from '@angular/core/testing';
-import { BranchSection, Branch, Section } from '../../shared/branch-section.model';
+import { BranchSection, Branch } from '../../shared/branch-section.model';
+
+
+export class BSections {
+  sections: Array<string>
+  constructor(){
+    this.sections = new Array<string>();
+  }
+}
+
 @Component({
   selector: 'app-institution-list',
   templateUrl: './institution-list-new.component.html',
@@ -34,23 +43,25 @@ export class InstitutionListComponent implements OnInit {
   branchModalOptions: NgbModalOptions;
   branchNameModel: string;
 
+  
   branches: Array<Branch> = new Array<Branch>();
-  sections: Array<Section>;
-
-  branchSection: BranchSection = new BranchSection(this.branches);
-
+  branchSections: BranchSection;
   myArray: any = ['#3F51B5 ', '#F44336', '#FF5722','#FFC107','#4CAF50','#607D8B'];  
   modalRef: NgbModalRef;
   loading_tab3: boolean = true;
   loading_tab2: boolean = true;
   selectedBranchIndex: number = -1;
 
+  //test
+
+  bSectionsArray: Array<BSections> = new Array<BSections>();
+  branchIndex: number = -1;
+
  sectionBranches: Array<string> = [
    "Computee Science",
    "Electrical",
    "Civil"
  ]
-
 
   constructor(private modalService: NgbModal ,private instService: InstitutionService, private formBuilder: FormBuilder){
 
@@ -121,6 +132,7 @@ export class InstitutionListComponent implements OnInit {
 
 
   ngOnInit() {
+
     this.institutionDetailForm = this.formBuilder.group({
       institutionName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -192,12 +204,12 @@ export class InstitutionListComponent implements OnInit {
   }
 
   addBranch() {
+    this.branchIndex++;
+
+    this.bSectionsArray[this.branchIndex] = new BSections();
+    this.bSectionsArray[this.branchIndex].sections.push("A" + this.branchIndex)
 
     this.branches.push(new Branch(this.branchNameModel))
-
-
-    this.branchSection.branch = this.branches;
-    // this.branches.push(this.branchNameModel)
     this.modalRef.close();
     console.log(this.branchNameModel)
     var branchData = {
@@ -212,6 +224,8 @@ export class InstitutionListComponent implements OnInit {
   }
 
   addSection(){
+    // this.branchSections.sections.push("1A")
+    // this.branchSections.sections.push("1B")
 
   }
   nextStep() {
@@ -231,5 +245,3 @@ export class InstitutionListComponent implements OnInit {
     ]
   }
 }
-
- 

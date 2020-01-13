@@ -22,6 +22,19 @@ export class InstitutionService {
     return this.http.post(baseUrl + 'institution/branch', JSON.stringify(branchData), httpOptions )
   }
 
+  addSection(sectionData){
+    const branchFormData = new FormData();
+    let headers = new Headers();
+
+    console.log("req", sectionData)
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }
+    return this.http.post(baseUrl + 'institution/section', JSON.stringify(sectionData), httpOptions )
+  }
+
 
   addPOCDetails(pocData) {
     return this.http.post(baseUrl + 'institution/poc',pocData )

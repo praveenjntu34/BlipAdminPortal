@@ -9,6 +9,7 @@ import { State, City } from '../../shared/location.model';
 import { POC, PersonDto } from '../../shared/poc.model';
 import { TestBed } from '@angular/core/testing';
 import { BranchSection, Branch } from '../../shared/branch-section.model';
+import { Router } from '@angular/router';
 
 
 export class BSections {
@@ -41,7 +42,10 @@ export class InstitutionListComponent implements OnInit {
   closeResult: string;
   modalOptions:NgbModalOptions;
   branchModalOptions: NgbModalOptions;
+  sectionModalOptions:NgbModalOptions;
   branchNameModel: string;
+  sectionNameModel: string;
+
 
   
   branches: Array<Branch> = new Array<Branch>();
@@ -55,6 +59,8 @@ export class InstitutionListComponent implements OnInit {
   //test
 
   bSectionsArray: Array<BSections> = new Array<BSections>();
+  currentIndex: number = 0 ;
+  singleSection: Array<string> = [];
   branchIndex: number = -1;
 
  sectionBranches: Array<string> = [
@@ -63,7 +69,9 @@ export class InstitutionListComponent implements OnInit {
    "Civil"
  ]
 
-  constructor(private modalService: NgbModal ,private instService: InstitutionService, private formBuilder: FormBuilder){
+  constructor(private modalService: NgbModal ,private instService: InstitutionService, private formBuilder: FormBuilder
+    ,private router: Router
+    ){
 
     this.modalOptions = {
       backdrop: 'static',
@@ -74,6 +82,13 @@ export class InstitutionListComponent implements OnInit {
     }
 
     this.branchModalOptions = {
+      backdrop: 'static',
+      centered: true,
+      backdropClass:'customBackdrop',
+      size: 'sm',
+      windowClass: 'branch-modal-container'
+    }
+    this.sectionModalOptions = {
       backdrop: 'static',
       centered: true,
       backdropClass:'customBackdrop',
@@ -94,6 +109,12 @@ export class InstitutionListComponent implements OnInit {
   openBranchModal(modalContent) {
     this.modalRef = this.modalService.open(modalContent, this.branchModalOptions);
   }
+
+  openSectionModal(sectionContent) {
+    this.modalRef = this.modalService.open(sectionContent, this.sectionModalOptions)
+  }
+
+
   getRandomColor() {
     return {
       'border-color': this.myArray[Math.floor(Math.random() * this.myArray.length)]
@@ -103,6 +124,11 @@ export class InstitutionListComponent implements OnInit {
   public getBranch(i) {
     console.log("got index", i)
     this.selectedBranchIndex = i;
+    if(i > this.bSectionsArray.length - 1){
+      var section = new BSections();
+      this.bSectionsArray[this.selectedBranchIndex] = section;
+    }
+    this.singleSection = this.bSectionsArray[this.selectedBranchIndex].sections;
   }
 
   onFileChanged(event) {
@@ -206,10 +232,9 @@ export class InstitutionListComponent implements OnInit {
   addBranch() {
     this.branchIndex++;
 
-    this.bSectionsArray[this.branchIndex] = new BSections();
-    this.bSectionsArray[this.branchIndex].sections.push("A" + this.branchIndex)
+    // this.bSectionsArray[this.branchIndex] = new BSections();
+    // this.bSectionsArray[this.branchIndex].sections.push("A" + this.branchIndex)
 
-    this.branches.push(new Branch(this.branchNameModel))
     this.modalRef.close();
     console.log(this.branchNameModel)
     var branchData = {
@@ -217,22 +242,36 @@ export class InstitutionListComponent implements OnInit {
       relTenantInstitutionId: localStorage.getItem('currentRelTenantInstitutionId')
     }
     this.instService.addBranch(branchData)
-          .subscribe(data => {
-              this.branchNameModel = null;
-              console.log(data);
+    .subscribe((data: any) => {
+          this.branches.push(new Branch(data.branchId,this.branchNameModel))
+          this.branchNameModel = null;
+          console.log(data);
           })
   }
 
   addSection(){
-    // this.branchSections.sections.push("1A")
-    // this.branchSections.sections.push("1B")
+    this.singleSection.push(this.sectionNameModel)
+    this.modalRef.close();
+
+    var sectionRequestData = {
+      branchId: this.branches[this.selectedBranchIndex].branchId,
+      sectionName: this.sectionNameModel
+    }
+
+    this.instService.addSection(sectionRequestData)
+          .subscribe((data: any) => {
+            console.log(data)
+          })
+    // this.bSectionsArray[this.selectedBranchIndex].sections.push(this.sectionNameModel)
 
   }
   nextStep() {
     this.stepCount++;
     this.loading_tab3 = false;
   }
-
+  goToDetails(index) {
+    this.router.navigate(['/institutions',this.data[index].institutionId])
+  }
   test() {
     let arr = [
       {

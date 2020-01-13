@@ -12,15 +12,15 @@
         </div>
 
     </ng-template>
-    <ng-template #sectionmodal let-modal>
+    <ng-template #sectionModal let-modal>
         <div class="row">
             <h5 style="margin: 5px 0 0 24px;">Add section</h5>
 
             <div class="" style="margin-left:24px; margin-bottom: 46px;">
-                <label for="institutionName">Name of Section*</label>
-                <!-- <input type="text" [(ngModel)]="branchNameModel" class="branch-button" id="branchName"> -->
+                <label for="sectionName">Name of Section*</label>
+                <input type="text" [(ngModel)]="sectionNameModel" class="branch-button" id="branchName">
             </div>
-            <button class="btn btn-primary btn-branch" (click)="addBranch()" style="margin-left:24px">Add</button>
+            <button class="btn btn-primary btn-branch" (click)="addSection()" style="margin-left:24px">Add</button>
         </div>
 
     </ng-template>
@@ -217,7 +217,7 @@
 
                         </div>
                         <div class="col-4 section-padding">
-                            <button class="btn btn-primary">Add</button>
+                            <button class="btn btn-primary" (click)="openSectionModal(sectionModal)">Add</button>
                         </div>
                     </div>
                     <div class="row section-area">
@@ -231,8 +231,8 @@
                             </ul>
                         </div>
                         <div class="col-4 section-wrapper">
-                            <div class="chip" *ngFor="let sec of bSectionsArray">
-                                <i class="fas fa-circle fa-dot"></i> {{sec.sections[0]}}
+                            <div class="chip" *ngFor="let sec of singleSection">
+                                <i class="fas fa-circle fa-dot"></i> {{sec}}
                             </div>
                         </div>
                     </div>
@@ -293,8 +293,8 @@
 
             <div class="institution-list">
                 <div class="row card-group">
-                    <div class="col-md-6 col-lg-4 col-xl-3" *ngFor="let institution of data">
-                        <div class="card institution-list--item">
+                    <div class="col-md-6 col-lg-4 col-xl-3" *ngFor="let institution of data; let in = index;">
+                        <div class="card institution-list--item" (click)="goToDetails(in)">
                             <div class="row">
                                 <div class="col-md-8 col-lg-8 col-xl-7">
                                     <p class="institution-list--title">{{institution.institutionName}}</p>

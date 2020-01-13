@@ -8,7 +8,7 @@ const institutionRoutes: Routes = [
     component: InstitutionListPageComponent,
   } ,
   {
-    path: 'detail',
+    path: ':id',
     component: InstitutionDetailPageComponent
   }
 ];

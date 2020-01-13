@@ -173,8 +173,14 @@ select {
 }
 
 .institution-list--item {
+    cursor: pointer;
     padding: 10px;
     margin-bottom: 20px;
+    transition: transform .2s
+}
+
+.institution-list--item:hover {
+    transform: scale(1.1);
 }
 
 .institution-list--title {

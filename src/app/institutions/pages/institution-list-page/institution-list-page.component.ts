@@ -13,7 +13,6 @@ export class InstitutionListPageComponent implements OnInit {
     this.api.getAllInstitutions()
     .subscribe((data : any) => {
       data.forEach((institution: any) => {
-        console.log("data here",institution)
         this.data.push(institution)
       });
     })

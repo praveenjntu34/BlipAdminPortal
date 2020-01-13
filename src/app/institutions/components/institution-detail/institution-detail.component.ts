@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-institution-detail',
@@ -10,7 +11,14 @@ export class InstitutionDetailComponent implements OnInit {
  myArray: any = ['#3F51B5 ', '#F44336', '#FF5722','#FFC107','#4CAF50','#607D8B'];  
 
   @Input() data: any;
-  constructor() { }
+  constructor(private route: ActivatedRoute) {
+
+    this.route.params.subscribe((param:any) => {
+      console.log("route param", param);
+      
+    })
+
+   }
 
   getRandomColor() {
     return {

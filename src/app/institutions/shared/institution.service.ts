@@ -70,7 +70,11 @@ export class InstitutionService {
   }
 
 
-  getInstitutionDetails() {
+  getInstitutionDetails(institutionId) {
+    return this.http.get(baseUrl + 'institution/ins-details/' + institutionId);
+  }
+
+  getBranches() {
     return [
       {
         id: 1,

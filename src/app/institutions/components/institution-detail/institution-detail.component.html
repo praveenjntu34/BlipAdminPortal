@@ -23,7 +23,7 @@
     </div>
     <div class="institution-body">
         <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active" id="pills-detail" role="tabpanel" aria-labelledby="pills-detail-tab">
+            <div class="tab-pane fade show active" id="pills-details" role="tabpanel" aria-labelledby="pills-details-tab">
                 <div class="row">
                     <div class="offset-md-11 offset-11">
                         <button class="btn btn-primary edit-buton">Edit <img src="../../../../assets/pencil.png" alt=""></button>
@@ -32,25 +32,25 @@
                 <div class="row">
                     <div class="col-6">
                         <p class="line-heading">Name of the Institution</p>
-                        <p>Arizona</p>
+                        <p>{{coreData.institutionName}}</p>
                         <p class="line-heading">Website</p>
-                        <p>ariz0na.ac.us</p>
+                        <p>{{coreData.website}}</p>
                         <p class="line-heading">Address</p>
-                        <p>Arizona, Bakers street</p>
+                        <p>{{coreData.address1 + " " + coreData.address2}}</p>
                         <p class="line-heading">State</p>
-                        <p>Arizona</p>
+                        <p>{{coreData.stateName}}</p>
                         <p class="line-heading">Remarks</p>
-                        <p>Stanford is known for its academic achievements, wealth and selectivity known for its academic achievements, wealth and selectivity </p>
+                        <p>{{coreData.remarks}} </p>
                     </div>
                     <div class="col-6">
                         <p class="line-heading">Email(Institution)</p>
-                        <p>arizona.edu@gmal.com</p>
+                        <p>{{coreData.email}}</p>
                         <p class="line-heading">Institution Type</p>
                         <p>College</p>
                         <p class="line-heading">Country</p>
-                        <p>United States of America</p>
+                        <p>India</p>
                         <p class="line-heading">City</p>
-                        <p>Phoenix</p>
+                        <p>{{coreData.cityName}}</p>
                         <p class="line-heading">Image</p>
                         <img src="../../../../assets/newyork.gif" width="80px" height="80px" alt="">
                     </div>

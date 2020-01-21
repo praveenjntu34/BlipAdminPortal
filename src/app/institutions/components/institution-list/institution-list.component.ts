@@ -113,7 +113,10 @@ export class InstitutionListComponent implements OnInit {
   openSectionModal(sectionContent) {
     this.modalRef = this.modalService.open(sectionContent, this.sectionModalOptions)
   }
-
+  
+  closeModal() {
+    this.modalService.dismissAll();
+  }
 
   getRandomColor() {
     return {
@@ -163,7 +166,7 @@ export class InstitutionListComponent implements OnInit {
       institutionName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       website: ['', Validators.required],
-      institutionTypeId: ['', Validators.required],
+      institutionTypeId: [''],
       address1: ['', Validators.required],
       address2: ['', Validators.required],
       cityId: ['', Validators.required],
@@ -266,6 +269,11 @@ export class InstitutionListComponent implements OnInit {
 
   }
   nextStep() {
+    this.stepCount++;
+    this.loading_tab3 = false;
+  }
+
+  finalStep() {
     this.stepCount++;
     this.loading_tab3 = false;
   }

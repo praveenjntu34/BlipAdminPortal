@@ -382,3 +382,16 @@ li {
 .blip-ul li:hover {
     background: rgba(144, 144, 144, 0.46);
 }
+
+.final-screen {
+    position: relative;
+    top: 200px;
+    left: 200px;
+}
+
+.finish-image {
+    width: 100px;
+    height: 100px;
+    left: 300px;
+    top: 200px;
+}

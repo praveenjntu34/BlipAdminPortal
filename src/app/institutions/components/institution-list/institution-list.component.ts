@@ -215,6 +215,8 @@ export class InstitutionListComponent implements OnInit {
     
      let personDto = new PersonDto(this.institutionPOCForm.value.primaryPOCFirstName,
       this.institutionPOCForm.value.primaryPOCLastName,2, 'M'
+      ,this.institutionPOCForm.value.primaryPOCEmail
+      ,this.institutionPOCForm.value.primaryPOCPhoneNumber
       )
      let personObject = new POC(personDto,+localStorage.getItem('currentRelTenantInstitutionId'),this.institutionPOCForm.value.secondaryPOCEmail
      ,this.institutionPOCForm.value.secondaryPOCFirstName + " " + this.institutionPOCForm.value.secondaryPOCLastName,

@@ -35,6 +35,10 @@ export class InstitutionService {
     return this.http.post(baseUrl + 'institution/section', JSON.stringify(sectionData), httpOptions )
   }
 
+  getPOCDetails(relTenantInstitutionId) {
+    return this.http.get(baseUrl + 'institution/poc/' + relTenantInstitutionId);
+       
+  }
 
   addPOCDetails(pocData) {
     return this.http.post(baseUrl + 'institution/poc',pocData )
@@ -72,6 +76,10 @@ export class InstitutionService {
 
   getInstitutionDetails(institutionId) {
     return this.http.get(baseUrl + 'institution/ins-details/' + institutionId);
+  }
+
+  getInstitutionBranches(id) {
+    return this.http.get(baseUrl + 'institution/branch/' + id)
   }
 
   getBranches() {

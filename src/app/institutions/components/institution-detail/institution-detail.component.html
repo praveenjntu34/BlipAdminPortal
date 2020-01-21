@@ -52,7 +52,7 @@
                         <p class="line-heading">City</p>
                         <p>{{coreData.cityName}}</p>
                         <p class="line-heading">Image</p>
-                        <img src="../../../../assets/newyork.gif" width="80px" height="80px" alt="">
+                        <img [src]="image" width="80px" height="80px" alt="">
                     </div>
 
                 </div>
@@ -66,32 +66,62 @@
                 <div class="row">
                     <div class="col-6">
                         <p class="line-heading">Primary POC First Name</p>
-                        <p>Arizona</p>
+                        <p>{{pocData.primaryPOCFirstName}}</p>
                         <p class="line-heading">Primary POC PhoneNumber</p>
-                        <p>ariz0na.ac.us</p>
-                        <p class="line-heading">Secondary POC FirstName</p>
-                        <p>Arizona, Bakers street</p>
+                        <p>{{pocData.primaryPOCPhoneNumber}}</p>
+                        <p class="line-heading">Secondary POC First Name</p>
+                        <p>{{(pocData.secondaryPOCName).split(" ")[0]}}</p>
                         <p class="line-heading">Secondary POC PhoneNumber</p>
-                        <p>Arizona</p>
+                        <p>{{pocData.secondaryPOCPhoneNumber}}</p>
 
                     </div>
                     <div class="col-6">
                         <p class="line-heading">Primary POC LatstName</p>
-                        <p>arizona.edu@gmal.com</p>
+                        <p>{{pocData.primaryPOCLastName}}</p>
                         <p class="line-heading">Primary POC Email</p>
-                        <p>College</p>
+                        <p>{{pocData.primaryPOCEmail}}</p>
                         <p class="line-heading">Secondary POC LastName</p>
-                        <p>United States of America</p>
+                        <p>{{(pocData.secondaryPOCName).split(" ")[1]}}</p>
                         <p class="line-heading">Secondary POC Email</p>
-                        <p>Phoenix</p>
+                        <p>{{pocData.secondaryPOCEmail}}</p>
                     </div>
 
                 </div>
             </div>
             <div class="tab-pane fade" id="pills-branch" role="tabpanel" aria-labelledby="pills-branch-tab">
-                <div class="shadow-sm p-3 mb-5 bg-white blip-chip" [ngStyle]="getRandomColor()" *ngFor="let branch of data">{{branch.branchName}}</div>
+                <div class="shadow-sm p-3 mb-5 bg-white blip-chip" [ngStyle]="getRandomColor()" *ngFor="let branch of branchData">{{branch.branchName}}</div>
             </div>
             <div class="tab-pane fade" id="pills-section" role="tabpanel" aria-labelledby="pills-section-tab">
+
+                <div class="row">
+                    <div class="col-8">
+                        <h4 class="section-padding">List of Sections</h4>
+
+                    </div>
+                    <div class="col-4 section-padding">
+                        <button class="btn btn-primary" (click)="openSectionModal(sectionModal)">Add</button>
+                    </div>
+                </div>
+                <div class="row section-area">
+                    <div class="col-6 branch-wrapper">
+                        <ul class="blip-ul">
+
+                            <li class="blip-li" *ngFor="let b of branches; let i = index" (click)="getBranch(i)" [ngClass]="{'blip-li--focused':selectedBranchIndex === i}">
+                                <a>{{b.branchName}}</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-4 section-wrapper">
+                        <div class="chip" *ngFor="let sec of singleSection">
+                            <i class="fas fa-circle fa-dot"></i> {{sec}}
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- <div class="tab-pane fade" id="pills-section" role="tabpanel" aria-labelledby="pills-section-tab">
                 <div class="row">
                     <div class="col-6 branch-wrapper">
                         <ul class="blip-ul">
@@ -107,7 +137,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="tab-pane fade" id="pills-instructor" role="tabpanel" aria-labelledby="pills-instructor-tab">instructor</div>
         </div>
     </div>

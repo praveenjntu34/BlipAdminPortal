@@ -20,12 +20,15 @@
       lastName: string
       personTypeId: number
       gender: string
-
-      constructor(firstName:string, lastName: string, personTypeId: number, gender: string){
+      email: string;
+      phoneNumber: string;
+      constructor(firstName:string, lastName: string, personTypeId: number, gender: string, email: string, phoneNumber:string){
         this.firstName = firstName
         this.lastName = lastName
         this.personTypeId = personTypeId
         this.gender = gender
+        this.email = email
+        this.phoneNumber = phoneNumber;
       }
 
   }

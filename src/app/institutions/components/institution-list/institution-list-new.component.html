@@ -148,7 +148,7 @@
                                 <img class="image-create" [src]="img_url">
                             </div>
                         </div>
-                        <button type="submit" (click)="onSubmit()" class="btn btn-primary btn-next" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Next</button>
+                        <button type="submit" [disabled]="!institutionDetailForm.valid" (click)="onSubmit()" class="btn btn-primary btn-next" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Next</button>
                     </form>
                 </div>
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -193,7 +193,7 @@
                                 <input type="email" formControlName="secondaryPOCEmail" class="form-control blip-input" id="secondaryPOCEmail">
                             </div>
                         </div>
-                        <button type="submit" (click)="addPOCForm()" class="btn btn-primary btn-next" data-toggle="tab" href="#branch" role="tab" aria-controls="profile" aria-selected="false">Next</button>
+                        <button type="submit" [disabled]="!institutionPOCForm.valid" (click)="addPOCForm()" class="btn btn-primary btn-next" data-toggle="tab" href="#branch" role="tab" aria-controls="profile" aria-selected="false">Next</button>
                     </form>
                 </div>
                 <div class="tab-pane fade" id="branch" role="tabpanel" aria-labelledby="profile-tab">
@@ -236,8 +236,31 @@
                             </div>
                         </div>
                     </div>
+                    <button type="submit" (click)="finalStep()" class="btn btn-primary" data-toggle="tab" href="#institution-created" role="tab" aria-controls="profile" aria-selected="false">Next</button>
+                </div>
 
+                <div class="tab-pane fade" id="institution-created" role="tabpanel" aria-labelledby="created-tab">
+                    <div class="row final-screen">
+                        <div class="col-12">
+                            <img class="finish-image" src="../../../../assets/newyork.gif" alt="">
+                        </div>
+                        <div class="col-12">
+                            <img src="../../../../assets/green-tick.png" alt="" width="15x" height="15px">
+                            <h4> Institution Created</h4>
+                        </div>
+                        <div class="col-12">
+                            <p>Username: praveen.vatambeti@gmail.com</p>
+                            <p><b>Auto-generated password</b></p>
+                        </div>
+                        <div class="col-12">
+                            <img src="../../../../assets/shield.png" alt="" width="15x" height="15px">
+                            <p>xgJHGJhgvCHGd12</p>
 
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" (click)="closeModal()" class="btn btn-primary">Finish</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

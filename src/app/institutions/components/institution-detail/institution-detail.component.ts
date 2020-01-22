@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { InstitutionService } from '../../shared/institution.service';
+import { BSections } from '../institution-list/institution-list.component';
 
 @Component({
   selector: 'app-institution-detail',
@@ -8,7 +9,9 @@ import { InstitutionService } from '../../shared/institution.service';
   styleUrls: ['./institution-detail.component.css']
 })
 export class InstitutionDetailComponent implements OnInit, OnChanges {
-
+  selectedBranchIndex: number = -1;
+  bSectionsArray: Array<BSections> = new Array<BSections>();
+  singleSection: Array<string> = [];
 
   ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
 
@@ -38,10 +41,14 @@ export class InstitutionDetailComponent implements OnInit, OnChanges {
       console.log("route param", param);
       console.log("d", this.data);
     })
-
- 
    }
 
+   public getBranch(i) {
+    console.log("got index", i)
+    this.selectedBranchIndex = i;
+    this.singleSection = this.branchData[this.selectedBranchIndex].sections;
+  }
+  
   getRandomColor() {
     return {
       'border-color': this.myArray[Math.floor(Math.random() * this.myArray.length)]

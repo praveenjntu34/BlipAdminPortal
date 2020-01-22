@@ -102,7 +102,25 @@
                         <button class="btn btn-primary" (click)="openSectionModal(sectionModal)">Add</button>
                     </div>
                 </div>
+
                 <div class="row section-area">
+                    <div class="col-6 branch-wrapper">
+                        <ul class="blip-ul">
+
+                            <li class="blip-li" *ngFor="let b of branchData; let i = index" (click)="getBranch(i)" [ngClass]="{'blip-li--focused':selectedBranchIndex === i}">
+                                <a>{{b.branchName}}</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-4 section-wrapper">
+                        <div class="chip" *ngFor="let sec of singleSection">
+                            <i class="fas fa-circle fa-dot"></i> {{sec.sectionName}}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="row section-area">
                     <div class="col-6 branch-wrapper">
                         <ul class="blip-ul">
 
@@ -117,7 +135,7 @@
                             <i class="fas fa-circle fa-dot"></i> {{sec}}
                         </div>
                     </div>
-                </div>
+                </div> -->
 
 
             </div>

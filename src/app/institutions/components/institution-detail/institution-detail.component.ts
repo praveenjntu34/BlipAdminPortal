@@ -13,6 +13,41 @@ export class InstitutionDetailComponent implements OnInit, OnChanges {
   bSectionsArray: Array<BSections> = new Array<BSections>();
   singleSection: Array<string> = [];
 
+  instructors = [
+    {
+      id:1,
+      Name: "test"
+    },
+    {
+      id:1,
+      Name: "test"
+    },
+    {
+      id:1,
+      Name: "test"
+    },
+    {
+      id:1,
+      Name: "test"
+    },
+    {
+      id:1,
+      Name: "test"
+    },
+    {
+      id:1,
+      Name: "test"
+    },
+    {
+      id:1,
+      Name: "test"
+    },
+    {
+      id:1,
+      Name: "test"
+    }
+  ]
+
   ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
 
 

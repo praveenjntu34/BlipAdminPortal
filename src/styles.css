@@ -11,3 +11,5 @@
     left: 145px;
     width: 1600px;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

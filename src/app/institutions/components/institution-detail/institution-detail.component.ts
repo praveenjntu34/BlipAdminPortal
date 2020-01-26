@@ -2,6 +2,8 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { InstitutionService } from '../../shared/institution.service';
 import { BSections } from '../institution-list/institution-list.component';
+import { MatDialog } from '@angular/material/dialog';
+import { InstructorTabComponent } from '../instructor-tab/instructor-tab.component';
 
 @Component({
   selector: 'app-institution-detail',
@@ -71,7 +73,9 @@ export class InstitutionDetailComponent implements OnInit, OnChanges {
   @Input() data: any;
   branchData: any = [];
   @Input() coreData: any;
-  constructor(private route: ActivatedRoute, private api : InstitutionService) {
+  constructor(private route: ActivatedRoute, private api : InstitutionService
+    ,private matDialogue: MatDialog
+    ) {
     this.route.params.subscribe((param:any) => {
       console.log("route param", param);
       console.log("d", this.data);
@@ -91,6 +95,13 @@ export class InstitutionDetailComponent implements OnInit, OnChanges {
   }
   ngOnInit() {
     
+  }
+
+  openModal(){
+     this.matDialogue.open(InstructorTabComponent, {
+       width: '500px',
+       height: '400px'
+     })
   }
 
 }

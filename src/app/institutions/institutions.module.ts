@@ -9,16 +9,19 @@ import { InstitutionDetailPageComponent } from './pages/institution-detail-page/
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-
+import {MatDialogModule} from '@angular/material/dialog';
+import { InstructorTabComponent } from './components/instructor-tab/instructor-tab.component'
 
 @NgModule({
-  declarations: [InstitutionListComponent, InstitutionListPageComponent, InstitutionDetailComponent, InstitutionDetailPageComponent],
+  declarations: [InstitutionListComponent, InstitutionListPageComponent, InstitutionDetailComponent, InstitutionDetailPageComponent, InstructorTabComponent],
+  entryComponents: [InstructorTabComponent],
   imports: [
     CommonModule,
     InstitutionRoutingModule,
     DashboardMenuModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule
   ],
   providers: [NgbActiveModal]
 })

@@ -246,9 +246,18 @@ body {
     margin: 0;
     padding: 0;
     color: #00C853;
+    border-top: solid #DEDEDE 1px;
 }
 
 .view li:hover {
     background: #00C853;
     color: white;
+    cursor: pointer;
+}
+
+.view li {
+    display: block;
+    height: 27px;
+    list-style: none;
+    line-height: 2.2;
 }

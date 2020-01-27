@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { InstitutionService } from '../../shared/institution.service';
 
 @Component({
   selector: 'app-add-instructor-modal',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddInstructorModalComponent implements OnInit {
 
-  constructor() { }
+  branches: any = [];
+  constructor(private instService: InstitutionService) { }
 
   ngOnInit() {
+    this.instService.getInstitutionBranches(1)
+          .subscribe(data => {
+            this.branches = data
+            console.log("got data", data);
+          })
   }
 
 }

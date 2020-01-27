@@ -9,7 +9,7 @@ import { SuccessPasswordComponent } from './components/success-password/success-
 import { RoutedLoginComponent } from './pages/routed-login.component';
 
 @NgModule({
-  declarations: [LoginComponent, ForgotPasswordComponent, OtpComponent, ChangePasswordComponent, RoutedLoginComponent],
+  declarations: [LoginComponent, ForgotPasswordComponent, OtpComponent, ChangePasswordComponent, RoutedLoginComponent,SuccessPasswordComponent],
   imports: [
     CommonModule,
     AuthRoutingModule

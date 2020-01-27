@@ -1,4 +1,4 @@
-<form [formGroup]="institutionDetailForm">
+<form>
     <div class="row">
         <div class="form-group col-6">
             <label for="institutionName">Name*</label>
@@ -22,28 +22,28 @@
     <div class="row">
         <div class="form-group col-6">
             <label for="address1">Branch</label>
-            <select formControlName="stateId" #st (change)="getCities(st.value)" class="form-control blip-input  blip-select">
-                    <option [value]="state.stateId" *ngFor="let state of allStates">{{state.stateName}}</option>
+            <select #st class="form-control blip-input  blip-select">
+                    <option [value]="branch.branchId" *ngFor="let branch of branches">{{branch.branchName}}</option>
             </select>
         </div>
         <div class="form-group col-6">
             <label for="exampleInputEmail1">Image</label>
-            <input type="file" (change)="onFileChanged($event)">
-            <img class="image-create" [src]="img_url">
+            <input type="file">
+            <img class="image-create ">
         </div>
     </div>
-    <div class="row">
-        <div class="form-group col-6">
-            <label for="countryId">Country</label>
-            <select formControlName="countryId" class="form-control blip-input  blip-select">
-                    <option value="1">India</option>
+    <div class="row ">
+        <div class="form-group col-6 ">
+            <label for="countryId ">Country</label>
+            <select formControlName="countryId " class="form-control blip-input blip-select ">
+                    <option value="1 ">India</option>
                   </select>
-            <!-- <input type="text" formControlName="countryId" class="form-control blip-input" id="countryId"> -->
+            <!-- <input type="text " formControlName="countryId " class="form-control blip-input " id="countryId "> -->
         </div>
 
     </div>
-    <div class="row">
+    <div class="row ">
 
     </div>
-    <button type="submit" [disabled]="!institutionDetailForm.valid" (click)="onSubmit()" class="btn btn-primary btn-next" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Next</button>
+    <button type="submit " class="btn btn-primary btn-next " data-toggle="tab " href="#profile " role="tab " aria-controls="profile " aria-selected="false ">Next</button>
 </form>

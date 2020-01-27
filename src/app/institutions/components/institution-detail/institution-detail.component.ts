@@ -4,6 +4,7 @@ import { InstitutionService } from '../../shared/institution.service';
 import { BSections } from '../institution-list/institution-list.component';
 import { MatDialog } from '@angular/material/dialog';
 import { InstructorTabComponent } from '../instructor-tab/instructor-tab.component';
+import { AddInstructorModalComponent } from '../add-instructor-modal/add-instructor-modal.component';
 
 @Component({
   selector: 'app-institution-detail',
@@ -99,9 +100,16 @@ export class InstitutionDetailComponent implements OnInit, OnChanges {
 
   openModal(){
      this.matDialogue.open(InstructorTabComponent, {
-       width: '500px',
+       width: '550px',
        height: '400px'
      })
+  }
+
+  add() {
+    this.matDialogue.open(AddInstructorModalComponent, {
+      width: '800px',
+      height: '500px'
+    })
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {MatDialogRef, MatDialogContainer} from '@angular/material/dialog';
 @Component({
   selector: 'app-instructor-tab',
   templateUrl: './instructor-tab.component.html',
@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InstructorTabComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialogRef: MatDialogRef<MatDialogContainer >) { }
 
   ngOnInit() {
+  }
+
+  closeModal() {
+    this.dialogRef.close();
   }
 
 }

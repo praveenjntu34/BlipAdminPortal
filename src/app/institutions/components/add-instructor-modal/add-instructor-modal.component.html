@@ -1,0 +1,49 @@
+<form [formGroup]="institutionDetailForm">
+    <div class="row">
+        <div class="form-group col-6">
+            <label for="institutionName">Name*</label>
+            <input type="text" formControlName="institutionName" class="form-control blip-input" id="institutionName" aria-describedby="emailHelp">
+        </div>
+        <div class="form-group col-6">
+            <label for="eamil">Email</label>
+            <input type="email" formControlName="email" class="form-control blip-input" id="eamil">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-6">
+            <label for="website">Designation</label>
+            <input type="text" formControlName="website" class="form-control blip-input" id="website">
+        </div>
+        <div class="form-group col-6">
+            <label for="website">Phone Number</label>
+            <input type="text" formControlName="website" class="form-control blip-input" id="website">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-6">
+            <label for="address1">Branch</label>
+            <select formControlName="stateId" #st (change)="getCities(st.value)" class="form-control blip-input  blip-select">
+                    <option [value]="state.stateId" *ngFor="let state of allStates">{{state.stateName}}</option>
+            </select>
+        </div>
+        <div class="form-group col-6">
+            <label for="exampleInputEmail1">Image</label>
+            <input type="file" (change)="onFileChanged($event)">
+            <img class="image-create" [src]="img_url">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-6">
+            <label for="countryId">Country</label>
+            <select formControlName="countryId" class="form-control blip-input  blip-select">
+                    <option value="1">India</option>
+                  </select>
+            <!-- <input type="text" formControlName="countryId" class="form-control blip-input" id="countryId"> -->
+        </div>
+
+    </div>
+    <div class="row">
+
+    </div>
+    <button type="submit" [disabled]="!institutionDetailForm.valid" (click)="onSubmit()" class="btn btn-primary btn-next" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Next</button>
+</form>

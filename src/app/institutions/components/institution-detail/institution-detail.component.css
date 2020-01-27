@@ -261,3 +261,16 @@ body {
     list-style: none;
     line-height: 2.2;
 }
+
+.thumb {
+    width: 22px;
+    height: 15px;
+}
+
+.email {
+    margin-top: 15px;
+}
+
+.thumbnail {
+    margin-top: 15px;
+}

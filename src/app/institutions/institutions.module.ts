@@ -10,11 +10,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import {MatDialogModule} from '@angular/material/dialog';
-import { InstructorTabComponent } from './components/instructor-tab/instructor-tab.component'
+import { InstructorTabComponent } from './components/instructor-tab/instructor-tab.component';
+import { AddInstructorModalComponent } from './components/add-instructor-modal/add-instructor-modal.component'
 
 @NgModule({
-  declarations: [InstitutionListComponent, InstitutionListPageComponent, InstitutionDetailComponent, InstitutionDetailPageComponent, InstructorTabComponent],
-  entryComponents: [InstructorTabComponent],
+  declarations: [InstitutionListComponent, InstitutionListPageComponent, InstitutionDetailComponent, InstitutionDetailPageComponent, InstructorTabComponent, AddInstructorModalComponent],
+  entryComponents: [InstructorTabComponent, AddInstructorModalComponent],
   imports: [
     CommonModule,
     InstitutionRoutingModule,

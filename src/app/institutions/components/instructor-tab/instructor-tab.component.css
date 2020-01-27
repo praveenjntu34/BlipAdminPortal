@@ -1,0 +1,40 @@
+img {
+    width: 70px;
+    height: 70px;
+    position: relative;
+    left: 40%;
+}
+
+.instructor-details {
+    margin-top: 40px;
+}
+
+.title {
+    margin-left: 34px;
+}
+
+.data {
+    margin-left: 26px;
+}
+
+p {
+    margin: 0;
+    font-size: 16px;
+}
+
+.row-black {
+    background: #F9F9FE;
+}
+
+.thumb-wrapper {
+    margin-top: 25px;
+}
+
+.thumb {
+    width: 22px;
+    height: 15px;
+}
+
+.center {
+    padding: 0;
+}

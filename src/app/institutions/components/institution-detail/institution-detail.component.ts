@@ -108,7 +108,8 @@ export class InstitutionDetailComponent implements OnInit, OnChanges {
   add() {
     this.matDialogue.open(AddInstructorModalComponent, {
       width: '800px',
-      height: '500px'
+      height: '500px',
+      data: this.branchData
     })
   }
 

@@ -1,6 +1,6 @@
 <div class="institution-wrapper">
     <div class="col-6 institution-title">
-        <h3>New York University</h3>
+        <h3>{{coreData.institutionName}}</h3>
     </div>
     <div class="">
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -107,7 +107,7 @@
                     <div class="col-6 branch-wrapper ">
                         <ul class="blip-ul ">
 
-                            <li class="blip-li " *ngFor="let b of branchData; let i=i ndex " (click)="getBranch(i) " [ngClass]="{ 'blip-li--focused':selectedBranchIndex===i } ">
+                            <li class="blip-li " *ngFor="let b of branchData; let i=index " (click)="getBranch(i) " [ngClass]="{ 'blip-li--focused':selectedBranchIndex===i } ">
                                 <a>{{b.branchName}}</a>
                             </li>
 
@@ -122,7 +122,7 @@
 
 
             </div>
-            <div class="tab-pane fade " id="pills-instructor " role="tabpanel " aria-labelledby="pills-instructor-tab ">
+            <div class="tab-pane fade " id="pills-instructor" role="tabpanel " aria-labelledby="pills-instructor-tab ">
                 <div *ngIf="false " class="instructor-image ">
                     <img src="../../../../assets/no-instructors.png " alt=" ">
                 </div>

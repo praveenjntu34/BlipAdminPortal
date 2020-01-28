@@ -1,8 +1,8 @@
-<form>
+<form [formGroup]=instructorForm>
     <div class="row">
         <div class="form-group col-6">
-            <label for="institutionName">Name*</label>
-            <input type="text" formControlName="institutionName" class="form-control blip-input" id="institutionName" aria-describedby="emailHelp">
+            <label for="instructorName">Name*</label>
+            <input type="text" formControlName="instructorName" class="form-control blip-input" id="institutionName" aria-describedby="emailHelp">
         </div>
         <div class="form-group col-6">
             <label for="eamil">Email</label>
@@ -11,18 +11,18 @@
     </div>
     <div class="row">
         <div class="form-group col-6">
-            <label for="website">Designation</label>
-            <input type="text" formControlName="website" class="form-control blip-input" id="website">
+            <label for="designation">Designation</label>
+            <input type="text" formControlName="designation" class="form-control blip-input" id="website">
         </div>
         <div class="form-group col-6">
-            <label for="website">Phone Number</label>
-            <input type="text" formControlName="website" class="form-control blip-input" id="website">
+            <label for="phoneNumber">Phone Number</label>
+            <input type="text" formControlName="phoneNumber" class="form-control blip-input" id="website">
         </div>
     </div>
     <div class="row">
         <div class="form-group col-6">
-            <label for="address1">Branch</label>
-            <select #st class="form-control blip-input  blip-select">
+            <label for="branchId">Branch</label>
+            <select #st formControlName="branchId" (change)="onChangeBranch($event.target.value)" class="form-control blip-input  blip-select">
                     <option [value]="branch.branchId" *ngFor="let branch of branches">{{branch.branchName}}</option>
             </select>
         </div>
@@ -34,16 +34,15 @@
     </div>
     <div class="row ">
         <div class="form-group col-6 ">
-            <label for="countryId ">Country</label>
-            <select formControlName="countryId " class="form-control blip-input blip-select ">
-                    <option value="1 ">India</option>
-                  </select>
-            <!-- <input type="text " formControlName="countryId " class="form-control blip-input " id="countryId "> -->
+            <label for="sectionId ">Section</label>
+            <select formControlName="sectionId" class="form-control blip-input blip-select ">
+                <option [value]="section.sectionId" *ngFor="let section of selectedSections">{{section.sectionName}}</option>
+            </select>
         </div>
 
     </div>
     <div class="row ">
 
     </div>
-    <button type="submit " class="btn btn-primary btn-next " data-toggle="tab " href="#profile " role="tab " aria-controls="profile " aria-selected="false ">Next</button>
+    <button type="submit " class="btn btn-primary btn-next " (click)="saveInstructor()" data-toggle="tab " href="#profile " role="tab " aria-controls="profile " aria-selected="false ">Submit</button>
 </form>

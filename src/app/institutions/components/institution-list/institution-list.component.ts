@@ -265,6 +265,7 @@ export class InstitutionListComponent implements OnInit {
 
     this.instService.addSection(sectionRequestData)
           .subscribe((data: any) => {
+            this.sectionNameModel = null;
             console.log(data)
           })
     // this.bSectionsArray[this.selectedBranchIndex].sections.push(this.sectionNameModel)

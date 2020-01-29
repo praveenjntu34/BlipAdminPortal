@@ -1,36 +1,38 @@
 <form [formGroup]=instructorForm>
     <div class="row">
         <div class="form-group col-6">
-            <label for="instructorName">Name*</label>
-            <input type="text" formControlName="instructorName" class="form-control blip-input" id="institutionName" aria-describedby="emailHelp">
+            <label for="instructorName">FirstName*</label>
+            <input type="text" formControlName="firstname" class="form-control blip-input" id="institutionName" aria-describedby="emailHelp">
         </div>
+        <div class="form-group col-6">
+            <label for="lastname">Lastname</label>
+            <input type="text" formControlName="lastname" class="form-control blip-input" id="eamil">
+        </div>
+
+    </div>
+    <div class="row">
         <div class="form-group col-6">
             <label for="eamil">Email</label>
             <input type="email" formControlName="email" class="form-control blip-input" id="eamil">
         </div>
-    </div>
-    <div class="row">
         <div class="form-group col-6">
             <label for="designation">Designation</label>
             <input type="text" formControlName="designation" class="form-control blip-input" id="website">
         </div>
+
+    </div>
+    <div class="row">
         <div class="form-group col-6">
             <label for="phoneNumber">Phone Number</label>
             <input type="text" formControlName="phoneNumber" class="form-control blip-input" id="website">
         </div>
-    </div>
-    <div class="row">
         <div class="form-group col-6">
             <label for="branchId">Branch</label>
             <select #st formControlName="branchId" (change)="onChangeBranch($event.target.value)" class="form-control blip-input  blip-select">
                     <option [value]="branch.branchId" *ngFor="let branch of branches">{{branch.branchName}}</option>
             </select>
         </div>
-        <div class="form-group col-6">
-            <label for="exampleInputEmail1">Image</label>
-            <input type="file">
-            <img class="image-create ">
-        </div>
+
     </div>
     <div class="row ">
         <div class="form-group col-6 ">
@@ -39,7 +41,11 @@
                 <option [value]="section.sectionId" *ngFor="let section of selectedSections">{{section.sectionName}}</option>
             </select>
         </div>
-
+        <div class="form-group col-6">
+            <label for="exampleInputEmail1">Image</label>
+            <input type="file">
+            <img class="image-create ">
+        </div>
     </div>
     <div class="row ">
 

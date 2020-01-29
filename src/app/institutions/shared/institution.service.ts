@@ -9,6 +9,11 @@ const baseUrl = 'http://localhost:3400/'
 export class InstitutionService {
 
 
+  addInstructor(instructor) {
+    return this.http.post(baseUrl + 'instructor',instructor )
+  }
+
+
   addBranch(branchData: any) {
     const branchFormData = new FormData();
     let headers = new Headers();

@@ -20,12 +20,13 @@ export class AddInstructorModalComponent implements OnInit {
 
   ngOnInit() {
     this.instructorForm = this.formBuilder.group({
-      instructorName: ['', Validators.required],
+      firstname: ['', Validators.required],
+      lastname: ['',Validators.required],
       email: ['', [Validators.required, Validators.email]],
       designation: ['', Validators.required],
       phoneNumber: [''],
       branchId: ['', Validators.required],
-      sectionId: ['', Validators.required]
+      sectionId: ['', Validators.required],
     })
 
     console.log("Inside dialog", this.branches)
@@ -43,7 +44,20 @@ export class AddInstructorModalComponent implements OnInit {
   }
 
   saveInstructor() {
-    console.log("form values", this.instructorForm.value)
-    this.dialogRef.close();
+    console.log("form values", this.branches[0].relTenantInstitutionId)
+    var requestObject = {
+      firstname: this.instructorForm.value.firstname,
+      lastname :this.instructorForm.value.lastname,
+      email : this.instructorForm.value.email,
+      designation : this.instructorForm.value.designation,
+      phoneNumber: this.instructorForm.value.phoneNumber,
+      sectionId: this.instructorForm.value.sectionId,
+      relTenantInstitutionId: this.branches[0].relTenantInstitutionId
+    }
+    this.instService.addInstructor(requestObject)
+          .subscribe(data => {
+            console.log("response from instructor",data)
+            this.dialogRef.close();
+          })
   }
 }

@@ -13,6 +13,11 @@ export class InstitutionService {
     return this.http.post(baseUrl + 'instructor',instructor )
   }
 
+  getAllInstructors(relTenantInstitutionId) {
+    
+    return this.http.get(baseUrl + 'instructor/' + relTenantInstitutionId)
+  }
+
 
   addBranch(branchData: any) {
     const branchFormData = new FormData();

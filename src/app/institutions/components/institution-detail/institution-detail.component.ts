@@ -16,40 +16,7 @@ export class InstitutionDetailComponent implements OnInit, OnChanges {
   bSectionsArray: Array<BSections> = new Array<BSections>();
   singleSection: Array<string> = [];
 
-  instructors = [
-    {
-      id:1,
-      Name: "test"
-    },
-    {
-      id:1,
-      Name: "test"
-    },
-    {
-      id:1,
-      Name: "test"
-    },
-    {
-      id:1,
-      Name: "test"
-    },
-    {
-      id:1,
-      Name: "test"
-    },
-    {
-      id:1,
-      Name: "test"
-    },
-    {
-      id:1,
-      Name: "test"
-    },
-    {
-      id:1,
-      Name: "test"
-    }
-  ]
+  instructors: any = []
 
   ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
 
@@ -59,7 +26,13 @@ export class InstitutionDetailComponent implements OnInit, OnChanges {
                 console.log("branch", data);
                 this.branchData = data;
               })
+          
+    this.api.getAllInstructors(this.coreData.relTenantInstitutionId)
+              .subscribe((response: any) => {
+                console.log("instructors", response);
 
+                this.instructors = response;
+              })          
     this.api.getPOCDetails(this.coreData.relTenantInstitutionId)
     .subscribe(res => {
       this.pocData = res;

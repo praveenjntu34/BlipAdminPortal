@@ -15,6 +15,7 @@ export class InstitutionDetailPageComponent implements OnInit {
     this.activeRoute.params.subscribe(params => {
       if(params['id']) {
           console.log("active", params['id'])
+         
           this.api.getInstitutionDetails(params['id'])
                     .subscribe(data => {
                       this.coreData = data;

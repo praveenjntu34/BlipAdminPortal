@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { environment } from '../../../environments/environment.prod'
 const localUrl = 'http://localhost:3400/institution/details'
-const baseUrl = 'http://localhost:3400/'
+// const baseUrl = 'http://localhost:3400/'
 @Injectable({
   providedIn: 'root'
 })
@@ -10,12 +10,12 @@ export class InstitutionService {
 
 
   addInstructor(instructor) {
-    return this.http.post(baseUrl + 'instructor',instructor )
+    return this.http.post(environment.baseUrl + 'instructor',instructor )
   }
 
   getAllInstructors(relTenantInstitutionId) {
     
-    return this.http.get(baseUrl + 'instructor/' + relTenantInstitutionId)
+    return this.http.get(environment.baseUrl + 'instructor/' + relTenantInstitutionId)
   }
 
 
@@ -29,7 +29,7 @@ export class InstitutionService {
         'Content-Type': 'application/json'
       })
     }
-    return this.http.post(baseUrl + 'institution/branch', JSON.stringify(branchData), httpOptions )
+    return this.http.post(environment.baseUrl + 'institution/branch', JSON.stringify(branchData), httpOptions )
   }
 
   addSection(sectionData){
@@ -42,54 +42,54 @@ export class InstitutionService {
         'Content-Type': 'application/json'
       })
     }
-    return this.http.post(baseUrl + 'institution/section', JSON.stringify(sectionData), httpOptions )
+    return this.http.post(environment.baseUrl + 'institution/section', JSON.stringify(sectionData), httpOptions )
   }
 
   getPOCDetails(relTenantInstitutionId) {
-    return this.http.get(baseUrl + 'institution/poc/' + relTenantInstitutionId);
+    return this.http.get(environment.baseUrl + 'institution/poc/' + relTenantInstitutionId);
        
   }
 
   addPOCDetails(pocData) {
-    return this.http.post(baseUrl + 'institution/poc',pocData )
+    return this.http.post(environment.baseUrl + 'institution/poc',pocData )
   }
 
 
   createInstitutionDetails(data : any) {
-    return this.http.post(baseUrl + 'institution/details',data);
+    return this.http.post(environment.baseUrl + 'institution/details',data);
   }
 
   constructor(private http: HttpClient) { }
 
   getAllInstitutions() {
-    return this.http.get(localUrl);
+    return this.http.get(environment.baseUrl + 'institution/details');
   }
 
   uploadImage(fileToUpload){
     const formData =  new FormData();
     formData.append('file',fileToUpload, fileToUpload.name);
-    return this.http.post(baseUrl + 'institution/upload-file', formData);
+    return this.http.post(environment.baseUrl + 'institution/upload-file', formData);
   }
 
   getAllStates() {
 
-    return this.http.get(baseUrl + "states");
+    return this.http.get(environment.baseUrl + "states");
   }
 
   getAllCities(stateId: string) {
     console.log("id here",stateId)
     const formData =  new FormData();
     formData.set("stateId",stateId);
-    return this.http.post(baseUrl + "states",formData);
+    return this.http.post(environment.baseUrl + "states",formData);
   }
 
 
   getInstitutionDetails(institutionId) {
-    return this.http.get(baseUrl + 'institution/ins-details/' + institutionId);
+    return this.http.get(environment.baseUrl + 'institution/ins-details/' + institutionId);
   }
 
   getInstitutionBranches(id) {
-    return this.http.get(baseUrl + 'institution/branch/' + id)
+    return this.http.get(environment.baseUrl + 'institution/branch/' + id)
   }
 
   getBranches() {

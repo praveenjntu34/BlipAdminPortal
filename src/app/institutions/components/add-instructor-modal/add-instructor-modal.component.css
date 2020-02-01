@@ -1,0 +1,19 @@
+.blip-input {
+    background: #F6F8F9;
+    border: 0.5px solid rgba(222, 222, 222, 0.23);
+}
+
+.blip-select {
+    height: 38px;
+    left: -2px;
+    top: 0px;
+    width: 100%;
+}
+
+.image-create {
+    display: block;
+    width: 149px;
+    background: #F6F8F9;
+    padding: 37px;
+    opacity: 0.5;
+}

@@ -310,13 +310,6 @@ input:focus {
     top: 130px;
 }
 
-.btn-branch {
-    right: 14px;
-    bottom: 8px;
-    margin-top: 32px;
-    position: absolute;
-}
-
 .branch-button {
     width: 80%;
     background: #F6F8F9;
@@ -394,4 +387,10 @@ li {
     height: 100px;
     left: 300px;
     top: 200px;
+}
+
+::ng-deep .cdk-overlay-container {
+    /* Do you changes here */
+    left: 100px;
+    top: 0px
 }

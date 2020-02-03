@@ -17,7 +17,9 @@ export class InstitutionDetailPageComponent implements OnInit {
           console.log("active", params['id'])
          
           this.api.getInstitutionDetails(params['id'])
-                    .subscribe(data => {
+                    .subscribe((data: any) => {
+                      let objectURL = 'data:image/jpeg;base64,' + data.pictureStream;      
+                      data.pictureStream = objectURL;
                       this.coreData = data;
                       console.log("returned", data);
                       

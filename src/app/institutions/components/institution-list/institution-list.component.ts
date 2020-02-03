@@ -31,17 +31,10 @@ export class InstitutionListComponent implements OnInit {
   @Input() data: any;
 
   name:string;
-  loading1: boolean = false;
-  loading2: boolean = false;
-  loading_tab1: boolean = true;
   img_url: string;
-  institutionPOCForm: FormGroup;
   allStates: State [] = [];
   allCities: City[] = [];
   title = 'ng-bootstrap-modal-demo';
-  closeResult: string;
-
-  modalRef: NgbModalRef;
 
 
   constructor(private modalService: NgbModal ,private instService: InstitutionService, private formBuilder: FormBuilder
@@ -51,12 +44,6 @@ export class InstitutionListComponent implements OnInit {
   }
   
   open(content) {
-  
-    // this.modalService.open(content, this.modalOptions).result.then((result) => {
-    //   this.closeResult = `Closed with: ${result}`;
-    // }, (reason) => {
-    //   // this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    // });
 
     this.matDialogue.open(AddInstitutionModalComponent, {
       width: '1200px',
@@ -81,18 +68,8 @@ export class InstitutionListComponent implements OnInit {
 
 
   ngOnInit() {
-
-    this.institutionPOCForm = this.formBuilder.group({
-      primaryPOCFirstName: ['',Validators.required],
-      primaryPOCLastName: ['',Validators.required],
-      primaryPOCPhoneNumber: ['',Validators.required],
-      primaryPOCEmail: ['',[Validators.required,Validators.email]],
-      secondaryPOCFirstName: ['',Validators.required],
-      secondaryPOCLastName: ['',Validators.required],
-      secondaryPOCPhoneNumber: ['',Validators.required],
-      secondaryPOCEmail: ['',[Validators.required,Validators.email]],
-    })
-
+    console.log(this.data);
+    
     this.instService.getAllStates()
           .subscribe((data: State[]) => {
             this.allStates = data;

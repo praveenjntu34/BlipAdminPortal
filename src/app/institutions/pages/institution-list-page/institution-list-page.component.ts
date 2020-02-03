@@ -15,7 +15,6 @@ export class InstitutionListPageComponent implements OnInit {
     this.api.getAllInstitutions()
     .subscribe((data : any) => {
       data.forEach((institution: any, index) => {
-        console.log(institution);
         
         let objectURL = 'data:image/jpeg;base64,' + institution.pictureStream;      
         institution.pictureStream = objectURL;

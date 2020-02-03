@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { City, State } from '../../shared/location.model';
 import { NgbModalOptions, NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -6,9 +6,10 @@ import { Branch, BranchSection } from '../../shared/branch-section.model';
 import { BSections } from '../institution-list/institution-list.component';
 import { Router } from '@angular/router';
 import { InstitutionService } from '../../shared/institution.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { PersonDto, POC } from '../../shared/poc.model';
 import { AddBranchModalComponent } from '../add-branch-modal/add-branch-modal.component';
+import { formattedError } from '@angular/compiler';
 
 @Component({
   selector: 'app-add-institution-modal',
@@ -36,9 +37,10 @@ export class AddInstitutionModalComponent implements OnInit {
   sectionModalOptions:NgbModalOptions;
   branchNameModel: string;
   sectionNameModel: string;
-
-
-  
+  selectedStateId: number;
+  selectedCityId: number;
+  selectedCountryId: number = 0;
+  selectedTypeId:number;
   branches: Array<Branch> = new Array<Branch>();
   branchSections: BranchSection;
   myArray: any = ['#3F51B5 ', '#F44336', '#FF5722','#FFC107','#4CAF50','#607D8B'];  
@@ -54,14 +56,25 @@ export class AddInstitutionModalComponent implements OnInit {
   singleSection: Array<string> = [];
   branchIndex: number = -1;
 
- sectionBranches: Array<string> = [
-   "Computee Science",
-   "Electrical",
-   "Civil"
- ]
+ institutionTypeNames = [
+    {
+      typeId: 1,
+      typeName: 'College'
+    },
+    {
+      typeId: 2,
+      typeName: 'School'
+    }
+  ]
+ formDetails: any;
+ isEditForm: boolean = false;
+
   constructor(private modalService: NgbModal ,private instService: InstitutionService, private formBuilder: FormBuilder
-    ,private router: Router, private matDialog: MatDialog) {
-      
+    ,private router: Router, private matDialog: MatDialog,@Inject(MAT_DIALOG_DATA) public details: any) {
+    
+    this.formDetails = details;
+
+
     this.modalOptions = {
       backdrop: 'static',
       centered: true,
@@ -137,6 +150,8 @@ export class AddInstitutionModalComponent implements OnInit {
 
   ngOnInit() {
 
+  
+
     this.institutionDetailForm = this.formBuilder.group({
       institutionName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -152,6 +167,28 @@ export class AddInstitutionModalComponent implements OnInit {
       pictureId: [''],
     })
 
+    if(this.formDetails){
+
+      this.selectedTypeId = this.formDetails.institutionTypeId
+      this.selectedStateId = this.formDetails.stateId;
+      this.getCities(this.formDetails.stateId)
+      this.selectedCityId = this.formDetails.cityId;
+      this.img_url = this.formDetails.pictureStream;
+
+      this.institutionDetailForm.patchValue({
+        institutionName: this.formDetails.institutionName,
+        email: this.formDetails.email,
+        website: this.formDetails.website,
+        institutionTypeId: this.formDetails.institutionTypeId,
+        address1: this.formDetails.address1,
+        address2: this.formDetails.address2,
+        remarks: this.formDetails.remarks, 
+        status: [1],
+        pictureId: [''],
+      })
+    }
+
+
     this.institutionPOCForm = this.formBuilder.group({
       primaryPOCFirstName: ['',Validators.required],
       primaryPOCLastName: ['',Validators.required],
@@ -165,6 +202,8 @@ export class AddInstitutionModalComponent implements OnInit {
 
     this.instService.getAllStates()
           .subscribe((data: State[]) => {
+            console.log("st", data);
+            
             this.allStates = data;
           })
   }

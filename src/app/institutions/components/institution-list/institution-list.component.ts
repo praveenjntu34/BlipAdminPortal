@@ -68,7 +68,6 @@ export class InstitutionListComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log(this.data);
     
     this.instService.getAllStates()
           .subscribe((data: State[]) => {

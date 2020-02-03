@@ -94,9 +94,8 @@
                             </div>
                             <div class="form-group col-6">
                                 <label for="institutionTypeId">Institution Type</label>
-                                <select formControlName="institutionTypeId" class="form-control blip-input  blip-select">
-                                    <option value="1">College</option>
-                                    <option value="2">School</option>
+                                <select formControlName="institutionTypeId" [(ngModel)]="selectedTypeId" class="form-control blip-input  blip-select">
+                                    <option [value]="type.typeId" *ngFor="let type of institutionTypeNames">{{type.typeName}}</option>
                                   </select>
                                 <!-- <input type="text" formControlName="institutionTypeId" class="form-control blip-input" id="institutionTypeId"> -->
                             </div>
@@ -114,14 +113,14 @@
                         <div class="row">
                             <div class="form-group col-6">
                                 <label for="countryId">Country</label>
-                                <select formControlName="countryId" class="form-control blip-input  blip-select">
-                                    <option value="1">India</option>
+                                <select class="form-control blip-input  blip-select">
+                                    <option value="India" selected>India</option>
                                   </select>
                                 <!-- <input type="text" formControlName="countryId" class="form-control blip-input" id="countryId"> -->
                             </div>
                             <div class="form-group col-6">
                                 <label for="stateId">State</label>
-                                <select formControlName="stateId" #st (change)="getCities(st.value)" class="form-control blip-input  blip-select">
+                                <select formControlName="stateId" #st [(ngModel)]="selectedStateId" (change)="getCities(st.value)" class="form-control blip-input  blip-select">
                                     <option [value]="state.stateId" *ngFor="let state of allStates">{{state.stateName}}</option>
                                   </select>
                                 <!-- <input type="text" formControlName="stateId" class="form-control blip-input" id="stateId"> -->
@@ -130,7 +129,7 @@
                         <div class="row">
                             <div class="form-group col-6">
                                 <label for="cityId">City</label>
-                                <select formControlName="cityId" class="form-control blip-input  blip-select">
+                                <select formControlName="cityId" [(ngModel)]="selectedCityId" class="form-control blip-input  blip-select">
                                     <option [value]="city.cityId" *ngFor="let city of allCities">{{city.cityName}}</option>
                                   </select>
                                 <!-- <input type="text" formControlName="cityId" class="form-control blip-input" id="cityId"> -->

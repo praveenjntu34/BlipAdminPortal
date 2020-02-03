@@ -5,6 +5,7 @@ import { BSections } from '../institution-list/institution-list.component';
 import { MatDialog } from '@angular/material/dialog';
 import { InstructorTabComponent } from '../instructor-tab/instructor-tab.component';
 import { AddInstructorModalComponent } from '../add-instructor-modal/add-instructor-modal.component';
+import { AddInstitutionModalComponent } from '../add-institution-modal/add-institution-modal.component';
 
 @Component({
   selector: 'app-institution-detail',
@@ -62,6 +63,15 @@ export class InstitutionDetailComponent implements OnInit, OnChanges {
     this.singleSection = this.branchData[this.selectedBranchIndex].sections;
   }
   
+  editInstitutionForm(){
+    this.matDialogue.open(AddInstitutionModalComponent, {
+      width: '1200px',
+      height: '700px',
+      panelClass: 'custom-dialog-container',
+      data: this.coreData
+    });
+  }
+
   getRandomColor() {
     return {
       'border-color': this.myArray[Math.floor(Math.random() * this.myArray.length)]
@@ -74,7 +84,8 @@ export class InstitutionDetailComponent implements OnInit, OnChanges {
   openModal(){
      this.matDialogue.open(InstructorTabComponent, {
        width: '550px',
-       height: '400px'
+       height: '400px',
+      
      })
   }
 

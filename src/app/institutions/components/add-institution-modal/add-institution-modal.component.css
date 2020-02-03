@@ -410,5 +410,10 @@ li {
 }
 
 ::ng-deep .mat-dialog-container {
-    padding: 0
+    padding: 0;
+    z-index: 1005;
+}
+
+.session-modal-container .modal-backdrop {
+    z-index: 1051;
 }

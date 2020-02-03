@@ -60,24 +60,37 @@ export class AddInstitutionModalComponent implements OnInit {
    "Civil"
  ]
   constructor(private modalService: NgbModal ,private instService: InstitutionService, private formBuilder: FormBuilder
-    ,private router: Router, private matDialogue: MatDialog) { }
+    ,private router: Router, private matDialog: MatDialog) {
+      
+    this.modalOptions = {
+      backdrop: 'static',
+      centered: true,
+      backdropClass:'customBackdrop',
+      size: 'sm',
+      windowClass: 'modal-container'
+    }
+    this.branchModalOptions = {
+      backdrop: 'static',
+      centered: true,
+      backdropClass:'customBackdrop',
+      size: 'sm',
+      windowClass: 'branch-modal-container'
+    }
+
+     }
 
 
   openBranchModal(modalContent) {
-    // this.modalRef = this.modalService.open(modalContent, this.branchModalOptions);
-    this.matDialogue.closeAll();
-    this.matDialogue.open(AddBranchModalComponent, {
-      width: '500px',
-      height: '300px'
-    })
+    this.modalRef = this.modalService.open(modalContent, this.modalOptions)
+    
   }
 
   openSectionModal(sectionContent) {
-    this.modalRef = this.modalService.open(sectionContent, this.sectionModalOptions)
+    this.modalRef = this.modalService.open(sectionContent, this.modalOptions)
   }
   
   closeModal() {
-    this.modalService.dismissAll();
+    this.matDialog.closeAll();
   }
 
   getRandomColor() {

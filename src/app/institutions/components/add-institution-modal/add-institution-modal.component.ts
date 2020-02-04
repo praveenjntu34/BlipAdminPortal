@@ -47,6 +47,7 @@ export class AddInstitutionModalComponent implements OnInit {
   modalRef: NgbModalRef;
   loading_tab3: boolean = true;
   loading_tab2: boolean = true;
+  home_page_tab: boolean = true;
   selectedBranchIndex: number = -1;
 
   //test
@@ -68,12 +69,12 @@ export class AddInstitutionModalComponent implements OnInit {
   ]
  formDetails: any;
  isEditForm: boolean = false;
-
+ isCustomForm: boolean = false;
   constructor(private modalService: NgbModal ,private instService: InstitutionService, private formBuilder: FormBuilder
     ,private router: Router, private matDialog: MatDialog,@Inject(MAT_DIALOG_DATA) public details: any) {
     
     this.formDetails = details;
-
+    
 
     this.modalOptions = {
       backdrop: 'static',
@@ -165,10 +166,26 @@ export class AddInstitutionModalComponent implements OnInit {
       remarks: ['', Validators.required], 
       status: [1],
       pictureId: [''],
+      institutionId: ['']
     })
 
-    if(this.formDetails){
+    this.institutionPOCForm = this.formBuilder.group({
+      primaryPOCFirstName: ['',Validators.required],
+      primaryPOCLastName: ['',Validators.required],
+      primaryPOCPhoneNumber: ['',Validators.required],
+      primaryPOCEmail: ['',[Validators.required,Validators.email]],
+      secondaryPOCFirstName: ['',Validators.required],
+      secondaryPOCLastName: ['',Validators.required],
+      secondaryPOCPhoneNumber: ['',Validators.required],
+      secondaryPOCEmail: ['',[Validators.required,Validators.email]],
+    })
 
+
+    if(this.formDetails.relTenantInstitutionId){
+
+      this.isEditForm = true
+      this.home_page_tab = false;
+      this.isCustomForm = true;
       this.selectedTypeId = this.formDetails.institutionTypeId
       this.selectedStateId = this.formDetails.stateId;
       this.getCities(this.formDetails.stateId)
@@ -182,30 +199,77 @@ export class AddInstitutionModalComponent implements OnInit {
         institutionTypeId: this.formDetails.institutionTypeId,
         address1: this.formDetails.address1,
         address2: this.formDetails.address2,
+        addressId: this.formDetails.addressId,
         remarks: this.formDetails.remarks, 
         status: [1],
         pictureId: [''],
       })
+    } else if(this.formDetails.primaryPOCEmail) {
+      this.home_page_tab = false;
+      this.isCustomForm = true;
+      this.isEditForm = false;
+      this.stepCount++;
+      console.log("poc", this.formDetails);
+      
+      this.institutionPOCForm.patchValue({
+        primaryPOCFirstName: this.formDetails.primaryPOCFirstName,
+        primaryPOCLastName: this.formDetails.primaryPOCLastName,
+        primaryPOCPhoneNumber: this.formDetails.primaryPOCPhoneNumber,
+        primaryPOCEmail:this.formDetails.primaryPOCEmail,
+        secondaryPOCFirstName: this.formDetails.secondaryPOCName.split(" ")[0],
+        secondaryPOCLastName: this.formDetails.secondaryPOCName.split(" ")[1],
+        secondaryPOCPhoneNumber: this.formDetails.secondaryPOCPhoneNumber,
+        secondaryPOCEmail: this.formDetails.secondaryPOCEmail,
+      })
+  
+    } else {
+
     }
 
 
-    this.institutionPOCForm = this.formBuilder.group({
-      primaryPOCFirstName: ['',Validators.required],
-      primaryPOCLastName: ['',Validators.required],
-      primaryPOCPhoneNumber: ['',Validators.required],
-      primaryPOCEmail: ['',[Validators.required,Validators.email]],
-      secondaryPOCFirstName: ['',Validators.required],
-      secondaryPOCLastName: ['',Validators.required],
-      secondaryPOCPhoneNumber: ['',Validators.required],
-      secondaryPOCEmail: ['',[Validators.required,Validators.email]],
-    })
-
+   
     this.instService.getAllStates()
           .subscribe((data: State[]) => {
             console.log("st", data);
             
             this.allStates = data;
           })
+  }
+
+  updateDetails() {
+    this.loading1 = true;
+    console.log("check", this.formDetails)
+    this.institutionDetailForm.patchValue({
+      pictureId: this.formDetails.pictureId
+      ,status: 1
+      ,institutionId: this.formDetails.institutionId
+    })
+    this.instService.updateInstitutionDetails(this.institutionDetailForm.value)
+          .subscribe((response: any) => {
+            this.loading1 = false;
+            this.loading_tab1 = false;
+            this.matDialog.closeAll();
+            console.log("update response", response)
+          })
+    console.log(this.institutionDetailForm)
+  }
+
+  updatePOCDetails() {
+    this.loading1 = true;
+    console.log("check", this.formDetails)
+    this.institutionDetailForm.patchValue({
+      pictureId: this.formDetails.pictureId
+      ,status: 1
+      ,institutionId: this.formDetails.institutionId
+    })
+    this.instService.updateInstitutionDetails(this.institutionDetailForm.value)
+          .subscribe((response: any) => {
+            this.loading1 = false;
+            this.loading_tab1 = false;
+            this.matDialog.closeAll();
+            console.log("update response", response)
+          })
+    console.log(this.institutionDetailForm)
   }
 
   onSubmit() {

@@ -15,6 +15,6 @@ export class LoginComponent implements OnInit {
 
   login() {
     // this.router.navigateByUrl('/root')
-    this.router.navigate(["/"]);
+    this.router.navigate(['auth/institutions']);
   }
 }

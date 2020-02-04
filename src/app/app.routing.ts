@@ -25,23 +25,19 @@ export const appRoutes: Routes = [
         redirectTo: '/institutions',
         pathMatch: 'full'
     }
-    // ,
-    // {
-    //     path: 'auth',
-    //     loadChildren: './auth/auth.module#AuthModule'
-    // },
-    // {
-    //     path: 'menu',
-    //     loadChildren: './dashboard-menu/dashboard-menu.module#DashboardMenuModule'
-    // }
     ,
     {
-        path: '',
+        path: 'auth',
+        loadChildren: './auth/auth.module#AuthModule'
+    },
+
+    {
+        path: 'institutions',
         component: BlipLayoutComponent,
         children: [
             {
                 path: '',
-                loadChildren: './blip-layout/blip-layout.module#BlipLayoutModule'
+                loadChildren: '../institutions/institutions.module#InstitutionsModule'
             }]
     }
     // ,

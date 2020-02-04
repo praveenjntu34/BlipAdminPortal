@@ -7,6 +7,7 @@ import { OtpComponent } from './components/otp/otp.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { SuccessPasswordComponent } from './components/success-password/success-password.component'
 import { RoutedLoginComponent } from './pages/routed-login.component';
+import { BlipLayoutComponent } from '../blip-layout/blip-layout/blip-layout.component';
 
 @NgModule({
   declarations: [LoginComponent, ForgotPasswordComponent, OtpComponent, ChangePasswordComponent, RoutedLoginComponent,SuccessPasswordComponent],

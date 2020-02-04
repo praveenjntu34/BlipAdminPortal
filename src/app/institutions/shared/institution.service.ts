@@ -9,6 +9,11 @@ const localUrl = 'http://localhost:3400/institution/details'
 export class InstitutionService {
 
 
+  updateInstitutionDetails(updatedForm: any) {
+    return this.http.put(environment.baseUrl + 'institution/details',updatedForm);
+  }
+
+
   addInstructor(instructor) {
     return this.http.post(environment.baseUrl + 'instructor',instructor )
   }

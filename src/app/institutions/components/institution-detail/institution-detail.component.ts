@@ -64,11 +64,22 @@ export class InstitutionDetailComponent implements OnInit, OnChanges {
   }
   
   editInstitutionForm(){
+    console.log("this", this.coreData)
     this.matDialogue.open(AddInstitutionModalComponent, {
       width: '1200px',
       height: '700px',
       panelClass: 'custom-dialog-container',
       data: this.coreData
+    });
+  }
+
+  editPOCForm(){
+    console.log("this", this.pocData)
+    this.matDialogue.open(AddInstitutionModalComponent, {
+      width: '1200px',
+      height: '700px',
+      panelClass: 'custom-dialog-container',
+      data: this.pocData
     });
   }
 

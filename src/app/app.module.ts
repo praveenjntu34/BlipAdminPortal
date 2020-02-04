@@ -12,8 +12,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 @NgModule({
   declarations: [
-    AppComponent,
-    BlipLayoutComponent
+    AppComponent
+    ,BlipLayoutComponent
   ],
   imports: [
     BrowserModule,

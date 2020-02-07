@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component'
 import { BlipLayoutComponent } from './blip-layout/blip-layout/blip-layout.component';
+import { PostsComponent } from './posts/posts.component';
+import { ParentsComponent } from './parents/parents.component';
 
 // export const appRoutes: Routes =[
 //     {
@@ -42,6 +44,26 @@ export const appRoutes: Routes = [
             {
                 path: '',
                 loadChildren: './blip-layout/blip-layout.module#BlipLayoutModule'
+            }]
+    }
+    ,
+    {
+        path: '',
+        component: BlipLayoutComponent,
+        children: [
+            {
+                path: 'posts',
+                component: PostsComponent
+            }]
+    }
+    ,
+    {
+        path: '',
+        component: BlipLayoutComponent,
+        children: [
+            {
+                path: 'parents',
+                component: ParentsComponent
             }]
     }
     // ,

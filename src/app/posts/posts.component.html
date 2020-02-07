@@ -1,0 +1,354 @@
+
+<div class="row">
+  <div class="col-md-8">
+      <h3>List of Posts</h3>
+  </div>
+  <jw-modal id="addPostModal">
+    <button (click)="closeModal('addPostModal');">Close</button>
+    <div class="card">  
+      <div class="card-body">  
+    
+       <form [formGroup]="angForm" novalidate>  
+          <div class="form-group">  
+            <label class="col-md-4">Post Text</label>  
+            <input type="text" class="form-control"   
+              formControlName="PostsText"   
+              #PostsText />  
+          </div>  
+          <div *ngIf="angForm.controls['PostsText'].invalid && (angForm.controls['PostsText'].dirty || angForm.controls['PostsText'].touched)" class="alert alert-danger">  
+            <div *ngIf="angForm.controls['PostsText'].errors.required">  
+              Post Text is required.  
+            </div>  
+          </div>  
+          <div class="form-group">  
+            <label class="col-md-4">Post Type </label>  
+            <input class="form-control"   
+            formControlName="PostsType"   
+            #PostsType /> 
+          </div>  
+          <div *ngIf="angForm.controls['PostsType'].invalid && (angForm.controls['PostsType'].dirty || angForm.controls['PostsType'].touched)" class="alert alert-danger">  
+            <div *ngIf="angForm.controls['PostsType'].errors.required">  
+              Posts Type is required.  
+            </div>  
+          </div>  
+          <div class="form-group">  
+            <label class="col-md-4">Section Id</label>  
+            <input type="text" class="form-control"   
+              formControlName="SectionId"   
+              #SectionId  
+            />  
+          </div>  
+          <div *ngIf="angForm.controls['SectionId'].invalid && (angForm.controls['SectionId'].dirty || angForm.controls['SectionId'].touched)" class="alert alert-danger">  
+            <div *ngIf="angForm.controls['SectionId'].errors.required">  
+              Section Id is required.  
+            </div>  
+          </div>  
+          <div class="form-group">  
+            <label class="col-md-4">Attachment Stream Id</label>  
+            <input type="text" class="form-control"   
+              formControlName="AttachmentStreamId"   
+              #AttachmentStreamId  
+            />  
+          </div>  
+          <div *ngIf="angForm.controls['AttachmentStreamId'].invalid && (angForm.controls['AttachmentStreamId'].dirty || angForm.controls['AttachmentStreamId'].touched)" class="alert alert-danger">  
+            <div *ngIf="angForm.controls['AttachmentStreamId'].errors.required">  
+              Attachment Stream Id is required.  
+            </div>  
+          </div> 
+  
+          <div class="form-group">  
+              <button (click) = "addPost(PostsText.value, PostsType.value, SectionId.value,AttachmentStreamId.value)" type="submit" class="btn btn-primary"  
+              [disabled]="angForm.pristine || angForm.invalid" >  
+                Create Post  
+              </button>  
+          </div>
+        </form>  
+      </div>  
+      </div>
+      <div class="">
+        <div class="container text-center">
+            <alert></alert>
+        </div>
+    </div>
+
+</jw-modal>
+
+<jw-modal id="editPostModal">
+  <button (click)="closeModal('editPostModal');">Close</button>
+  <div class="card">  
+    <div class="card-body">  
+     <form [formGroup]="angFormEdit" novalidate>  
+        <div class="form-group">  
+          <label class="col-md-4">Post Text</label>  
+          <input type="text" class="form-control"   
+            formControlName="editPostsText"   id="editPostsTextObj"
+            #editPostsText />  
+        </div>  
+        <div *ngIf="angFormEdit.controls['editPostsText'].invalid && (angFormEdit.controls['editPostsText'].dirty || angFormEdit.controls['editPostsText'].touched)" class="alert alert-danger">  
+          <div *ngIf="angFormEdit.controls['editPostsText'].errors.required">  
+            Post Text is required.  
+          </div>  
+        </div>  
+        <div class="form-group">  
+          <label class="col-md-4">Post Type </label>  
+          <input class="form-control"   
+          formControlName="editPostsType"   
+          #editPostsType /> 
+        </div>  
+        <div *ngIf="angFormEdit.controls['editPostsType'].invalid && (angFormEdit.controls['editPostsType'].dirty || angFormEdit.controls['editPostsType'].touched)" class="alert alert-danger">  
+          <div *ngIf="angFormEdit.controls['editPostsType'].errors.required">  
+            Posts Type is required.  
+          </div>  
+        </div>  
+        <div class="form-group">  
+          <label class="col-md-4">Section Id</label>  
+          <input type="text" class="form-control"   
+            formControlName="editSectionId"   
+            #editSectionId  
+          />  
+        </div>  
+        <div *ngIf="angFormEdit.controls['editSectionId'].invalid && (angFormEdit.controls['editSectionId'].dirty || angFormEdit.controls['editSectionId'].touched)" class="alert alert-danger">  
+          <div *ngIf="angFormEdit.controls['editSectionId'].errors.required">  
+            Section Id is required.  
+          </div>  
+        </div>  
+      
+        <div class="form-group">  
+            <button (click) = "editPost(editPostsText.value, editPostsType.value, editSectionId.value)" type="submit" class="btn btn-primary"  
+            [disabled]="angFormEdit.pristine || angFormEdit.invalid" >  
+              Update Post  
+            </button>  
+        </div>
+      </form>  
+    </div>  
+    </div>
+    <div class="">
+      <div class="container text-center">
+          <alert></alert>
+      </div>
+  </div>
+
+</jw-modal>
+
+  <div class="col-md-2">
+      <button class="default-button" (click)="openModal('addPostModal')" >Add Posts</button>
+  </div>
+</div>
+
+<ag-grid-angular
+    class="ag-theme-balham"
+    [rowData]="rowData"
+    [modules]="modules"
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    [suppressRowClickSelection]="true"
+    [debug]="true"
+    [pivotPanelShow]="pivotPanelShow"
+    [enableRangeSelection]="true"
+    [pagination]="true"
+    [paginationPageSize]="paginationPageSize"
+    [paginationNumberFormatter]="paginationNumberFormatter"
+    [rowData]="rowData" style="height: 80%;width:70%;"
+    >
+</ag-grid-angular>
+
+
+
+  <!--
+  <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div id="grid" class="row">
+              
+               
+               <div class="col-lg-3 col-md-4 " style="border: 1px solid #575a5f;" style="margin-bottom: 50px;margin-top: 5px;">
+                <div class="border border-secondary">
+                  <div class="item-img-wrap ">
+                      <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle" alt="workimg" style="margin-top: 5px">
+                      <div class="item-img-overlay">
+                          <a href="#" class="show-image">
+                              <span></span>
+                          </a>
+                      </div>
+                      
+                  </div> 
+               
+                  <div class="text-center" font-family="Times New Roman" >Mark Lee</div>
+                  <div class="text-center text-primary small"  font-family="Times New Roman">Assistant Professor</div>
+
+                  <div  class="text-center small"font-family="Times New Roman">Email:srikanth@gmail.com</div>
+                  <div class="text-center small"font-family="Times New Roman"> Ph:9290528523
+                  </div>
+                  <div class="row d-flex justify-content-center" style="margin-bottom: 10px;" >
+                  <div class="row">
+                   <div class="col-xs-4 col-md-4">
+                   <img src="images/l.jpg" class="img-responsive">
+                   </div>
+                   23<div class="col-xs-4 col-md-4">
+                   <img src="images/2.jpg" class="img-responsive">
+                   </div>35
+                             </div>
+                 </div>
+                  <div class="border border-success text-center small"  >View</div>
+                </div>
+             </div>
+
+             <div class="col-lg-3 col-md-4" style="border: 1px solid #575a5f;max-width:19%;" style="margin-bottom: 50px;margin-top: 5px;">
+              <div class="border border-secondary">
+                <div class="item-img-wrap ">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle" alt="workimg" style="margin-top: 5px">
+                    <div class="item-img-overlay">
+                        <a href="#" class="show-image">
+                            <span></span>
+                        </a>
+                    </div>
+                    
+                </div> 
+                             
+                <div class="text-center" font-family="Times New Roman" >Mark Lee</div>
+                <div class="text-center text-primary small"  font-family="Times New Roman">Assistant Professor</div>
+
+                <div  class="text-center small"font-family="Times New Roman">Email:srikanth@gmail.com</div>
+                <div class="text-center small"font-family="Times New Roman"> Ph:9290528523
+                </div>
+                <div class="row d-flex justify-content-center" style="margin-bottom: 10px;" >
+                <div class="row">
+                 <div class="col-xs-4 col-md-4">
+                 <img src="images/l.jpg" class="img-responsive">
+                 </div>
+                 23<div class="col-xs-4 col-md-4">
+                 <img src="images/2.jpg" class="img-responsive">
+                 </div>35
+                           </div>
+               </div>
+                <div class="border border-success text-center small"  >View</div>
+              </div>
+           </div> <div class="col-lg-3 col-md-4" style="border: 1px solid #575a5f;max-width:19%;" style="margin-bottom: 50px;margin-top: 5px;">
+            <div class="border border-secondary">
+              <div class="item-img-wrap ">
+                  <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle" alt="workimg" style="margin-top: 5px">
+                  <div class="item-img-overlay">
+                      <a href="#" class="show-image">
+                          <span></span>
+                      </a>
+                  </div>
+                  
+              </div> 
+                           
+              <div class="text-center" font-family="Times New Roman" >Mark Lee</div>
+              <div class="text-center text-primary small"  font-family="Times New Roman">Assistant Professor</div>
+
+              <div  class="text-center small"font-family="Times New Roman">Email:srikanth@gmail.com</div>
+              <div class="text-center small"font-family="Times New Roman"> Ph:9290528523
+              </div>
+              <div class="row d-flex justify-content-center" style="margin-bottom: 10px;" >
+              <div class="row">
+               <div class="col-xs-4 col-md-4">
+               <img src="images/l.jpg" class="img-responsive">
+               </div>
+               23<div class="col-xs-4 col-md-4">
+               <img src="images/2.jpg" class="img-responsive">
+               </div>35
+                         </div>
+             </div>
+              <div class="border border-success text-center small"  >View</div>
+            </div>
+         </div> <div class="col-lg-3 col-md-4" style="border: 1px solid #575a5f;max-width:19%;" style="margin-bottom: 50px;margin-top: 5px;">
+          <div class="border border-secondary">
+            <div class="item-img-wrap ">
+                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle" alt="workimg" style="margin-top: 5px">
+                <div class="item-img-overlay">
+                    <a href="#" class="show-image">
+                        <span></span>
+                    </a>
+                </div>
+                
+            </div> 
+                         
+            <div class="text-center" font-family="Times New Roman" >Mark Lee</div>
+            <div class="text-center text-primary small"  font-family="Times New Roman">Assistant Professor</div>
+
+            <div  class="text-center small"font-family="Times New Roman">Email:srikanth@gmail.com</div>
+            <div class="text-center small"font-family="Times New Roman"> Ph:9290528523
+            </div>
+            <div class="row d-flex justify-content-center" style="margin-bottom: 10px;" >
+            <div class="row">
+             <div class="col-xs-4 col-md-4">
+             <img src="images/l.jpg" class="img-responsive">
+             </div>
+             23<div class="col-xs-4 col-md-4">
+             <img src="images/2.jpg" class="img-responsive">
+             </div>35
+                       </div>
+           </div>
+            <div class="border border-success text-center small"  >View</div>
+          </div>
+       </div> <div class="col-lg-3 col-md-4" style="border: 1px solid #575a5f;max-width:19%;" style="margin-bottom: 50px;margin-top: 5px;">
+        <div class="border border-secondary">
+          <div class="item-img-wrap ">
+              <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle" alt="workimg" style="margin-top: 5px">
+              <div class="item-img-overlay">
+                  <a href="#" class="show-image">
+                      <span></span>
+                  </a>
+              </div>
+              
+          </div> 
+                       
+          <div class="text-center" font-family="Times New Roman" >Mark Lee</div>
+          <div class="text-center text-primary small"  font-family="Times New Roman">Assistant Professor</div>
+
+          <div  class="text-center small"font-family="Times New Roman">Email:srikanth@gmail.com</div>
+          <div class="text-center small"font-family="Times New Roman"> Ph:9290528523
+          </div>
+          <div class="row d-flex justify-content-center" style="margin-bottom: 10px;" >
+          <div class="row">
+           <div class="col-xs-4 col-md-4">
+           <img src="images/l.jpg" class="img-responsive">
+           </div>
+           23<div class="col-xs-4 col-md-4">
+           <img src="images/2.jpg" class="img-responsive">
+           </div>35
+                     </div>
+         </div>
+          <div class="border border-success text-center small"  >View</div>
+        </div>
+     </div>
+             
+          
+             
+                                                                        
+            </div>
+        </div>
+    </div>
+    <div class="row gallery-bottom" >
+        <div class="col-sm-6">
+            <ul class="pagination">
+                <li>
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">«</span>
+                    </a>
+                </li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li>
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">»</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-6 text-right">
+            <em>Displaying 1 to 8 (of 100 posts)</em>
+        </div>
+    </div>
+</div>
+
+
+//parents
+
+
+-->

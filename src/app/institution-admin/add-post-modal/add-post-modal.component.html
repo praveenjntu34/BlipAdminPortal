@@ -1,0 +1,30 @@
+<form [formGroup]="institutionPOCForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+        <div class="form-group col-6">
+            <div class="row">
+                <label for="primaryPOCFirstName">Title*</label>
+                <input type="text" formControlName="primaryPOCFirstName" class="form-control blip-input" id="primaryPOCFirstName" aria-describedby="emailHelp">
+            </div>
+            <div class="row">
+                <label for="primaryPOCFirstName">Message*</label>
+                <input type="text" formControlName="primaryPOCFirstName" class="form-control blip-input blip-message" id="primaryPOCFirstName" aria-describedby="emailHelp">
+            </div>
+            <div class="row">
+                <label for="countryId">Post Type</label>
+                <select class="form-control blip-input  blip-select">
+                            <option value="India" selected>Text</option>
+                </select>
+                <!-- <input type="text" formControlName="countryId" class="form-control blip-input" id="countryId"> -->
+            </div>
+        </div>
+        <div class="form-group col-6">
+            <label for="primaryPOCLastName">Attachment</label>
+            <input type="file" (change)="onFileChanged($event)">
+            <img class="image-create" [src]="img_url">
+        </div>
+
+    </div>
+
+
+    <button type="submit" [disabled]="!institutionPOCForm.valid" (click)="addPOCForm()" class="btn btn-primary btn-next" data-toggle="tab" href="#branch" role="tab" aria-controls="profile" aria-selected="false">Next</button>
+</form>

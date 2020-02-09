@@ -36,4 +36,13 @@ login(user, pass) {
                 }))
 }
 
+looginWithUsername(user, pass) {
+    
+    var object = {
+        username: user,
+        password: pass
+    }
+    return this.http.post(environment.baseUrl + "authenticate",object);
+}
+
 }

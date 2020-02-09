@@ -76,7 +76,7 @@ export class InstitutionListComponent implements OnInit {
   }
 
   goToDetails(index) {
-    this.router.navigate(['/institutions',this.data[index].institutionId])
+    this.router.navigate(['/home/institutions',this.data[index].institutionId])
   }
  
 }

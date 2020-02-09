@@ -7,7 +7,7 @@ const authRoutes: Routes = [
   {
     path: 'institutions',
     loadChildren: '../institutions/institutions.module#InstitutionsModule'
-  } 
+  }
 ];
 
 @NgModule({

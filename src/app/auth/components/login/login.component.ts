@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthenticationService } from 'src/app/_services/authentication.service';
+import { isError } from 'util';
 
 @Component({
   selector: 'app-login',
@@ -8,13 +11,36 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  loginForm: FormGroup;
+  isError: boolean = false;
+  constructor(private router: Router, private route: ActivatedRoute,
+    private formBuilder: FormBuilder, private authService: AuthenticationService) { }
 
   ngOnInit() {
+
+    this.loginForm = this.formBuilder.group({
+      username: ['',Validators.required],
+      password: ['',Validators.required]
+    })
+
   }
 
   login() {
-    // this.router.navigateByUrl('/root')
-    this.router.navigate(["/"]);
+    console.log("user value", this.loginForm.value);
+    this.authService.looginWithUsername(this.loginForm.value.username, this.loginForm.value.password)
+          .subscribe((response: any) => {
+            console.log(response);
+            
+            if(response.jwt) {
+             this.router.navigate(["/home/institutions"]);
+            } else {
+              
+              
+            }
+          }, (error:any) => {
+            this.isError = true;
+            console.log("Wrong username and password");
+            
+          })
   }
 }

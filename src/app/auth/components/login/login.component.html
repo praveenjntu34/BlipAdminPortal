@@ -6,18 +6,21 @@
 
 <div class="split right">
     <div class="centered-form">
-        <form autocomplete="fjghhj">
+        <form [formGroup]="loginForm" autocomplete="fjghhj">
             <img class="main-logo" src="../../../../assets/logo-main.svg" alt="">
             <h5>Welcome to</h5>
             <h1 class="login-title">blip</h1>
             <img src="../../../../assets//paper-plane.svg" alt="" width="48px" height="48px">
             <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
-                <input autocomplete="gfhjj" type="text" class="form-control" id="username" placeholder="Enter username/email" aria-describedby="emailHelp">
+                <input formControlName="username" autocomplete="gfhjj" type="text" class="form-control" id="username" placeholder="Enter username/email" aria-describedby="emailHelp">
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                <input formControlName="password" type="password" class="form-control" id="password" placeholder="Enter your password">
+            </div>
+            <div class="alert alert-danger" *ngIf="isError" role="alert">
+                Incorrect username and password
             </div>
             <button (click)="login()" class="btn btn-primary">Login</button>
             <a routerLink="/auth/forgot-password">Forgot password?</a>

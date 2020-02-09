@@ -161,7 +161,7 @@ export class AddInstitutionModalComponent implements OnInit {
       address2: ['', Validators.required],
       cityId: ['', Validators.required],
       stateId: ['', Validators.required],
-      countryId: ['', Validators.required],
+      countryId: [1],
       remarks: ['', Validators.required], 
       status: [1],
       pictureId: [''],
@@ -184,6 +184,7 @@ export class AddInstitutionModalComponent implements OnInit {
         address2: this.formDetails.address2,
         remarks: this.formDetails.remarks, 
         status: [1],
+        countryId: [1],
         pictureId: [''],
       })
     }
@@ -203,7 +204,6 @@ export class AddInstitutionModalComponent implements OnInit {
     this.instService.getAllStates()
           .subscribe((data: State[]) => {
             console.log("st", data);
-            
             this.allStates = data;
           })
   }
@@ -214,6 +214,9 @@ export class AddInstitutionModalComponent implements OnInit {
     this.institutionDetailForm.patchValue({
       pictureId: localStorage.getItem('pictureId')
     })
+
+    console.log("form validation check", this.institutionDetailForm.value);
+    
     this.instService.createInstitutionDetails(this.institutionDetailForm.value)
           .subscribe((response: any) => {
             this.loading1 = false

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { InstitutionListComponent } from '../institutions/components/institution-list/institution-list.component';
+import { BlipLayoutComponent } from './blip-layout/blip-layout.component';
 
 const authRoutes: Routes = [
 

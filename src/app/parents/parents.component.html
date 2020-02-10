@@ -1,9 +1,9 @@
 <div>
   <div class="container">
+    <div class="col-md-2">
+      <button class="default-button" (click)="openModal('addParentsModal')" >Add Parents</button>
+    </div>
       <div class="text-center">
-          <h1>Angular Pagination Component Demo</h1>
-
-          <!-- items being paged -->
           <div ng-controller="MyCtrl">
             <table style="width:100%">
               <div *ngFor="let d of items; let i = index" >
@@ -23,7 +23,8 @@
                   <div class="container">
                     <div class="row">
                       <div class="mx-auto small" >
-                          <a href="#inside" font-family="Times New Roman" class="inside-link">Edit</a> <a style="margin-left: 15px;" href="#inside" class="inside-link">Edit</a>
+                          <a href="#inside" font-family="Times New Roman" class="inside-link">Edit</a> 
+                          <a href="javascript:void(0);" (click)="deleteParent(1)" style="margin-left: 15px;"  class="inside-link">Delete</a>
                       </div>
                     </div>
                   </div>
@@ -41,114 +42,7 @@
   
 </div>
 
-
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div id="grid" class="row">
-               <div class="col-lg-3 col-md-4 " style="border: 1px solid #575a5f;" style="margin-bottom: 50px;margin-top: 5px;">
-                <div class="border border-secondary">
-                  <div  class="text-center small "font-family="Times New Roman">Name:srikanth</div>
-                       <div class="container">
-                        <div class="row">
-                          <div class="badge badge-info col-xs-6">Info</div>
-                          <div  class="text-center small"font-family="Times New Roman">Email:srikanth@gmail.com</div>
-                        </div>
-                    </div>
-                  <div class="text-center small"font-family="Times New Roman"> Ph:9290528523
-                  </div>
-                  <div class="container">
-                    <div class="row">
-                      <div class="mx-auto small" >
-                          <a href="#inside" font-family="Times New Roman" class="inside-link">Edit</a> <a style="margin-left: 15px;" href="#inside" class="inside-link">Edit</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-             </div>
-             <div class="col-lg-3 col-md-4 " style="border: 1px solid #575a5f;" style="margin-bottom: 50px;margin-top: 5px;">
-              <div class="border border-secondary">
-                <div  class="text-center small "font-family="Times New Roman">Name:srikanth</div>
-                     <div class="container">
-                      <div class="row">
-                        <div class="badge badge-info col-xs-6">Info</div>
-                        <div  class="text-center small"font-family="Times New Roman">Email:srikanth@gmail.com</div>
-                      </div>
-                  </div>
-                <div class="text-center small"font-family="Times New Roman"> Ph:9290528523
-                </div>
-                <div class="container">
-                  <div class="row">
-                    <div class="mx-auto small" >
-                        <a href="#inside" font-family="Times New Roman" class="inside-link">Edit</a> <a style="margin-left: 15px;" href="#inside" class="inside-link">Edit</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-           </div> <div class="col-lg-3 col-md-4 " style="border: 1px solid #575a5f;" style="margin-bottom: 50px;margin-top: 5px;">
-            <div class="border border-secondary">
-              <div  class="text-center small "font-family="Times New Roman">Name:srikanth</div>
-                   <div class="container">
-                    <div class="row">
-                      <div class="badge badge-info col-xs-6">Info</div>
-                      <div  class="text-center small"font-family="Times New Roman">Email:srikanth@gmail.com</div>
-                    </div>
-                </div>
-              <div class="text-center small"font-family="Times New Roman"> Ph:9290528523
-              </div>
-              <div class="container">
-                <div class="row">
-                  <div class="mx-auto small" >
-                      <a href="#inside" font-family="Times New Roman" class="inside-link">Edit</a> <a style="margin-left: 15px;" href="#inside" class="inside-link">Edit</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-         </div> <div class="col-lg-3 col-md-4 " style="border: 1px solid #575a5f;" style="margin-bottom: 50px;margin-top: 5px;">
-          <div class="border border-secondary">
-            <div  class="text-center small "font-family="Times New Roman">Name:srikanth</div>
-                 <div class="container">
-                  <div class="row">
-                    <div class="badge badge-info col-xs-6">Info</div>
-                    <div  class="text-center small"font-family="Times New Roman">Email:srikanth@gmail.com</div>
-                  </div>
-              </div>
-            <div class="text-center small"font-family="Times New Roman"> Ph:9290528523
-            </div>
-            <div class="container">
-              <div class="row">
-                <div class="mx-auto small" >
-                    <a href="#inside" font-family="Times New Roman" class="inside-link">Edit</a> <a style="margin-left: 15px;" href="#inside" class="inside-link">Edit</a>
-                </div>
-              </div>
-            </div>
-          </div>
-       </div> <div class="col-lg-3 col-md-4 " style="border: 1px solid #575a5f;" style="margin-bottom: 50px;margin-top: 5px;">
-        <div class="border border-secondary">
-          <div  class="text-center small "font-family="Times New Roman">Name:srikanth</div>
-               <div class="container">
-                <div class="row">
-                  <div class="badge badge-info col-xs-6">Info</div>
-                  <div  class="text-center small"font-family="Times New Roman">Email:srikanth@gmail.com</div>
-                </div>
-            </div>
-          <div class="text-center small"font-family="Times New Roman"> Ph:9290528523
-          </div>
-          <div class="container">
-            <div class="row">
-              <div class="mx-auto small" >
-                  <a href="#inside" font-family="Times New Roman" class="inside-link">Edit</a> <a style="margin-left: 15px;" href="#inside" class="inside-link">Edit</a>
-              </div>
-            </div>
-          </div>
-        </div>
-     </div>
-          
-             
-                                                                        
-            </div>
-        </div>
-    </div>
     <div class="row gallery-bottom" >
         <div class="col-sm-6">
             <ul class="pagination">
@@ -173,4 +67,63 @@
             <em>Displaying 1 to 8 (of 100 posts)</em>
         </div>
     </div>
+
+    <jw-modal id="addParentsModal">
+      <button (click)="closeModal('addParentsModal');">Close</button>
+      <div class="card">  
+        <div class="card-body">  
+      
+         <form [formGroup]="angForm" novalidate>  
+            <div class="form-group">  
+              <label class="col-md-4">Person Id</label>  
+              <input type="text" class="form-control"   
+                formControlName="PersonId"   
+                #PersonId />  
+            </div>  
+            <div *ngIf="angForm.controls['PersonId'].invalid && (angForm.controls['PersonId'].dirty || angForm.controls['PersonId'].touched)" class="alert alert-danger">  
+              <div *ngIf="angForm.controls['PersonId'].errors.required">  
+                Person Id is required.  
+              </div>  
+            </div>  
+            <div class="form-group">  
+              <label class="col-md-4">Secondary Phone Number</label>  
+              <input class="form-control"   
+              formControlName="SecondaryPhoneNumber"   
+              #SecondaryPhoneNumber /> 
+            </div>  
+            <div *ngIf="angForm.controls['SecondaryPhoneNumber'].invalid && (angForm.controls['SecondaryPhoneNumber'].dirty || angForm.controls['SecondaryPhoneNumber'].touched)" class="alert alert-danger">  
+              <div *ngIf="angForm.controls['SecondaryPhoneNumber'].errors.required">  
+                Secondary Phone Number is required.  
+              </div>  
+            </div>  
+            <div class="form-group">  
+              <label class="col-md-4">RelInstituition Id</label>  
+              <input type="text" class="form-control"   
+                formControlName="RelInstituitionId"   
+                #RelInstituitionId  
+              />  
+            </div>  
+            <div *ngIf="angForm.controls['RelInstituitionId'].invalid && (angForm.controls['RelInstituitionId'].dirty || angForm.controls['RelInstituitionId'].touched)" class="alert alert-danger">  
+              <div *ngIf="angForm.controls['RelInstituitionId'].errors.required">  
+                RelInstituition is required.  
+              </div>  
+            </div>  
+    
+            <div class="form-group">  
+                <button (click) = "addParent(PersonId.value, SecondaryPhoneNumber.value, RelInstituitionId.value)" type="submit" class="btn btn-primary"  
+                [disabled]="angForm.pristine || angForm.invalid" >  
+                  Add Parent  
+                </button>  
+            </div>
+          </form>  
+        </div>  
+        </div>
+        <div class="">
+          <div class="container text-center">
+              <alert></alert>
+          </div>
+      </div>
+  
+  </jw-modal>
+
   </div>

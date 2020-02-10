@@ -58,7 +58,7 @@ export class PostsService {
     return httpOptions;
 };
 updatePost(posts: Posts) {  
-  posts.postId=19;
+  posts.postId=1;
   const options = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',

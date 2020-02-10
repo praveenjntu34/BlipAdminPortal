@@ -4,6 +4,10 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 import { ParentsService } from './parents.service';
 import { HttpClient } from '@angular/common/http';
+import { ModalService } from '../_modal/modal.service';
+import { FormGroup, FormBuilder, Validators, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';  
+import { Parent } from './parent';
+import { ConfirmationDialogService } from '../confirmation-dialog/confirmation-dialog.service';
 
 @Component({
   selector: 'app-parents',
@@ -19,9 +23,19 @@ export class ParentsComponent implements OnInit {
       pageOfItems: any;
 
       uri = 'http://localhost:8080/parents';  
+      angForm: FormGroup;  
 
-  constructor( private parentsService:ParentsService,private httpClient:HttpClient) { 
+      submitted = false;  
+  constructor( private parentsService:ParentsService,private httpClient:HttpClient,private modalService: ModalService,private fb: FormBuilder,private confirmationDialogService: ConfirmationDialogService) { 
+    this.createForm();  
   }
+   createForm() {  
+    this.angForm = this.fb.group({  
+      PersonId: ['', Validators.required ],  
+      SecondaryPhoneNumber: ['', Validators.required ],  
+      RelInstituitionId: ['', Validators.required ] ,
+    }); 
+  } 
     ngOnInit() {
         this.httpClient.get(`${this.uri}`)  
         .subscribe(data => {
@@ -32,5 +46,39 @@ export class ParentsComponent implements OnInit {
     onChangePage(pageOfItems: Array<any>) {
         this.pageOfItems = pageOfItems;
     }
+    openModal(id: string) {
+      console.log("Open Parent Dialog");
+      this.modalService.open(id);
+  }
+  closeModal(id: string) {
+    this.modalService.close(id);
+  }
+  parent : Parent=new Parent();  
+  addParent(personId, secondaryPhoneNumber, relInstituitionId) {  
+    this.parent.personId=personId;
+    this.parent.secondaryPhoneNumber=secondaryPhoneNumber;
+    this.parent.relTenantInstitutionId=relInstituitionId;
+    this.parentsService.addParent(this.parent);  
+  } 
+  deleteParent(parentId) {
+    console.log(parentId);
+    this.openConfirmationDialog(parentId);
+  }
+  public openConfirmationDialog(parentId) {
+    this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to Delete the Parent ?')
+    .then(
+      (confirmed) =>
+      this.callDelete(confirmed,parentId)
+      )
+    .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+  }
+  callDelete(confirmed,parentId)
+  {
+    console.log('User confirmed:', confirmed);
+    if(confirmed)
+    {
+        this.parentsService.deleteParent(parentId);
+    }
 
+  }
 }

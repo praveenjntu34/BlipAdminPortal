@@ -2,12 +2,15 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';  
 import { TestBed } from '@angular/core/testing';
+import { Parent } from './parent';
+import { AlertService } from '../_alert/alert.service';
+import { ModalService } from '../_modal/modal.service';
 @Injectable({  
   providedIn: 'root'  
 })  
 export class ParentsService {  
-  uri = 'http://localhost:8080/parents';  
-  constructor(private http: HttpClient) { }  
+  uri = 'http://localhost:8080/parents';
+  constructor(private http: HttpClient, private alertService: AlertService,private modalService: ModalService) { }  
    datas:any; 
   rowData :any;
   getPosts() { 
@@ -17,5 +20,28 @@ export class ParentsService {
           });
           return this.datas;
   };
- 
+  addParent(parent: Parent) {  
+    this.http.post(`${this.uri}`, parent)  
+        .subscribe(data => {
+            console.log(" ------ "+data);
+            this.alertService.success("Parent Added");
+            this.modalService.close('');
+          });
+  };
+  deleteParent(parentId) { 
+    console.log("Delete parent "+parentId);
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: {
+        parentId: 1
+      },
+    };
+    this.http.delete(`${this.uri}`,options)  
+        .subscribe(data => {
+            console.log("service ------ "+data);
+            this.alertService.success("Parent Created");
+          });
+  }; 
 }  

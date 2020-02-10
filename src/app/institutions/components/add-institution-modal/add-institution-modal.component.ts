@@ -181,51 +181,48 @@ export class AddInstitutionModalComponent implements OnInit {
     })
 
 
-    if(this.formDetails.relTenantInstitutionId){
+    // if(this.formDetails.relTenantInstitutionId){
 
-      this.isEditForm = true
-      this.home_page_tab = false;
-      this.isCustomForm = true;
-      this.selectedTypeId = this.formDetails.institutionTypeId
-      this.selectedStateId = this.formDetails.stateId;
-      this.getCities(this.formDetails.stateId)
-      this.selectedCityId = this.formDetails.cityId;
-      this.img_url = this.formDetails.pictureStream;
+    //   this.isEditForm = true
+    //   this.home_page_tab = false;
+    //   this.isCustomForm = true;
+    //   this.selectedTypeId = this.formDetails.institutionTypeId
+    //   this.selectedStateId = this.formDetails.stateId;
+    //   this.getCities(this.formDetails.stateId)
+    //   this.selectedCityId = this.formDetails.cityId;
+    //   this.img_url = this.formDetails.pictureStream;
 
-      this.institutionDetailForm.patchValue({
-        institutionName: this.formDetails.institutionName,
-        email: this.formDetails.email,
-        website: this.formDetails.website,
-        institutionTypeId: this.formDetails.institutionTypeId,
-        address1: this.formDetails.address1,
-        address2: this.formDetails.address2,
-        addressId: this.formDetails.addressId,
-        remarks: this.formDetails.remarks, 
-        status: [1],
-        countryId: 1,
-        pictureId: [''],
-      })
-    } else if(this.formDetails.primaryPOCEmail) {
-      this.home_page_tab = false;
-      this.isCustomForm = true;
-      this.isEditForm = false;
-      this.stepCount++;
-      console.log("poc", this.formDetails);
+    //   this.institutionDetailForm.patchValue({
+    //     institutionName: this.formDetails.institutionName,
+    //     email: this.formDetails.email,
+    //     website: this.formDetails.website,
+    //     institutionTypeId: this.formDetails.institutionTypeId,
+    //     address1: this.formDetails.address1,
+    //     address2: this.formDetails.address2,
+    //     addressId: this.formDetails.addressId,
+    //     remarks: this.formDetails.remarks, 
+    //     status: [1],
+    //     countryId: 1,
+    //     pictureId: [''],
+    //   })
+    // } else if(this.formDetails.primaryPOCEmail) {
+      // this.home_page_tab = false;
+      // this.isCustomForm = true;
+      // this.isEditForm = false;
+      // this.stepCount++;
+      // console.log("poc", this.formDetails);
       
-      this.institutionPOCForm.patchValue({
-        primaryPOCFirstName: this.formDetails.primaryPOCFirstName,
-        primaryPOCLastName: this.formDetails.primaryPOCLastName,
-        primaryPOCPhoneNumber: this.formDetails.primaryPOCPhoneNumber,
-        primaryPOCEmail:this.formDetails.primaryPOCEmail,
-        secondaryPOCFirstName: this.formDetails.secondaryPOCName.split(" ")[0],
-        secondaryPOCLastName: this.formDetails.secondaryPOCName.split(" ")[1],
-        secondaryPOCPhoneNumber: this.formDetails.secondaryPOCPhoneNumber,
-        secondaryPOCEmail: this.formDetails.secondaryPOCEmail,
-      })
+      // this.institutionPOCForm.patchValue({
+      //   primaryPOCFirstName: this.formDetails.primaryPOCFirstName,
+      //   primaryPOCLastName: this.formDetails.primaryPOCLastName,
+      //   primaryPOCPhoneNumber: this.formDetails.primaryPOCPhoneNumber,
+      //   primaryPOCEmail:this.formDetails.primaryPOCEmail,
+      //   secondaryPOCFirstName: this.formDetails.secondaryPOCName.split(" ")[0],
+      //   secondaryPOCLastName: this.formDetails.secondaryPOCName.split(" ")[1],
+      //   secondaryPOCPhoneNumber: this.formDetails.secondaryPOCPhoneNumber,
+      //   secondaryPOCEmail: this.formDetails.secondaryPOCEmail,
+      // })
   
-    } else {
-
-    }
 
 
    

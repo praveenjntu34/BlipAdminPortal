@@ -9,13 +9,7 @@
                 <label for="message">Message*</label>
                 <input type="text" formControlName="message" class="form-control blip-input blip-message" id="primaryPOCFirstName" aria-describedby="emailHelp">
             </div>
-            <div class="row">
-                <label for="countryId">Post Type</label>
-                <select class="form-control blip-input  blip-select">
-                    <option value="public" selected>Public</option>
-                </select>
-                <!-- <input type="text" formControlName="countryId" class="form-control blip-input" id="countryId"> -->
-            </div>
+
             <div class="row">
                 <label for="stateId">Branch</label>
                 <select formControlName="branchId" #st [(ngModel)]="selectedBranchId" (change)="getSections(st.value)" class="form-control blip-input  blip-select">

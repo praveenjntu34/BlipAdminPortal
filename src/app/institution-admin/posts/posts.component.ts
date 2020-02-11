@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { AddPostModalComponent } from '../add-post-modal/add-post-modal.component';
+import { PostService } from '../shared/post.service';
 
 @Component({
   selector: 'app-posts',
@@ -9,10 +10,12 @@ import { AddPostModalComponent } from '../add-post-modal/add-post-modal.componen
 })
 export class PostsComponent implements OnInit {
 
-  posts = [
-    1,2,3,4
-  ]
-  constructor(private matDialogue: MatDialog) { 
+  // posts = [
+  //   1,2,3,4
+  // ]
+
+  posts: any;
+  constructor(private matDialogue: MatDialog, private postService: PostService) { 
     
   }
 
@@ -24,6 +27,12 @@ export class PostsComponent implements OnInit {
     })
   }
   ngOnInit() {
+    this.postService.getAllPosts(1)
+          .subscribe((data: any) => {
+            this.posts = data;
+            console.log(this.posts);
+            
+          })
   }
 
 }

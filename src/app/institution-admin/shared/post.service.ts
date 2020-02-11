@@ -10,15 +10,31 @@ export class PostService{
 
 
 
-  addPost(post) {
+  addPost(data) {
     let headers = new Headers();
-    let httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'undefined'
-      })
-    }
+    // let httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type': 'undefined',
+    //     'processData': 'false',
+    //     'cache': 'false'
+    //   })
+    // }
+    return this.http.post(environment.baseUrl + 'post', data);
 
-      return this.http.post(environment.baseUrl + 'post',post, httpOptions )
+      // return this.http.post(environment.baseUrl + 'post',post )
+  }
+
+  getAllPosts(relTenantInstitutionId) {
+    return this.http.get(environment.baseUrl + 'post/' + relTenantInstitutionId);
+  }
+
+
+  addPostFile(file) {
+    let headers = new Headers();
+
+    const formData =  new FormData();
+    formData.append('file',file);
+    return this.http.post(environment.baseUrl + 'post-file', formData);
   }
 
   constructor(private http: HttpClient) { }

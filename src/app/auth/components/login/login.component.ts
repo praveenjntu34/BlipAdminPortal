@@ -25,6 +25,11 @@ export class LoginComponent implements OnInit {
 
   }
 
+  logout() {
+    localStorage.removeItem('loggedInRole');
+    this.router.navigate(["/"]);
+  }
+
   login() {
     console.log("user value", this.loginForm.value);
     this.authService.looginWithUsername(this.loginForm.value.username, this.loginForm.value.password)
@@ -32,6 +37,7 @@ export class LoginComponent implements OnInit {
             console.log(response);
             
             if(response.jwt) {
+             localStorage.setItem('loggedInRole', response.role)
              this.router.navigate(["/home/institutions"]);
             } else {
               

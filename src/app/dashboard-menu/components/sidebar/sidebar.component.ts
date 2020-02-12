@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
+  role: any;
   constructor() { }
 
   ngOnInit() {
+    this.role = localStorage.getItem('loggedInRole');
   }
 
 }

@@ -400,6 +400,48 @@ li {
     top: 200px;
 }
 
+.ins-created {
+    display: inline;
+}
+
+.ins-password {
+    display: inline;
+    border: dashed 0.5px #DEDEDE;
+    padding: 3px 26px;
+}
+
+.tick-image {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    margin-top: -5px;
+}
+
+.final-wrapper {
+    margin-top: 120px;
+}
+
+.shield-image {
+    width: 25px;
+    height: 25px;
+}
+
+.gap {
+    margin-top: 20px;
+}
+
+.note {
+    margin-top: 50px;
+}
+
+#user-label {
+    display: inline;
+}
+
+#saved-user {
+    display: inline;
+}
+
 ::ng-deep .cdk-overlay-container {
     /* Do you changes here */
     left: 100px;

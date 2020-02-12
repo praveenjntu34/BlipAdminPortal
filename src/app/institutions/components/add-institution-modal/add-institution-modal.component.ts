@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Component, OnInit, Input, Inject, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { City, State } from '../../shared/location.model';
 import { NgbModalOptions, NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -50,7 +50,8 @@ export class AddInstitutionModalComponent implements OnInit {
   home_page_tab: boolean = true;
   selectedBranchIndex: number = -1;
 
-  //test
+  currentUsername: string;
+  currentGeneratePassword: string;
 
   bSectionsArray: Array<BSections> = new Array<BSections>();
   currentIndex: number = 0 ;
@@ -71,7 +72,7 @@ export class AddInstitutionModalComponent implements OnInit {
  isEditForm: boolean = false;
  isCustomForm: boolean = false;
   constructor(private modalService: NgbModal ,private instService: InstitutionService, private formBuilder: FormBuilder
-    ,private router: Router, private matDialog: MatDialog,@Inject(MAT_DIALOG_DATA) public details: any) {
+    ,private router: Router, private matDialog: MatDialog,@Inject(MAT_DIALOG_DATA) public details: any, private ref: ChangeDetectorRef) {
     
     this.formDetails = details;
     
@@ -259,11 +260,13 @@ export class AddInstitutionModalComponent implements OnInit {
       ,status: 1
       ,institutionId: this.formDetails.institutionId
     })
+    var that = this;
     this.instService.updateInstitutionDetails(this.institutionDetailForm.value)
           .subscribe((response: any) => {
             this.loading1 = false;
             this.loading_tab1 = false;
             this.matDialog.closeAll();
+
             console.log("update response", response)
           })
     console.log(this.institutionDetailForm)
@@ -303,12 +306,16 @@ export class AddInstitutionModalComponent implements OnInit {
      ,this.institutionPOCForm.value.secondaryPOCFirstName + " " + this.institutionPOCForm.value.secondaryPOCLastName,
      this.institutionPOCForm.value.secondaryPOCPhoneNumber)
 
+     var that = this;
      console.log("data to be posted", personObject)
      this.instService.addPOCDetails(personObject)
             .subscribe((response: any) => {
               this.loading2 = false;
               this.loading_tab2 = false
-              console.log("poc response", response)
+              that.currentUsername = response.email;
+              that.currentGeneratePassword = response.passcode;
+              localStorage.setItem("currentPOC", JSON.stringify(response))
+              console.log("poc response", response) 
             })
   }
 

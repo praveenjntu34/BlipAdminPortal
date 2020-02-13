@@ -14,6 +14,10 @@ export class InstitutionService {
   }
 
 
+  updatePOCDetails(updatedForm: any) {
+    return this.http.post(environment.baseUrl + 'institution/pc',updatedForm);
+  }
+
   addInstructor(instructor) {
     return this.http.post(environment.baseUrl + 'instructor',instructor )
   }

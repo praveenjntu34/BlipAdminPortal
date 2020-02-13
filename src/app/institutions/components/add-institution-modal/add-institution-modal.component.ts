@@ -234,23 +234,7 @@ export class AddInstitutionModalComponent implements OnInit {
           })
   }
 
-  updateDetails() {
-    this.loading1 = true;
-    console.log("check", this.formDetails)
-    this.institutionDetailForm.patchValue({
-      pictureId: this.formDetails.pictureId
-      ,status: 1
-      ,institutionId: this.formDetails.institutionId
-    })
-    this.instService.updateInstitutionDetails(this.institutionDetailForm.value)
-          .subscribe((response: any) => {
-            this.loading1 = false;
-            this.loading_tab1 = false;
-            this.matDialog.closeAll();
-            console.log("update response", response)
-          })
-    console.log(this.institutionDetailForm)
-  }
+ 
 
   updatePOCDetails() {
     this.loading1 = true;

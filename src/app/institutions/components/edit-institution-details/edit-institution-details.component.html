@@ -1,0 +1,96 @@
+<div class="modal-body super-modal">
+    <div class="row">
+        <div class="col-xl-3 left-pane">
+            <div class="row tab tab-decorator">
+                <a class="nav-link active" id="details-tab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="true">
+
+                    <div class="tab-item">
+                        <div *ngIf="loading1" class="lds-ring spinner">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                        <img *ngIf="stepCount>1 && loading_tab1 == false" src="../../../../assets/green-tick.png" alt="" width="15x" height="15px">
+                        <p>Institution Details</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-xl-9 tab-content right-pane">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <form [formGroup]="institutionDetailForm">
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <label for="institutionName">Name of Institution*</label>
+                            <input type="text" formControlName="institutionName" class="form-control blip-input" id="institutionName" aria-describedby="emailHelp">
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="eamil">Email (Institution)</label>
+                            <input type="email" formControlName="email" class="form-control blip-input" id="eamil">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <label for="website">Website</label>
+                            <input type="text" formControlName="website" class="form-control blip-input" id="website">
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="institutionTypeId">Institution Type</label>
+                            <select formControlName="institutionTypeId" [(ngModel)]="selectedTypeId" class="form-control blip-input  blip-select">
+                                <option [value]="type.typeId" *ngFor="let type of institutionTypeNames">{{type.typeName}}</option>
+                              </select>
+                            <!-- <input type="text" formControlName="institutionTypeId" class="form-control blip-input" id="institutionTypeId"> -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <label for="address1">Address1</label>
+                            <input type="text" formControlName="address1" class="form-control blip-input" id="address1">
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="address2">Address2</label>
+                            <input type="text" formControlName="address2" class="form-control blip-input" id="address2">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <label for="countryId">Country</label>
+                            <select class="form-control blip-input  blip-select">
+                                <option value="India" selected>India</option>
+                              </select>
+                            <!-- <input type="text" formControlName="countryId" class="form-control blip-input" id="countryId"> -->
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="stateId">State</label>
+                            <select formControlName="stateId" #st [(ngModel)]="selectedStateId" (change)="getCities(st.value)" class="form-control blip-input  blip-select">
+                                <option [value]="state.stateId" *ngFor="let state of allStates">{{state.stateName}}</option>
+                              </select>
+                            <!-- <input type="text" formControlName="stateId" class="form-control blip-input" id="stateId"> -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <label for="cityId">City</label>
+                            <select formControlName="cityId" [(ngModel)]="selectedCityId" class="form-control blip-input  blip-select">
+                                <option [value]="city.cityId" *ngFor="let city of allCities">{{city.cityName}}</option>
+                              </select>
+                            <!-- <input type="text" formControlName="cityId" class="form-control blip-input" id="cityId"> -->
+
+                            <label for="remarks">Remarks</label>
+                            <textarea name="" id="remarks" formControlName="remarks" cols="30" rows="10"></textarea>
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="exampleInputEmail1">Image</label>
+                            <input type="file" (change)="onFileChanged($event)">
+                            <img class="image-create" [src]="img_url">
+                        </div>
+                    </div>
+
+                    <button type="submit" (click)="updateDetails()" class="btn btn-primary btn-next" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Update</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

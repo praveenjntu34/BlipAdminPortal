@@ -50,9 +50,12 @@ export class AddInstitutionModalComponent implements OnInit {
   home_page_tab: boolean = true;
   selectedBranchIndex: number = -1;
 
+
+  pocSubmitted = false;
   currentUsername: string;
   currentGeneratePassword: string;
 
+  isEmailExists: boolean = false;
   bSectionsArray: Array<BSections> = new Array<BSections>();
   currentIndex: number = 0 ;
   singleSection: Array<string> = [];
@@ -147,7 +150,7 @@ export class AddInstitutionModalComponent implements OnInit {
               this.allCities = data;
             })
   }
-  get f() {return this.institutionDetailForm.controls}
+  get f() {return this.institutionPOCForm.controls}
 
 
   ngOnInit() {
@@ -181,51 +184,6 @@ export class AddInstitutionModalComponent implements OnInit {
       secondaryPOCEmail: ['',[Validators.required,Validators.email]],
     })
 
-
-    // if(this.formDetails.relTenantInstitutionId){
-
-    //   this.isEditForm = true
-    //   this.home_page_tab = false;
-    //   this.isCustomForm = true;
-    //   this.selectedTypeId = this.formDetails.institutionTypeId
-    //   this.selectedStateId = this.formDetails.stateId;
-    //   this.getCities(this.formDetails.stateId)
-    //   this.selectedCityId = this.formDetails.cityId;
-    //   this.img_url = this.formDetails.pictureStream;
-
-    //   this.institutionDetailForm.patchValue({
-    //     institutionName: this.formDetails.institutionName,
-    //     email: this.formDetails.email,
-    //     website: this.formDetails.website,
-    //     institutionTypeId: this.formDetails.institutionTypeId,
-    //     address1: this.formDetails.address1,
-    //     address2: this.formDetails.address2,
-    //     addressId: this.formDetails.addressId,
-    //     remarks: this.formDetails.remarks, 
-    //     status: [1],
-    //     countryId: 1,
-    //     pictureId: [''],
-    //   })
-    // } else if(this.formDetails.primaryPOCEmail) {
-      // this.home_page_tab = false;
-      // this.isCustomForm = true;
-      // this.isEditForm = false;
-      // this.stepCount++;
-      // console.log("poc", this.formDetails);
-      
-      // this.institutionPOCForm.patchValue({
-      //   primaryPOCFirstName: this.formDetails.primaryPOCFirstName,
-      //   primaryPOCLastName: this.formDetails.primaryPOCLastName,
-      //   primaryPOCPhoneNumber: this.formDetails.primaryPOCPhoneNumber,
-      //   primaryPOCEmail:this.formDetails.primaryPOCEmail,
-      //   secondaryPOCFirstName: this.formDetails.secondaryPOCName.split(" ")[0],
-      //   secondaryPOCLastName: this.formDetails.secondaryPOCName.split(" ")[1],
-      //   secondaryPOCPhoneNumber: this.formDetails.secondaryPOCPhoneNumber,
-      //   secondaryPOCEmail: this.formDetails.secondaryPOCEmail,
-      // })
-  
-
-
    
     this.instService.getAllStates()
           .subscribe((data: State[]) => {
@@ -235,26 +193,6 @@ export class AddInstitutionModalComponent implements OnInit {
   }
 
  
-
-  updatePOCDetails() {
-    this.loading1 = true;
-    console.log("check", this.formDetails)
-    this.institutionDetailForm.patchValue({
-      pictureId: this.formDetails.pictureId
-      ,status: 1
-      ,institutionId: this.formDetails.institutionId
-    })
-    var that = this;
-    this.instService.updateInstitutionDetails(this.institutionDetailForm.value)
-          .subscribe((response: any) => {
-            this.loading1 = false;
-            this.loading_tab1 = false;
-            this.matDialog.closeAll();
-
-            console.log("update response", response)
-          })
-    console.log(this.institutionDetailForm)
-  }
 
   onSubmit() {
     this.stepCount++;
@@ -275,9 +213,25 @@ export class AddInstitutionModalComponent implements OnInit {
     console.log("After API")
   }
 
+  checkEmailExistence() {
+    console.log("can call API");
+    this.instService.checkWhetherEmailExists(this.institutionPOCForm.value.primaryPOCEmail)
+          .subscribe((response:any) => {
+            this.isEmailExists = response.emailExists
+            console.log("respo email" , response);
+            
+          })
+    
+  }
+
+  submittedPOC() {
+    console.log("sub");
+    
+    this.pocSubmitted = true
+
+  }
   addPOCForm(){
-    this.stepCount++;
-    this.loading2 = true;
+   
 
     console.log("poc form data",this.institutionPOCForm.value);
     
@@ -291,23 +245,30 @@ export class AddInstitutionModalComponent implements OnInit {
      this.institutionPOCForm.value.secondaryPOCPhoneNumber)
 
      var that = this;
-     console.log("data to be posted", personObject)
-     this.instService.addPOCDetails(personObject)
-            .subscribe((response: any) => {
-              this.loading2 = false;
-              this.loading_tab2 = false
-              that.currentUsername = response.email;
-              that.currentGeneratePassword = response.passcode;
-              localStorage.setItem("currentPOC", JSON.stringify(response))
-              console.log("poc response", response) 
-            })
+     console.log("data to be posted", this.institutionPOCForm.status)
+
+
+
+     if (this.institutionPOCForm.invalid) {
+      return;
+      } else {
+        this.stepCount++;
+        this.loading2 = true;
+        this.instService.addPOCDetails(personObject)
+               .subscribe((response: any) => {
+                 this.loading2 = false;
+                 this.loading_tab2 = false
+                 that.currentUsername = response.email;
+                 that.currentGeneratePassword = response.passcode;
+                 localStorage.setItem("currentPOC", JSON.stringify(response))
+                 console.log("poc response", response) 
+               })
+      }
   }
 
   addBranch() {
     this.branchIndex++;
 
-    // this.bSectionsArray[this.branchIndex] = new BSections();
-    // this.bSectionsArray[this.branchIndex].sections.push("A" + this.branchIndex)
 
     this.modalRef.close();
     console.log(this.branchNameModel)
@@ -337,7 +298,6 @@ export class AddInstitutionModalComponent implements OnInit {
             this.sectionNameModel = null;
             console.log(data)
           })
-    // this.bSectionsArray[this.selectedBranchIndex].sections.push(this.sectionNameModel)
 
   }
   nextStep() {
@@ -351,16 +311,5 @@ export class AddInstitutionModalComponent implements OnInit {
   }
   goToDetails(index) {
     this.router.navigate(['/institutions',this.data[index].institutionId])
-  }
-  test() {
-    let arr = [
-      {
-        branchName: 'Branch A',
-        sections: [
-          'a',
-          'b'
-        ]
-      }
-    ]
   }
 }

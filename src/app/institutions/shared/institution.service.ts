@@ -27,6 +27,9 @@ export class InstitutionService {
     return this.http.get(environment.baseUrl + 'instructor/' + relTenantInstitutionId)
   }
 
+  checkWhetherEmailExists(email) {
+    return this.http.get(environment.baseUrl + 'check-email?data=' + email)
+  }
 
   addBranch(branchData: any) {
     const branchFormData = new FormData();

@@ -152,44 +152,45 @@
                         <div class="row">
                             <div class="form-group col-6">
                                 <label for="primaryPOCFirstName">Primary POC FirstName*</label>
-                                <input type="text" formControlName="primaryPOCFirstName" class="form-control blip-input" id="primaryPOCFirstName" aria-describedby="emailHelp">
+                                <input type="text" formControlName="primaryPOCFirstName" class="form-control blip-input" [ngClass]="{ 'is-invalid': pocSubmitted && f.primaryPOCFirstName.errors }" id="primaryPOCFirstName" aria-describedby="emailHelp">
                             </div>
                             <div class="form-group col-6">
                                 <label for="primaryPOCLastName">Primary POC LastName</label>
-                                <input type="email" formControlName="primaryPOCLastName" class="form-control blip-input" id="primaryPOCLastName">
+                                <input type="email" formControlName="primaryPOCLastName" [ngClass]="{ 'is-invalid': pocSubmitted && f.primaryPOCLastName.errors }" class="form-control blip-input" id="primaryPOCLastName">
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-6">
                                 <label for="primaryPOCPhoneNumber">Primary POC PhoneNumber</label>
-                                <input type="text" formControlName="primaryPOCPhoneNumber" class="form-control blip-input" id="primaryPOCPhoneNumber" aria-describedby="emailHelp">
+                                <input type="text" formControlName="primaryPOCPhoneNumber" [ngClass]="{ 'is-invalid': pocSubmitted && f.primaryPOCPhoneNumber.errors }" class="form-control blip-input" id="primaryPOCPhoneNumber" aria-describedby="emailHelp">
                             </div>
                             <div class="form-group col-6">
                                 <label for="primaryPOCEmail">Primary POC Email</label>
-                                <input type="email" formControlName="primaryPOCEmail" class="form-control blip-input" id="primaryPOCEmail">
+                                <input type="email" formControlName="primaryPOCEmail" [ngClass]="{ 'is-invalid': pocSubmitted && f.primaryPOCEmail.errors || isEmailExists }" (focusout)="checkEmailExistence()" class="form-control blip-input" id="primaryPOCEmail">
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-6">
                                 <label for="secondaryPOCFirstName">Secondary POC FirstName</label>
-                                <input type="text" formControlName="secondaryPOCFirstName" class="form-control blip-input" id="secondaryPOCFirstName" aria-describedby="emailHelp">
+                                <input type="text" formControlName="secondaryPOCFirstName" [ngClass]="{ 'is-invalid': pocSubmitted && f.secondaryPOCFirstName.errors }" class="form-control blip-input" id="secondaryPOCFirstName" aria-describedby="emailHelp">
                             </div>
                             <div class="form-group col-6">
                                 <label for="secondaryPOCLastName">Secondary POC LastName</label>
-                                <input type="email" formControlName="secondaryPOCLastName" class="form-control blip-input" id="secondaryPOCLastName">
+                                <input type="email" formControlName="secondaryPOCLastName" [ngClass]="{ 'is-invalid': pocSubmitted && f.secondaryPOCLastName.errors }" class="form-control blip-input" id="secondaryPOCLastName">
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-6">
                                 <label for="secondaryPOCPhoneNumber">Secondary POC PhoneNumber</label>
-                                <input type="text" formControlName="secondaryPOCPhoneNumber" class="form-control blip-input" id="secondaryPOCPhoneNumber" aria-describedby="emailHelp">
+                                <input type="text" formControlName="secondaryPOCPhoneNumber" [ngClass]="{ 'is-invalid': pocSubmitted && f.secondaryPOCPhoneNumber.errors }" class="form-control blip-input" id="secondaryPOCPhoneNumber" aria-describedby="emailHelp">
                             </div>
                             <div class="form-group col-6">
                                 <label for="secondaryPOCEmail">Secondary POC Email</label>
-                                <input type="email" formControlName="secondaryPOCEmail" class="form-control blip-input" id="secondaryPOCEmail">
+                                <input type="email" formControlName="secondaryPOCEmail" (focusout)="submittedPOC()" [ngClass]="{ 'is-invalid': pocSubmitted && f.secondaryPOCEmail.errors }" class="form-control blip-input" id="secondaryPOCEmail">
                             </div>
                         </div>
-                        <button type="submit" [disabled]="!institutionPOCForm.valid" (click)="addPOCForm()" class="btn btn-primary btn-next" data-toggle="tab" href="#branch" role="tab" aria-controls="profile" aria-selected="false">Next</button>
+                        <!-- href="#branch" -->
+                        <button type="submit" [disabled]="!institutionPOCForm.valid" (click)="addPOCForm()" class="btn btn-primary btn-next" data-toggle="tab" role="tab" aria-controls="profile" href="#branch" aria-selected="false">Next</button>
                     </form>
                 </div>
                 <div class="tab-pane fade" id="branch" role="tabpanel" aria-labelledby="profile-tab">
@@ -272,8 +273,15 @@
                                 <p>*Use this above password to login into blip portal.</p>
                             </div>
                         </div>
+
+                        <button type="submit" (click)="closeModal()" class="btn btn-primary">Finish</button>
+
                     </div>
 
+                </div>
+
+                <div class="row" *ngIf="isEmailExists">
+                    <p class="field-validation">*The primary POC email address already exists please try a differen one</p>
                 </div>
             </div>
         </div>

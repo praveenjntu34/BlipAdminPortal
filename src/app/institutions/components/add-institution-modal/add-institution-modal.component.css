@@ -102,6 +102,10 @@ input {
     width: 100%;
 }
 
+.field-validation {
+    color: red;
+}
+
 textarea {
     display: block;
     height: 80px;
@@ -271,7 +275,6 @@ select {
 
 .blip-input {
     background: #F6F8F9;
-    border: 0.5px solid rgba(222, 222, 222, 0.23);
 }
 
 .blip-select {
@@ -286,10 +289,11 @@ select {
     box-shadow: none;
 }
 
-input:focus {
+
+/* input:focus {
     outline: none;
     border-bottom: 2px solid #3000B2;
-}
+} */
 
 .branch-tab {
     margin-top: 10px;
@@ -312,6 +316,10 @@ input:focus {
     position: absolute;
     left: 127px;
     top: 130px;
+}
+
+.is-invalid {
+    border: solid red 0.5px;
 }
 
 .btn-branch {

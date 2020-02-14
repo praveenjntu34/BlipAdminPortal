@@ -24,7 +24,7 @@ export class ParentsComponent implements OnInit {
 
       uri = 'http://localhost:8080/parents';  
       angForm: FormGroup;  
-
+      angFormEdit: FormGroup;  
       submitted = false;  
   constructor( private parentsService:ParentsService,private httpClient:HttpClient,private modalService: ModalService,private fb: FormBuilder,private confirmationDialogService: ConfirmationDialogService) { 
     this.createForm();  
@@ -33,8 +33,12 @@ export class ParentsComponent implements OnInit {
     this.angForm = this.fb.group({  
       PersonId: ['', Validators.required ],  
       SecondaryPhoneNumber: ['', Validators.required ],  
-      RelInstituitionId: ['', Validators.required ] ,
+      RelInstituitionId: ['', Validators.required ] 
     }); 
+    this.angFormEdit = this.fb.group({  
+      SecondaryPhoneNumberEdit: ['', Validators.required ],  
+      RelInstituitionIdEdit: ['', Validators.required ]
+     });
   } 
     ngOnInit() {
         this.httpClient.get(`${this.uri}`)  
@@ -64,6 +68,11 @@ export class ParentsComponent implements OnInit {
     console.log(parentId);
     this.openConfirmationDialog(parentId);
   }
+  editParent( secondaryPhoneNumber, relInstituitionId) {  
+    this.parent.secondaryPhoneNumber=secondaryPhoneNumber;
+    this.parent.relTenantInstitutionId=relInstituitionId;
+    this.parentsService.updateParent(this.parent);  
+  } 
   public openConfirmationDialog(parentId) {
     this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to Delete the Parent ?')
     .then(

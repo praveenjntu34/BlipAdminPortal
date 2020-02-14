@@ -23,8 +23,9 @@
                   <div class="container">
                     <div class="row">
                       <div class="mx-auto small" >
-                          <a href="#inside" font-family="Times New Roman" class="inside-link">Edit</a> 
-                          <a href="javascript:void(0);" (click)="deleteParent(1)" style="margin-left: 15px;"  class="inside-link">Delete</a>
+                          <a href="javascript:void(0);" font-family="Times New Roman" class="inside-link" (click)="openModal('editParentsModal')" >Edit</a> 
+                          <input type ="hidden" id="parentIdObj_{{items[i].parentId}}" value="{{items[i].parentId}}">
+                          <a href="javascript:void(0);"  (click)="deleteParent('{items[i].parentId}')"  style="margin-left: 15px;"  class="inside-link">Delete</a>
                       </div>
                     </div>
                   </div>
@@ -125,5 +126,53 @@
       </div>
   
   </jw-modal>
+
+  <jw-modal id="editParentsModal">
+    <button (click)="closeModal('editParentsModal');">Close</button>
+    <div class="card">  
+      <div class="card-body">  
+    
+       <form [formGroup]="angFormEdit" novalidate>  
+           
+          <div class="form-group">  
+            <label class="col-md-4">Secondary Phone Number</label>  
+            <input class="form-control"   
+            formControlName="SecondaryPhoneNumberEdit"   
+            #SecondaryPhoneNumberEdit /> 
+          </div>  
+          <div *ngIf="angFormEdit.controls['SecondaryPhoneNumberEdit'].invalid && (angFormEdit.controls['SecondaryPhoneNumberEdit'].dirty || angFormEdit.controls['SecondaryPhoneNumberEdit'].touched)" class="alert alert-danger">  
+            <div *ngIf="angFormEdit.controls['SecondaryPhoneNumberEdit'].errors.required">  
+              Secondary Phone Number is required.  
+            </div>  
+          </div>  
+          <div class="form-group">  
+            <label class="col-md-4">RelInstituition Id</label>  
+            <input type="text" class="form-control"   
+              formControlName="RelInstituitionIdEdit"   
+              #RelInstituitionIdEdit  
+            />  
+          </div>  
+          <div *ngIf="angFormEdit.controls['RelInstituitionIdEdit'].invalid && (angFormEdit.controls['RelInstituitionIdEdit'].dirty || angFormEdit.controls['RelInstituitionIdEdit'].touched)" class="alert alert-danger">  
+            <div *ngIf="angFormEdit.controls['RelInstituitionIdEdit'].errors.required">  
+              RelInstituition is required.  
+            </div>  
+          </div>  
+  
+          <div class="form-group">  
+              <button (click) = "editParent( SecondaryPhoneNumberEdit.value, RelInstituitionIdEdit.value)" type="submit" class="btn btn-primary"  
+              [disabled]="angFormEdit.pristine || angFormEdit.invalid" >  
+                Edit Parent 
+              </button>  
+          </div>
+        </form>  
+      </div>  
+      </div>
+      <div class="">
+        <div class="container text-center">
+            <alert></alert>
+        </div>
+    </div>
+
+</jw-modal>
 
   </div>

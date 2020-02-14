@@ -5,6 +5,7 @@ import { TestBed } from '@angular/core/testing';
 import { Parent } from './parent';
 import { AlertService } from '../_alert/alert.service';
 import { ModalService } from '../_modal/modal.service';
+import { Posts } from '../posts';
 @Injectable({  
   providedIn: 'root'  
 })  
@@ -44,4 +45,22 @@ export class ParentsService {
             this.alertService.success("Parent Created");
           });
   }; 
+
+  updateParent(parent: Parent) {  
+    parent.personId=1;
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: {
+        parent
+      },
+    };
+    this.http.put(`${this.uri}`,parent,options)  
+      .subscribe(data => {
+          console.log(" ------ "+data);
+          this.alertService.success("Parent updated");
+          this.modalService.close('editParentModal');
+        });
+};
 }  

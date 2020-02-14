@@ -157,9 +157,17 @@ select {
     left: 15px;
 }
 
+select:focus {
+    outline: none;
+}
+
 .state {
     border: solid rgba(144, 144, 144, 0.23) 1px;
     padding: 0
+}
+
+.select-style {
+    border: none;
 }
 
 .expand-more {

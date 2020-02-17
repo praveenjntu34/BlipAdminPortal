@@ -18,7 +18,7 @@
                             <h5>{{post.title}}</h5>
                         </div>
                         <div class="row">
-                            <p>{{post.postText}}</p>
+                            <p>{{(post.postText.length>15)? (stpost.postTextr | slice:0:15)+'..':(post.postText)}}</p>
                         </div>
                     </div>
                 </div>

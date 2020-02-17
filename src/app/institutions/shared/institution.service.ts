@@ -75,7 +75,13 @@ export class InstitutionService {
 
   getAllInstitutions() {
     return this.http.get(environment.baseUrl + 'institution/details?pageNumber=0&size=10');
-  }
+  
+}
+
+getAllInstitutionsByPage(page) {
+  return this.http.get(environment.baseUrl + 'institution/details?pageNumber=' + page + '&size=10');
+
+}
 
   getAllInstitutionsByCity(cityId) {
     return this.http.get(environment.baseUrl + 'institution/details?pageNumber=0&size=10&cityId=' + cityId);
@@ -88,7 +94,6 @@ export class InstitutionService {
   }
 
   getAllStates() {
-
     return this.http.get(environment.baseUrl + "states");
   }
 

@@ -36,7 +36,8 @@ export class InstitutionListComponent implements OnInit,OnChanges {
   allCities: City[] = [];
   title = 'ng-bootstrap-modal-demo';
   searchable: boolean = false;
-
+  pageArray: Array<number>;
+  selectedPage: number = 1;
   constructor(private modalService: NgbModal ,private instService: InstitutionService, private formBuilder: FormBuilder
     ,private router: Router, private matDialogue: MatDialog
     ){
@@ -90,6 +91,10 @@ export class InstitutionListComponent implements OnInit,OnChanges {
     this.instService.getAllInstitutions()
     .subscribe((data : any) => {
       this.data = data;
+      this.pageArray = new Array(Math.ceil(this.data[0].count/10))
+      console.log("PA",this.pageArray);
+      
+
     })
 
     this.instService.getAllStates()
@@ -98,6 +103,13 @@ export class InstitutionListComponent implements OnInit,OnChanges {
           })
   }
 
+  getCurrentPage(pageNo) {
+    this.selectedPage++;
+    this.instService.getAllInstitutionsByPage(pageNo)
+    .subscribe((data : any) => {
+      this.data = data;
+    })
+  }
   goToDetails(index) {
     this.router.navigate(['/home/institutions',this.data[index].institutionId])
   }

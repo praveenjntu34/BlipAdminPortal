@@ -75,7 +75,7 @@
                 </div>
                 <div class="col-md-2 state">
                     <div class="row">
-                        <select [(ngModel)]="selectedCityId" class="select-style">
+                        <select #ct [(ngModel)]="selectedCityId" (change)="filterCity(ct.value)" class="select-style">
                             <option [value]="city.cityId" *ngFor="let city of allCities">{{city.cityName}}</option>
                         </select>
 
@@ -92,7 +92,7 @@
                                     <p class="institution-list--title">{{institution.institutionName}}</p>
                                 </div>
                                 <div class="col-md-4 col-lg-4 col-xl-5">
-                                    <img width="60" height="60" [src]="institution.pictureStream">
+                                    <img width="60" height="60" [src]="getPicture(institution.pictureStream)">
                                 </div>
                             </div>
 
@@ -112,6 +112,9 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div *ngIf="data.length == 0 && searchable" class="no-instructor-image">
+                    <img src="../../../../assets/no-institution.png" alt=" ">
                 </div>
 
             </div>

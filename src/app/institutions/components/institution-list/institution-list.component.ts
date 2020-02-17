@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { from, Subscriber } from 'rxjs';
 import { Institutions } from './institution.data'
 import {NgbModal, ModalDismissReasons, NgbModalOptions, NgbActiveModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
@@ -26,21 +26,27 @@ export class BSections {
   templateUrl: './institution-list-new.component.html',
   styleUrls: ['./institution-list-new.component.css']
 })
-export class InstitutionListComponent implements OnInit {
+export class InstitutionListComponent implements OnInit,OnChanges {
 
-  @Input() data: any;
+  data: any;
 
   name:string;
   img_url: string;
   allStates: State [] = [];
   allCities: City[] = [];
   title = 'ng-bootstrap-modal-demo';
-
+  searchable: boolean = false;
 
   constructor(private modalService: NgbModal ,private instService: InstitutionService, private formBuilder: FormBuilder
     ,private router: Router, private matDialogue: MatDialog
     ){
       
+  }
+
+  ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
+
+    console.log("ccount",this.data[0]);
+   
   }
   
   open(content) {
@@ -53,7 +59,20 @@ export class InstitutionListComponent implements OnInit {
   }
 
 
-  
+  filterCity(cityId) {
+    this.searchable = true;
+    console.log("get", cityId);
+    this.instService.getAllInstitutionsByCity(cityId)
+          .subscribe((response: any) => {
+            this.data = response;
+          })
+  }
+
+  getPicture(stream) {
+    let objectURL = 'data:image/jpeg;base64,' + stream;      
+   
+    return objectURL;
+  }
   closeModal() {
     this.modalService.dismissAll();
   }
@@ -68,7 +87,11 @@ export class InstitutionListComponent implements OnInit {
 
 
   ngOnInit() {
-    
+    this.instService.getAllInstitutions()
+    .subscribe((data : any) => {
+      this.data = data;
+    })
+
     this.instService.getAllStates()
           .subscribe((data: State[]) => {
             this.allStates = data;

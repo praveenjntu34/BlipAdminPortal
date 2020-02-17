@@ -74,7 +74,11 @@ export class InstitutionService {
   constructor(private http: HttpClient) { }
 
   getAllInstitutions() {
-    return this.http.get(environment.baseUrl + 'institution/details');
+    return this.http.get(environment.baseUrl + 'institution/details?pageNumber=0&size=10');
+  }
+
+  getAllInstitutionsByCity(cityId) {
+    return this.http.get(environment.baseUrl + 'institution/details?pageNumber=0&size=10&cityId=' + cityId);
   }
 
   uploadImage(fileToUpload){

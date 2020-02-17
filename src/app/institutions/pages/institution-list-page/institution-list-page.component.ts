@@ -14,12 +14,13 @@ export class InstitutionListPageComponent implements OnInit {
   constructor(protected api: InstitutionService) { 
     this.api.getAllInstitutions()
     .subscribe((data : any) => {
-      data.forEach((institution: any, index) => {
+      this.data = data;
+      // data.forEach((institution: any, index) => {
         
-        let objectURL = 'data:image/jpeg;base64,' + institution.pictureStream;      
-        institution.pictureStream = objectURL;
-        this.data.push(institution)
-      });
+      //   let objectURL = 'data:image/jpeg;base64,' + institution.pictureStream;      
+      //   institution.pictureStream = objectURL;
+      //   this.data.push(institution)
+      // });
     })
   }
 

@@ -18,7 +18,7 @@
                             <h5>{{post.title}}</h5>
                         </div>
                         <div class="row">
-                            <p>{{(post.postText.length>15)? (stpost.postTextr | slice:0:15)+'..':(post.postText)}}</p>
+                            <p>{{post.postText}}</p>
                         </div>
                     </div>
                 </div>
@@ -52,7 +52,6 @@
                             </div>
                             <div class="col-3">
                                 <button class="btn bt danger">Delete</button>
-
                             </div>
                         </div>
                     </div>

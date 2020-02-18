@@ -8,7 +8,18 @@ const localUrl = 'http://localhost:3400/institution/details'
 })
 export class BannerService{
 
+  addPost(data) {
+    let headers = new Headers();
+    return this.http.post(environment.baseUrl + 'banner', data);
+  }
 
+  addBannerFile(file) {
+    let headers = new Headers();
+
+    const formData =  new FormData();
+    formData.append('file',file);
+    return this.http.post(environment.baseUrl + 'post-banner', formData);
+  }
 
 
   getAllBanners(relTenantInstitutionId) {

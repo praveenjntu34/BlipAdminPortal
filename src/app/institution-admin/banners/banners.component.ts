@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BannerService } from '../shared/banner.service';
+import { MatDialog } from '@angular/material';
+import { AddBannerModalComponent } from '../add-banner-modal/add-banner-modal.component';
 
 @Component({
   selector: 'app-banners',
@@ -9,7 +11,7 @@ import { BannerService } from '../shared/banner.service';
 export class BannersComponent implements OnInit {
 
   banners: any = [];
-  constructor(private bannerService: BannerService) {
+  constructor(private bannerService: BannerService, private matDialogue: MatDialog) {
 
    }
 
@@ -24,6 +26,13 @@ export class BannersComponent implements OnInit {
           })
   }
 
+  openModal() {
+    this.matDialogue.open(AddBannerModalComponent, {
+      width: '1000px',
+      height: '600px',
+      panelClass: 'custom-dialog-container'
+    })
+  }
   getPicture(stream) {
     let objectURL = 'data:image/jpeg;base64,' + stream;      
     return objectURL;

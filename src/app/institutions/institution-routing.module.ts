@@ -14,7 +14,7 @@ const institutionRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [ RouterModule.forChild(institutionRoutes) ],
+  imports: [ RouterModule.forChild(institutionRoutes)],
   exports: [ RouterModule ]
 })
 export class InstitutionRoutingModule { } 

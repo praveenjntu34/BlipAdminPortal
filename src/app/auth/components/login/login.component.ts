@@ -43,7 +43,6 @@ export class LoginComponent implements OnInit {
              this.router.navigate(["/home/institutions"]);
             } else {
               
-              
             }
           }, (error:any) => {
             this.isError = true;

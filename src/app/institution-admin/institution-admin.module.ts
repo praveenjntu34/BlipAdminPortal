@@ -6,10 +6,11 @@ import { InstitutionAdminRoutingModule } from './institution-admin-routing.modul
 import { AddPostModalComponent } from './add-post-modal/add-post-modal.component';
 import { MatDialogModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BannersComponent } from './banners/banners.component';
 
 
 @NgModule({
-  declarations: [PostsComponent, AddPostModalComponent],
+  declarations: [PostsComponent, AddPostModalComponent, BannersComponent],
   entryComponents: [AddPostModalComponent],
   imports: [
     CommonModule,

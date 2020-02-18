@@ -38,6 +38,8 @@ export class LoginComponent implements OnInit {
             
             if(response.jwt) {
              localStorage.setItem('loggedInRole', response.role)
+             localStorage.setItem('loggedInTenantId', response.relTenantInstitutionId)
+
              this.router.navigate(["/home/institutions"]);
             } else {
               
@@ -46,7 +48,6 @@ export class LoginComponent implements OnInit {
           }, (error:any) => {
             this.isError = true;
             console.log("Wrong username and password");
-            
           })
   }
 }

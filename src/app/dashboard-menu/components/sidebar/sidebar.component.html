@@ -9,8 +9,8 @@
     <div class="menu-items">
         <a href="" *ngIf="role == 'SuperAdmin'"><span class="icon icon-dashboard" ></span>Dashboard</a>
         <a [routerLink]="['/home/institutions']" *ngIf="role == 'SuperAdmin'"><span class="icon icon-institution"></span>Institutions</a>
-        <a [routerLink]="['/home/posts']" *ngIf="role == 'InstitutionAdmin'"><span class="icon icon-post" ></span>Posts</a>
-        <a href=""><span class="icon icon-banner"></span>Banners</a>
+        <a [routerLink]="['/home/admin/posts']" *ngIf="role == 'InstitutionAdmin'"><span class="icon icon-post" ></span>Posts</a>
+        <a [routerLink]="['/home/admin/banners']"><span class="icon icon-banner"></span>Banners</a>
         <a href="" *ngIf="role == 'InstitutionAdmin'"><span class="icon icon-banner"></span>Instructors</a>
         <a href=""><span class="icon icon-setting"></span>Settings</a>
         <a href="" (click)="logout()"><span class="icon icon-logout"></span>Logout</a>

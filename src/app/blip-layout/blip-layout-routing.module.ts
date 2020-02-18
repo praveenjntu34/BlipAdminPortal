@@ -10,7 +10,7 @@ const authRoutes: Routes = [
     loadChildren: '../institutions/institutions.module#InstitutionsModule'
   },
   {
-    path: 'posts',
+    path: 'admin',
     loadChildren: '../institution-admin/institution-admin.module#InstitutionAdminModule'
   }
 ];

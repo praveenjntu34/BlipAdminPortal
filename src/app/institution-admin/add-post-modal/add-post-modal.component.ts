@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { InstitutionService } from 'src/app/institutions/shared/institution.service';
 import { Branch } from '../shared/branch.model';
 import { PostService } from '../shared/post.service'
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-add-post-modal',
@@ -16,7 +17,7 @@ export class AddPostModalComponent implements OnInit {
   postId: number;
   allSections: any = [];
   selectedSectionId: number = 0;
-  constructor(private formBuilder: FormBuilder, private institutionService: InstitutionService, private postService: PostService) { }
+  constructor(private formBuilder: FormBuilder, private institutionService: InstitutionService,private matDialog: MatDialog, private postService: PostService) { }
 
   onFileChanged(event) {
     let file: File = event.target.files[0];
@@ -59,6 +60,9 @@ export class AddPostModalComponent implements OnInit {
           })
     console.log("before",this.postForm.value);
     
+  }
+  closeModal() {
+    this.matDialog.closeAll();
   }
 
   ngOnInit() {

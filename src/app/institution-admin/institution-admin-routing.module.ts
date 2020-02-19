@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PostsComponent } from './posts/posts.component';
 import { BannersComponent } from './banners/banners.component';
 import { InstructorsComponent } from './instructors/instructors.component';
+import { ParentsComponent } from './parents/parents.component';
 const institutionAminRoutes: Routes = [
 	{ 
 	  path: 'posts',
@@ -15,6 +16,10 @@ const institutionAminRoutes: Routes = [
   { 
 	  path: 'instructors',
     component: InstructorsComponent,
+  },
+  { 
+	  path: 'parents',
+    component: ParentsComponent,
   }   
 ];
 

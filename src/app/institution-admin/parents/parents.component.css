@@ -1,0 +1,472 @@
+.lds-ring {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    margin: 8px;
+    border: 3px solid #316AFF;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #316AFF transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner {
+    position: absolute;
+    margin-left: -32px;
+    margin-top: -2px;
+}
+
+.full-page {
+    background-color: teal;
+    height: 200px;
+}
+
+h3 {
+    margin: 10px;
+}
+
+.default-button {
+    background-color: #316AFF;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    position: relative;
+    float: right;
+    margin: 10px;
+    padding: 8px;
+}
+
+.no-instructor-image {
+    position: relative;
+    left: 30%;
+    top: 30px;
+}
+
+.pincode-bar {
+    margin-left: 10px;
+    border: solid rgba(144, 144, 144, 0.23) 1px;
+    height: 100%;
+    padding: 1px;
+}
+
+.pincode-title {
+    height: 100%;
+    background: #316AFF;
+    border: none;
+    border-radius: 2px;
+    vertical-align: middle;
+}
+
+.pincode-title p {
+    margin: 0;
+    padding: 10px 0;
+    padding: 12px 0;
+    font-size: 12px;
+    color: white;
+}
+
+.icon-img {
+    padding-right: 0;
+}
+
+input {
+    border: none;
+    width: 100%;
+}
+
+textarea {
+    display: block;
+    height: 80px;
+    border: none;
+    width: 100%;
+    background: #F6F8F9;
+}
+
+.image-create {
+    display: block;
+    width: 149px;
+    background: #F6F8F9;
+    padding: 37px;
+    opacity: 0.5;
+}
+
+.btn-next {
+    position: relative;
+    float: right;
+}
+
+textarea:focus {
+    outline: none;
+}
+
+form {
+    padding: 25px 15px 15px 15px;
+}
+
+input:focus {
+    outline: none;
+}
+
+.pincode-search {
+    padding: 8px;
+}
+
+.pincode-icon {
+    background: #316AFF;
+    border-radius: 2px;
+    height: 100%;
+    width: 40px;
+    position: relative;
+    float: right;
+}
+
+.pincode-icon img {
+    width: 100%;
+    height: 100%;
+    padding: 6px;
+}
+
+select {
+    width: 90%;
+    height: 100%;
+    position: relative;
+    top: 10px;
+    left: 15px;
+}
+
+select:focus {
+    outline: none;
+}
+
+.state {
+    border: solid rgba(144, 144, 144, 0.23) 1px;
+    padding: 0
+}
+
+.select-style {
+    border: none;
+}
+
+.expand-more {
+    position: relative;
+    top: 10px;
+}
+
+.title-name {
+    margin-left: 48px;
+}
+
+.empty-box {
+    height: 65px;
+    margin-left: -18px;
+    margin-right: 18px;
+}
+
+.bt {
+    border: none;
+    background-color: inherit;
+    font-size: 16px;
+    padding: 0;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.head-title {
+    margin-top: 20px;
+    color: white;
+}
+
+.default-button {
+    background-color: #316AFF;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    position: relative;
+    float: right;
+    margin: 10px;
+    padding: 8px;
+}
+
+
+/* On mouse-over */
+
+.bt:hover {
+    background: #eee;
+}
+
+.default {
+    color: blue;
+}
+
+.danger {
+    color: red;
+}
+
+.btn-group {
+    margin-left: 6px;
+}
+
+.box {
+    background: #495BE3;
+    height: 65px;
+    margin-left: -18px;
+    margin-right: 18px;
+}
+
+.institution-list {
+    margin: 30px 10px 10px 40px;
+    padding: 1px;
+}
+
+.institution-list--item {
+    cursor: pointer;
+    padding: 10px;
+    margin-bottom: 20px;
+    transition: transform .2s
+}
+
+.institution-list--item:hover {
+    transform: scale(1.1);
+}
+
+.institution-list--title {
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+.institution-list--status {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    color: #FF1E74;
+    font-weight: 500;
+}
+
+.institution-list--address {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    color: #42436A;
+    font-weight: 500;
+}
+
+.students-count {
+    position: relative;
+    float: right;
+}
+
+.pagination {
+    position: absolute;
+    left: calc(50% - 100px);
+}
+
+.super-modal {
+    display: inherit;
+    padding: 0;
+    height: 650px;
+}
+
+.left-pane {
+    border-right: 1px solid rgba(144, 144, 144, 0.23);
+}
+
+.tab {
+    height: 130px;
+    border-bottom: 1px solid rgba(144, 144, 144, 0.23);
+    color: #909090;
+    display: block;
+}
+
+.tab-decorator {
+    background: #316AFF;
+    color: white;
+}
+
+.tab-item {
+    text-align: center;
+    position: relative;
+    margin: 0;
+    top: 40%;
+}
+
+.tab a {
+    display: block;
+    position: relative;
+    top: 40%;
+    color: #909090
+}
+
+.tab-decorator a {
+    color: white;
+}
+
+.tab-item img {
+    display: inline-block;
+    margin-right: 5px
+}
+
+.tab p {
+    display: inline-block;
+}
+
+.blip-form {
+    margin: 50px 30px;
+}
+
+.blip-input {
+    background: #F6F8F9;
+    border: 0.5px solid rgba(222, 222, 222, 0.23);
+}
+
+.blip-select {
+    height: 38px;
+    left: -2px;
+    top: 0px;
+    width: 100%;
+}
+
+.form-control:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+input:focus {
+    outline: none;
+    border-bottom: 2px solid #3000B2;
+}
+
+.branch-tab {
+    margin-top: 10px;
+}
+
+.branch-form {
+    padding: 0;
+    margin-top: 10ox;
+}
+
+.blip-chip {
+    display: inline-block;
+    border-width: 0 0 0 6px;
+    border-style: solid;
+    margin: 10px 15px 0 0 !important;
+    padding: 9px !important;
+}
+
+.modal-sm {
+    position: absolute;
+    left: 127px;
+    top: 130px;
+}
+
+.branch-button {
+    width: 80%;
+    background: #F6F8F9;
+    border: 0.5px solid rgba(222, 222, 222, 0.23);
+    margin-bottom: 23px;
+}
+
+.branch-wrapper {
+    padding-right: 0;
+    padding: 0;
+    border: 0.5px solid rgba(144, 144, 144, 0.46);
+}
+
+.section-wrapper {
+    padding-left: 0;
+    border: 0.5px solid rgba(144, 144, 144, 0.46);
+}
+
+.chip {
+    display: inline-block;
+    padding: 0px 25px;
+    height: 39px;
+    font-size: 18px;
+    line-height: 36px;
+    margin: 14px;
+    border: 1px solid #f1f1f1;
+    border-radius: 21px;
+    box-shadow: 2px 2px #f1f1f1;
+    background-color: white;
+}
+
+.blip-ul {
+    padding-left: 0px;
+    height: 350px;
+    padding: 0;
+}
+
+.blip-li {
+    padding: 5px;
+}
+
+.blip-li--focused {
+    border-bottom: 4px solid #316AFF;
+}
+
+li {
+    list-style: none;
+}
+
+.fa-dot {
+    font-size: 12px;
+    color: #316AFF;
+}
+
+.section-area {
+    margin: 10px 0 0 0;
+}
+
+.section-padding {
+    margin: 10px 0 0 14px;
+}
+
+.blip-ul li:hover {
+    background: rgba(144, 144, 144, 0.46);
+}
+
+.final-screen {
+    position: relative;
+    top: 200px;
+    left: 200px;
+}
+
+.finish-image {
+    width: 100px;
+    height: 100px;
+    left: 300px;
+    top: 200px;
+}
+
+::ng-deep .cdk-overlay-container {
+    /* Do you changes here */
+    left: 100px;
+    top: 0px
+}

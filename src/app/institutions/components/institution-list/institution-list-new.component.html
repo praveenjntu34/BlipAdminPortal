@@ -83,7 +83,7 @@
                 </div>
             </div>
 
-            <div class="institution-list" *ngIf="data[0].count > 0">
+            <div class="institution-list">
                 <div class=" row card-group ">
                     <div class="col-md-6 col-lg-4 col-xl-3 " *ngFor="let institution of data; let in=index; ">
                         <div class="card institution-list--item " (click)="goToDetails(in) ">
@@ -113,7 +113,7 @@
                         </div>
                     </div>
                 </div>
-                <div *ngIf="data.length==0 && searchable " class="no-instructor-image ">
+                <div *ngIf="data !==null && searchable " class="no-instructor-image ">
                     <img src="../../../../assets/no-institution.png " alt=" ">
                 </div>
 

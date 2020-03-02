@@ -53,8 +53,8 @@ export class InstitutionListComponent implements OnInit,OnChanges {
   open(content) {
 
     this.matDialogue.open(AddInstitutionModalComponent, {
-      width: '1200px',
-      height: '700px',
+      width: '800px',
+      height: '500px',
       panelClass: 'custom-dialog-container'
     })
   }

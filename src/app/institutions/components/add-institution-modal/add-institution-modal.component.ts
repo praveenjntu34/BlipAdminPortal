@@ -37,8 +37,8 @@ export class AddInstitutionModalComponent implements OnInit {
   sectionModalOptions:NgbModalOptions;
   branchNameModel: string;
   sectionNameModel: string;
-  selectedStateId: number;
-  selectedCityId: number;
+  selectedState: any;
+  selectedCity: any;
   selectedCountryId: number = 0;
   selectedTypeId:number;
   branches: Array<Branch> = new Array<Branch>();
@@ -60,7 +60,7 @@ export class AddInstitutionModalComponent implements OnInit {
   currentIndex: number = 0 ;
   singleSection: Array<string> = [];
   branchIndex: number = -1;
-
+  globalUri: any;
  institutionTypeNames = [
     {
       typeId: 1,
@@ -74,6 +74,7 @@ export class AddInstitutionModalComponent implements OnInit {
  formDetails: any;
  isEditForm: boolean = false;
  isCustomForm: boolean = false;
+ sendPicture: any;
   constructor(private modalService: NgbModal ,private instService: InstitutionService, private formBuilder: FormBuilder
     ,private router: Router, private matDialog: MatDialog,@Inject(MAT_DIALOG_DATA) public details: any, private ref: ChangeDetectorRef) {
     
@@ -133,10 +134,12 @@ export class AddInstitutionModalComponent implements OnInit {
     reader.readAsDataURL(file); 
     reader.onload = (e: any) => {
       this.img_url = e.target.result;
+      this.globalUri = this.img_url;
     };
     this.instService.uploadImage(file)
           .subscribe((data:any) => {
-            console.log("file uploaded succesfully", data.pictureId);
+            this.sendPicture = data.pictureStream;
+            console.log("file uploaded succesfully", data);
             localStorage.setItem("pictureId",data.pictureId);
             this.loading_tab1 = false;
           })
@@ -144,11 +147,20 @@ export class AddInstitutionModalComponent implements OnInit {
   }
 
 
-  getCities(stateId) {
-    this.instService.getAllCities(stateId)
+  getCities() {
+    console.log("state here", this.selectedState);
+    
+    this.instService.getAllCities(this.selectedState.stateId)
             .subscribe((data: City[]) => {
               this.allCities = data;
+              console.log("city", data);
+              
             })
+  }
+
+  
+  getCitiesName() {
+    console.log("ct here", this.selectedCity.cityName);
   }
   get f() {return this.institutionPOCForm.controls}
 
@@ -198,13 +210,24 @@ export class AddInstitutionModalComponent implements OnInit {
     this.stepCount++;
     this.loading1 = true;
     this.institutionDetailForm.patchValue({
-      pictureId: localStorage.getItem('pictureId')
+      pictureId: localStorage.getItem('pictureId'),
+      stateId: this.selectedState.stateId,
+      cityId: this.selectedCity.cityId
     })
 
     console.log("form validation check", this.institutionDetailForm.value);
-    
+    var that = this;
     this.instService.createInstitutionDetails(this.institutionDetailForm.value)
           .subscribe((response: any) => {
+
+            var obj = {
+              institutionId: response.institutionId,
+              pictureStream: this.sendPicture,
+              institutionName: that.institutionDetailForm.value.institutionName,
+              stateName: that.selectedState.stateName,
+              cityName: that.selectedCity.cityName
+            }
+            this.instService.setNewInstituationData(obj);
             this.loading1 = false
             this.loading_tab1 = false;
             console.log("Succesfully added institution", response)

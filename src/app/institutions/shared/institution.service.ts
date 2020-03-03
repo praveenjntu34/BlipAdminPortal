@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment.prod'
+import { BehaviorSubject } from 'rxjs';
 const localUrl = 'http://localhost:3400/institution/details'
 // const baseUrl = 'http://localhost:3400/'
 @Injectable({
   providedIn: 'root'
 })
 export class InstitutionService {
+
+  public updateList: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public newInstituationData: any;
 
 
   updateInstitutionDetails(updatedForm: any) {
@@ -132,6 +136,30 @@ getAllInstitutionsByPage(page) {
         branchName: "Electronics and Communicatio Engineering"
       }
     ]
+  }
+
+  public setNewInstituationData(response) {
+    // TODO: change date to required format
+    var arr = {
+      institutionId: 4,
+      institutionName: "sfcvd",
+      count: 0,
+      pictureStream:null,
+      cityName: "Kavaratti",
+      stateName: "Lakshadweep",
+    }
+    console.log("service",response);
+    
+    this.newInstituationData = response;
+    this.updateList.next(true);
+  }
+
+  public getNewInstituationData() {
+    return this.newInstituationData;
+  }
+
+  public resetNewInstituationData() {
+    this.newInstituationData = null;
   }
 
 }

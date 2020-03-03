@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { from, Subscriber } from 'rxjs';
+import { Component, OnInit, Input, OnChanges, OnDestroy } from '@angular/core';
+import { from, Subscriber, Subscription } from 'rxjs';
 import { Institutions } from './institution.data'
 import {NgbModal, ModalDismissReasons, NgbModalOptions, NgbActiveModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import { InstitutionService } from '../../shared/institution.service';
@@ -26,10 +26,10 @@ export class BSections {
   templateUrl: './institution-list-new.component.html',
   styleUrls: ['./institution-list-new.component.css']
 })
-export class InstitutionListComponent implements OnInit,OnChanges {
+export class InstitutionListComponent implements OnInit,OnChanges, OnDestroy {
 
+  private subscriptions: Subscription[] = [];
   data: any;
-
   name:string;
   img_url: string;
   allStates: State [] = [];
@@ -91,16 +91,19 @@ export class InstitutionListComponent implements OnInit,OnChanges {
     this.instService.getAllInstitutions()
     .subscribe((data : any) => {
       this.data = data;
+      console.log("data to add", data);
+      
       this.pageArray = new Array(Math.ceil(this.data[0].count/10))
       console.log("PA",this.pageArray);
-      
-
     })
 
     this.instService.getAllStates()
-          .subscribe((data: State[]) => {
-            this.allStates = data;
-          })
+    .subscribe((data: State[]) => {
+      this.allStates = data;
+    });
+
+    this.updateTableData();
+
   }
 
   getCurrentPage(pageNo) {
@@ -110,8 +113,26 @@ export class InstitutionListComponent implements OnInit,OnChanges {
       this.data = data;
     })
   }
+
   goToDetails(index) {
     this.router.navigate(['/home/institutions',this.data[index].institutionId])
+  }
+
+  private updateTableData() {
+    this.subscriptions.push(this.instService.updateList
+      .subscribe(isUpdated => {
+        if (isUpdated) {
+          const newDataToAdd = this.instService.getNewInstituationData();
+          this.instService.resetNewInstituationData();
+          if(newDataToAdd != null) {
+            this.data.push(newDataToAdd)
+          }
+        }
+      }))
+  }
+
+  ngOnDestroy(): void {
+
   }
  
 }

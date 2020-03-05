@@ -12,6 +12,7 @@ import { BranchSection, Branch } from '../../shared/branch-section.model';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { AddInstitutionModalComponent } from '../add-institution-modal/add-institution-modal.component';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 
 export class BSections {
@@ -40,7 +41,7 @@ export class InstitutionListComponent implements OnInit,OnChanges, OnDestroy {
   selectedPage: number = 1;
   currentIndex: number = 1;
   constructor(private modalService: NgbModal ,private instService: InstitutionService, private formBuilder: FormBuilder
-    ,private router: Router, private matDialogue: MatDialog
+    ,private router: Router, private matDialogue: MatDialog, private ngxService: NgxUiLoaderService
     ){
       
   }
@@ -88,8 +89,11 @@ export class InstitutionListComponent implements OnInit,OnChanges, OnDestroy {
 
 
   ngOnInit() {
+    this.ngxService.start();
+
     this.instService.getAllInstitutions()
     .subscribe((data : any) => {
+      this.ngxService.stop();
       this.data = data;
       console.log("data to add", data);
       
@@ -107,9 +111,13 @@ export class InstitutionListComponent implements OnInit,OnChanges, OnDestroy {
   }
 
   getCurrentPage(pageNo: number) {
+    this.ngxService.start();
+    console.log("default config");
+    
     this.selectedPage = pageNo;
     this.instService.getAllInstitutionsByPage(pageNo - 1)
     .subscribe((data : any) => {
+    this.ngxService.stop();
       this.data = data;
     })
   }

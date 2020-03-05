@@ -38,6 +38,7 @@ export class InstitutionListComponent implements OnInit,OnChanges, OnDestroy {
   searchable: boolean = false;
   pageArray: Array<number>;
   selectedPage: number = 1;
+  currentIndex: number = 1;
   constructor(private modalService: NgbModal ,private instService: InstitutionService, private formBuilder: FormBuilder
     ,private router: Router, private matDialogue: MatDialog
     ){
@@ -51,7 +52,6 @@ export class InstitutionListComponent implements OnInit,OnChanges, OnDestroy {
   }
   
   open(content) {
-
     this.matDialogue.open(AddInstitutionModalComponent, {
       width: '800px',
       height: '500px',
@@ -106,9 +106,9 @@ export class InstitutionListComponent implements OnInit,OnChanges, OnDestroy {
 
   }
 
-  getCurrentPage(pageNo) {
-    this.selectedPage++;
-    this.instService.getAllInstitutionsByPage(pageNo)
+  getCurrentPage(pageNo: number) {
+    this.selectedPage = pageNo;
+    this.instService.getAllInstitutionsByPage(pageNo - 1)
     .subscribe((data : any) => {
       this.data = data;
     })

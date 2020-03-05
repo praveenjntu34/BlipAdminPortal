@@ -50,6 +50,8 @@ export class AddInstitutionModalComponent implements OnInit {
   home_page_tab: boolean = true;
   selectedBranchIndex: number = -1;
 
+  stateCopy: any;
+  cityCopy: any;
 
   pocSubmitted = false;
   currentUsername: string;
@@ -149,7 +151,7 @@ export class AddInstitutionModalComponent implements OnInit {
 
   getCities() {
     console.log("state here", this.selectedState);
-    
+    this.stateCopy = this.selectedState;
     this.instService.getAllCities(this.selectedState.stateId)
             .subscribe((data: City[]) => {
               this.allCities = data;
@@ -160,6 +162,7 @@ export class AddInstitutionModalComponent implements OnInit {
 
   
   getCitiesName() {
+    this.cityCopy = this.selectedCity;
     console.log("ct here", this.selectedCity.cityName);
   }
   get f() {return this.institutionPOCForm.controls}
@@ -224,8 +227,8 @@ export class AddInstitutionModalComponent implements OnInit {
               institutionId: response.institutionId,
               pictureStream: this.sendPicture,
               institutionName: that.institutionDetailForm.value.institutionName,
-              stateName: that.selectedState.stateName,
-              cityName: that.selectedCity.cityName
+              stateName: that.stateCopy.stateName,
+              cityName: that.cityCopy.cityName
             }
             this.instService.setNewInstituationData(obj);
             this.loading1 = false

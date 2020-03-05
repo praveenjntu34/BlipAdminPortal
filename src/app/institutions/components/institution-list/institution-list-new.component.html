@@ -126,7 +126,7 @@
                             <a class="page-link " href="# " tabindex="-1 ">Previous</a>
                         </li>
                         <!-- <li class="page-item "><a class="page-link " href="# ">1</a></li> -->
-                        <li class="page-item " [class.active]="selectedPage==k + 1 " *ngFor="let page of pageArray; let k=i ndex " (click)="getCurrentPage(k) ">
+                        <li class="page-item " [class.active]="selectedPage==k + 1" *ngFor="let page of pageArray; let k=index " (click)="getCurrentPage(k + 1) ">
                             <a class="page-link ">{{k + 1}}<span class="sr-only "></span></a>
                         </li>
                         <li class="page-item ">

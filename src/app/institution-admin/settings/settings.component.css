@@ -1,0 +1,22 @@
+.profile-card {
+    margin-top: 10px;
+    border-top: solid 4px #3D19F6;
+    margin-left: 32px;
+    padding: 16px;
+}
+
+.password-card {
+    margin-top: 10px;
+    padding: 16px;
+    margin-left: 10px;
+    border-top: solid 4px #F6A519;
+}
+
+.title {
+    margin-left: 12px;
+}
+
+.blip-input {
+    background: #F6F8F9;
+    border: 0.5px solid rgba(222, 222, 222, 0.23);
+}

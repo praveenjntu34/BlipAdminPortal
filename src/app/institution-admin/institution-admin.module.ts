@@ -14,10 +14,11 @@ import { InstructorTabComponent } from '../institutions/components/instructor-ta
 import { InstitutionsModule } from '../institutions/institutions.module';
 import { ParentsComponent } from './parents/parents.component';
 import { AddParentModalComponent } from './add-parent-modal/add-parent-modal.component';
+import { SettingsComponent } from './settings/settings.component';
 
 
 @NgModule({
-  declarations: [PostsComponent, AddPostModalComponent, BannersComponent, AddBannerModalComponent, InstructorsComponent, ParentsComponent, AddParentModalComponent],
+  declarations: [PostsComponent, AddPostModalComponent, BannersComponent, AddBannerModalComponent, InstructorsComponent, ParentsComponent, AddParentModalComponent, SettingsComponent],
   entryComponents: [AddPostModalComponent, AddBannerModalComponent,AddInstructorModalComponent,InstructorTabComponent, AddParentModalComponent],
   imports: [
     CommonModule,

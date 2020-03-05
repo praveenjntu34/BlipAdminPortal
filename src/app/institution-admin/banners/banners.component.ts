@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { BannerService } from '../shared/banner.service';
 import { MatDialog } from '@angular/material';
 import { AddBannerModalComponent } from '../add-banner-modal/add-banner-modal.component';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-banners',
@@ -10,6 +12,8 @@ import { AddBannerModalComponent } from '../add-banner-modal/add-banner-modal.co
 })
 export class BannersComponent implements OnInit {
 
+  private subscriptions: Subscription[] = [];
+  
   banners: any = [];
   constructor(private bannerService: BannerService, private matDialogue: MatDialog) {
 
@@ -24,6 +28,7 @@ export class BannersComponent implements OnInit {
             
             this.banners = response;
           })
+    this.updateBannerData();
   }
 
   openModal() {
@@ -38,4 +43,26 @@ export class BannersComponent implements OnInit {
     return objectURL;
   }
   
+  private updateBannerData() {
+    this.subscriptions.push(this.bannerService.updateList
+      .subscribe(isUpdated => {
+        if (isUpdated) {
+          const newDataToAdd = this.bannerService.getNewBannerData();
+          this.bannerService.resetNewBannerData();
+          if(newDataToAdd != null) {
+            this.banners.push(newDataToAdd)
+          }
+        }
+      }))
+  }
+
+  private deleteBanner(banner) {
+    console.log("ban", banner);
+    
+    this.bannerService.deleteBanner(banner.bannerId)
+          .subscribe(data => {
+            window.location.reload();
+          })
+  }
+
 }

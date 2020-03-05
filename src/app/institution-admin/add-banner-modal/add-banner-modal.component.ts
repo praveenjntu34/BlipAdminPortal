@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BannerService } from '../shared/banner.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-add-banner-modal',
@@ -9,12 +11,12 @@ import { BannerService } from '../shared/banner.service';
 })
 export class AddBannerModalComponent implements OnInit {
 
-  postForm: FormGroup;
+  bannerForm: FormGroup;
   img_url: string;
   img_url2: string;
   bannerId: number;
-  
-  constructor(private formBuilder: FormBuilder, private bannerService: BannerService,) { }
+  sendPicture: any;
+  constructor(private formBuilder: FormBuilder, private bannerService: BannerService,private matDialog: MatDialog,  private ngxSpinner: NgxUiLoaderService) { }
 
   onFileChanged(event) {
     let file: File = event.target.files[0];
@@ -24,36 +26,48 @@ export class AddBannerModalComponent implements OnInit {
       this.img_url = e.target.result;
     };
 
-    this.postForm.patchValue({
+    this.bannerForm.patchValue({
       bannerStream: file
     })
 
-    this.bannerService.addBannerFile(this.postForm.value.bannerStream)
+    this.bannerService.addBannerFile(this.bannerForm.value.bannerStream)
           .subscribe((data: any) => {
             this.bannerId = data.bannerId;
+            this.sendPicture = data.bannerStream;
             console.log("response", data);
           })
   }
 
   addBanner() {
-    console.log(this.postForm.value);
-
-    this.postForm.patchValue({
+    console.log(this.bannerForm.value);
+    this.ngxSpinner.start()
+    this.bannerForm.patchValue({
       bannerId: this.bannerId,
       relTenantInstitutionId: localStorage.getItem('loggedInTenantId')
     })
-    this.bannerService.addPost(this.postForm.value)
+
+    var thisPointer = this;
+    this.bannerService.addPost(this.bannerForm.value)
           .subscribe(data => {
+            var obj = {
+              bannerId: thisPointer.bannerId,
+              relTenantInstitutionId: 0,
+              title: null,
+              bannerStream:thisPointer.sendPicture
+            }
+            this.bannerService.setNewBannerData(obj)
+            this.ngxSpinner.stop();
+            this.matDialog.closeAll();
             console.log("response", data);
             
           })
-    console.log("before",this.postForm.value);
+    console.log("before",this.bannerForm.value);
     
   }
 
 
   ngOnInit() {
-    this.postForm = this.formBuilder.group({
+    this.bannerForm = this.formBuilder.group({
       title: ['', Validators.required],
       shortDescription: ['', Validators.required],
       bannerStream: [],

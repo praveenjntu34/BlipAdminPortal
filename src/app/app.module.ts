@@ -17,7 +17,7 @@ import { SuccessPasswordComponent } from './auth/components/success-password/suc
 import { NgxUiLoaderModule, NgxUiLoaderConfig, POSITION, SPINNER, PB_DIRECTION } from  'ngx-ui-loader';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
-  bgsColor: "red",
+  bgsColor: "#316AFF",
   bgsOpacity: 0.5,
   bgsPosition: "bottom-right",
   bgsSize: 60,
@@ -35,7 +35,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   masterLoaderId: "master",
   overlayBorderRadius: "0",
   overlayColor: "rgba(205,205,205,0.32)",
-  pbColor: "red",
+  pbColor: "#316AFF",
   pbDirection: "ltr",
   pbThickness: 3,
   hasProgressBar: true,

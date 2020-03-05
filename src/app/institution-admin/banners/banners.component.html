@@ -14,6 +14,9 @@
                 <div class="col-12">
                     <img class="banner" [src]="getPicture(banner.bannerStream)">
                 </div>
+                <div>
+                    <button class="btn btn-danger del" (click)="deleteBanner(banner)">Delete</button>
+                </div>
             </div>
         </div>
     </div>

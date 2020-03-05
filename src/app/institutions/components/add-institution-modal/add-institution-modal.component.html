@@ -165,7 +165,7 @@
                                 <input type="text" formControlName="primaryPOCPhoneNumber" [ngClass]="{ 'is-invalid': pocSubmitted && f.primaryPOCPhoneNumber.errors }" class="form-control blip-input" id="primaryPOCPhoneNumber" aria-describedby="emailHelp">
                             </div>
                             <div class="form-group col-6">
-                                <label for="primaryPOCEmail">Primary POC Email</label>
+                                <label for="primaryPOCEmail">Primary POC Username</label>
                                 <input type="email" formControlName="primaryPOCEmail" [ngClass]="{ 'is-invalid': pocSubmitted && f.primaryPOCEmail.errors || isEmailExists }" (focusout)="checkEmailExistence()" class="form-control blip-input" id="primaryPOCEmail">
                             </div>
                         </div>
@@ -281,7 +281,7 @@
                 </div>
 
                 <div class="row" *ngIf="isEmailExists">
-                    <p class="field-validation">*The primary POC email address already exists please try a differen one</p>
+                    <p class="field-validation">*The primary POC username already exists please try a differen one</p>
                 </div>
             </div>
         </div>

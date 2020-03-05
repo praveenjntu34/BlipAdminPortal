@@ -192,7 +192,7 @@ export class AddInstitutionModalComponent implements OnInit {
       primaryPOCFirstName: ['',Validators.required],
       primaryPOCLastName: ['',Validators.required],
       primaryPOCPhoneNumber: ['',Validators.required],
-      primaryPOCEmail: ['',[Validators.required,Validators.email]],
+      primaryPOCEmail: ['',[Validators.required]],
       secondaryPOCFirstName: ['',Validators.required],
       secondaryPOCLastName: ['',Validators.required],
       secondaryPOCPhoneNumber: ['',Validators.required],

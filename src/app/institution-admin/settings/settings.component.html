@@ -41,24 +41,29 @@
     </div>
 
     <div class="col-4 card password-card">
-        <div class="row title">
-            <h4>Change password</h4>
-        </div>
-        <div class="row">
-            <div class="form-group col-12">
-                <label for="newPassword">New password</label>
-                <input type="password" formControlName="newPassword" class="form-control blip-input" id="institutionName" aria-describedby="emailHelp">
+        <form [formGroup]=passwordForm>
+            <div class="row title">
+                <h4>Change password</h4>
             </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-12">
-                <label for="reEnterPassword">Re-enter Password</label>
-                <input type="password" formControlName="reEnterPassword" class="form-control blip-input" id="website">
+            <div class="row">
+                <div class="form-group col-12">
+                    <label for="newPassword">New password</label>
+                    <input type="password" formControlName="newPassword" (change)="setErrors()" class="form-control blip-input" id="institutionName" aria-describedby="emailHelp">
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <button type="submit" (click)="addParent()" class="btn btn-primary btn-next">Update Password</button>
-        </div>
+            <div class="row">
+                <div class="form-group col-12">
+                    <label for="reEnterPassword">Re-enter Password</label>
+                    <input type="password" formControlName="reEnterPassword" (change)="setErrors()" class="form-control blip-input" id="website">
+                </div>
+            </div>
+            <div class="row">
+                <button type="submit" (click)="changePassword()" class="btn btn-primary btn-nxt">Update Password</button>
+            </div>
+        </form>
 
+        <div class="row" *ngIf="errors !== undefined">
+            <p class="field-validation">{{getError()}}</p>
+        </div>
     </div>
 </div>

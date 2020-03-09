@@ -5,6 +5,7 @@ import { BannersComponent } from './banners/banners.component';
 import { InstructorsComponent } from './instructors/instructors.component';
 import { ParentsComponent } from './parents/parents.component';
 import { SettingsComponent } from './settings/settings.component';
+
 const institutionAminRoutes: Routes = [
 	{ 
 	  path: 'posts',

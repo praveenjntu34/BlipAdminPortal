@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log("user value", this.loginForm.value);
     this.authService.looginWithUsername(this.loginForm.value.username, this.loginForm.value.password)
           .subscribe((response: any) => {
             console.log(response);

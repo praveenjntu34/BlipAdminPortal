@@ -20,3 +20,12 @@
     background: #F6F8F9;
     border: 0.5px solid rgba(222, 222, 222, 0.23);
 }
+
+.btn-nxt {
+    margin-left: auto;
+    margin-right: 14px;
+}
+
+.field-validation {
+    color: red;
+}

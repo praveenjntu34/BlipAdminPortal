@@ -37,6 +37,10 @@ export class LoginComponent implements OnInit {
             console.log(response);
             
             if(response.jwt) {
+             console.log("rrr", response);
+             
+             localStorage.setItem('loggedInProfile', JSON.stringify(response))
+
              localStorage.setItem('loggedInRole', response.role)
              localStorage.setItem('loggedInTenantId', response.relTenantInstitutionId)
 

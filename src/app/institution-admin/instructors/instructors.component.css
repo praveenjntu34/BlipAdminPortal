@@ -242,20 +242,49 @@ body {
     margin-left: 8em;
 }
 
-.view ul {
+.edit {
+    padding-right: 0;
+    border-right: solid 1px #DEDEDE;
+}
+
+.delete {
+    padding-left: 0;
+}
+
+.view-edit {
     margin: 0;
     padding: 0;
-    color: #00C853;
+    color: #316AFF;
     border-top: solid #DEDEDE 1px;
 }
 
-.view li:hover {
-    background: #00C853;
+.view-edit li:hover {
+    background: #316AFF;
     color: white;
     cursor: pointer;
 }
 
-.view li {
+.view-edit li {
+    display: block;
+    height: 27px;
+    list-style: none;
+    line-height: 2.2;
+}
+
+.view-delete {
+    margin: 0;
+    padding: 0;
+    color: #F52C2C;
+    border-top: solid #DEDEDE 1px;
+}
+
+.view-delete li:hover {
+    background: #F52C2C;
+    color: white;
+    cursor: pointer;
+}
+
+.view-delete li {
     display: block;
     height: 27px;
     list-style: none;

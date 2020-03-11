@@ -3,6 +3,8 @@ import { InstitutionService } from 'src/app/institutions/shared/institution.serv
 import { MatDialog } from '@angular/material';
 import { AddInstructorModalComponent } from 'src/app/institutions/components/add-instructor-modal/add-instructor-modal.component';
 import { InstructorTabComponent } from 'src/app/institutions/components/instructor-tab/instructor-tab.component';
+import { EditInstructorModalComponent } from '../modals/edit-instructor-modal/edit-instructor-modal.component';
+import { DeleteInstructorModalComponent } from '../modals/delete-instructor-modal/delete-instructor-modal.component';
 
 @Component({
   selector: 'app-instructors',
@@ -32,11 +34,17 @@ export class InstructorsComponent implements OnInit {
       this.instructors = response;
     }) 
   }
-  openModal(){
-    this.matDialogue.open(InstructorTabComponent, {
+
+  openEditModal(){
+    this.matDialogue.open(EditInstructorModalComponent, {
       width: '550px',
       height: '400px',
-     
+    })
+ }
+openDeleteModal(){
+    this.matDialogue.open(DeleteInstructorModalComponent, {
+      width: '550px',
+      height: '290px',
     })
  }
 

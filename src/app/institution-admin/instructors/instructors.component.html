@@ -2,41 +2,51 @@
     <button class="btn btn-primary " (click)="add() ">+Add</button>
 </div>
 
-
-<div class="col-lg-3 col-xl-2 " *ngFor="let instructor of instructors " style="border: 1px solid #DEDEDE; " style="margin-bottom: 20px;margin-top: 5px; ">
-    <div class="border ">
-        <div class="item-img-wrap ">
-            <img src="https://bootdey.com/img/Content/avatar/avatar1.png " class="rounded-circle " alt="workimg " style="margin-top: 5px ">
-            <div class="item-img-overlay ">
-                <a href="# " class="show-image ">
-                    <span></span>
-                </a>
-            </div>
-
-        </div>
-
-        <div class="text-center " font-family="Times New Roman ">{{instructor.firstName + " " + instructor.lastName}}</div>
-        <div class="text-center text-primary small " font-family="Times New Roman ">{{instructor.designation}}</div>
-
-        <div class="text-center small email " font-family="Times New Roman ">{{instructor.email}}</div>
-        <div class="text-center small " font-family="Times New Roman "> Ph:{{instructor.phoneNumber}}
-        </div>
-        <div class="row d-flex justify-content-center thumbnail " style="margin-bottom: 10px; ">
-            <div class="row ">
-                <div class="col-xs-4 col-md-4 ">
-                    <img class="thumb " src="../../../../assets/text.png " alt=" ">
+<div id="grid" class="row ">
+    <div class="col-lg-3 col-xl-2 " *ngFor="let instructor of instructors " style="border: 1px solid #DEDEDE; " style="margin-bottom: 20px;margin-top: 5px; ">
+        <div class="border ">
+            <div class="item-img-wrap ">
+                <img src="https://bootdey.com/img/Content/avatar/avatar1.png " class="rounded-circle " alt="workimg " style="margin-top: 5px ">
+                <div class="item-img-overlay ">
+                    <a href="# " class="show-image ">
+                        <span></span>
+                    </a>
                 </div>
-                23
-                <div class="col-xs-4 col-md-4 ">
-                    <img class="thumb " src="../../../../assets/camera.png " alt=" ">
-                </div>35
+
             </div>
+
+            <div class="text-center " font-family="Times New Roman ">{{instructor.firstName + " " + instructor.lastName}}</div>
+            <div class="text-center text-primary small " font-family="Times New Roman ">{{instructor.designation}}</div>
+
+            <div class="text-center small email " font-family="Times New Roman ">{{instructor.email}}</div>
+            <div class="text-center small " font-family="Times New Roman "> Ph:{{instructor.phoneNumber}}
+            </div>
+            <div class="row d-flex justify-content-center thumbnail " style="margin-bottom: 10px; ">
+                <div class="row ">
+                    <div class="col-xs-4 col-md-4 ">
+                        <img class="thumb " src="../../../../assets/text.png " alt=" ">
+                    </div>
+                    23
+                    <div class="col-xs-4 col-md-4 ">
+                        <img class="thumb " src="../../../../assets/camera.png " alt=" ">
+                    </div>35
+                </div>
+            </div>
+            <div class="text-center small">
+                <div class="row">
+                    <div class="col-6 edit">
+                        <ul class="view-edit">
+                            <li (click)="openEditModal()">Edit</li>
+                        </ul>
+                    </div>
+                    <div class="col-6 delete">
+                        <ul class="view-delete">
+                            <li (click)="openDeleteModal() ">Delete</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="text-center small view " id="view-div "><a href="# " class="view-ref ">View</a></div> -->
         </div>
-        <div class="text-center small view ">
-            <ul class="view ">
-                <li (click)="openModal() ">View</li>
-            </ul>
-        </div>
-        <!-- <div class="text-center small view " id="view-div "><a href="# " class="view-ref ">View</a></div> -->
     </div>
 </div>

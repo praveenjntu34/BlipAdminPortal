@@ -42,8 +42,11 @@ export class LoginComponent implements OnInit {
 
              localStorage.setItem('loggedInRole', response.role)
              localStorage.setItem('loggedInTenantId', response.relTenantInstitutionId)
-
-             this.router.navigate(["/home/institutions"]);
+              if(response.role == 'InstitutionAdmin') {
+                this.router.navigate(["/home/admin/posts"]);
+              } else {
+                this.router.navigate(["/home/institutions"]);
+              }
             } else {
               
             }

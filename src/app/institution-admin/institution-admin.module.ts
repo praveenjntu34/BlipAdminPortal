@@ -16,10 +16,12 @@ import { ParentsComponent } from './parents/parents.component';
 import { AddParentModalComponent } from './add-parent-modal/add-parent-modal.component';
 import { SettingsComponent } from './settings/settings.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { EditInstructorModalComponent } from './modals/edit-instructor-modal/edit-instructor-modal.component';
+import { DeleteInstructorModalComponent } from './modals/delete-instructor-modal/delete-instructor-modal.component';
 
 @NgModule({
-  declarations: [PostsComponent, AddPostModalComponent, BannersComponent, AddBannerModalComponent, InstructorsComponent, ParentsComponent, AddParentModalComponent, SettingsComponent],
-  entryComponents: [AddPostModalComponent, AddBannerModalComponent,AddInstructorModalComponent,InstructorTabComponent, AddParentModalComponent],
+  declarations: [PostsComponent, AddPostModalComponent, BannersComponent, AddBannerModalComponent, InstructorsComponent, ParentsComponent, AddParentModalComponent, SettingsComponent, EditInstructorModalComponent, DeleteInstructorModalComponent],
+  entryComponents: [AddPostModalComponent,EditInstructorModalComponent, DeleteInstructorModalComponent, AddBannerModalComponent,AddInstructorModalComponent,InstructorTabComponent, AddParentModalComponent],
   imports: [
     CommonModule,
     InstitutionAdminRoutingModule,

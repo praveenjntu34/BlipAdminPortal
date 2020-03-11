@@ -1,13 +1,16 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { SettingsService } from './settings.service';
+import { JsonPipe } from '@angular/common';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.css']
 })
-export class SettingsComponent implements OnInit, OnChanges {
+export class SettingsComponent implements OnInit {
 
   firstName: string = "khjj";
   lastName: string;
@@ -19,7 +22,9 @@ export class SettingsComponent implements OnInit, OnChanges {
 
   keyErrors: string;
   matchError: boolean;
-  constructor(private formBuilder: FormBuilder, private settingService: SettingsService) { }
+  formSubmitted: boolean = false;
+  constructor(private formBuilder: FormBuilder, private settingService: SettingsService,
+     private ngxService: NgxUiLoaderService, private matSnack: MatSnackBar) { }
 
   ngOnInit() {
     var obj = JSON.parse(localStorage.getItem('loggedInProfile'));
@@ -30,66 +35,64 @@ export class SettingsComponent implements OnInit, OnChanges {
     this.phoneNumber = obj.phoneNumber
 
     this.buildForm();
+    this.handleFormChanges();
+  }
+
+  handleFormChanges() {
+    this.password.statusChanges.subscribe(newPassword => {
+      this.confirmPassword.setValidators([Validators.required, Validators.minLength(8), this.confirmPasswordValidator(newPassword)]);
+    })
+
+    this.confirmPassword.valueChanges.subscribe(
+      () => {
+        const pwd = this.password.value;
+        this.confirmPassword.setValidators([Validators.required, Validators.minLength(8), this.confirmPasswordValidator(pwd)]);
+      }
+    );   
   }
 
 
-  ngOnChanges() {
-   
+
+  confirmPasswordValidator(confirmPassword: String): ValidatorFn {
+    return (control: AbstractControl): {[key: string]: any} | null => {
+      let password: string = control.value;
+      let isInValid = (password !== confirmPassword) ? true : false;
+      return isInValid ? {'cnfPassword': {value: 'Invalid'}, 'filled': {value: true}} : null;
+    };
   }
 
-  getError() {
-    return this.errors;
-  }
-
-  setErrors() {
-    console.log("check",this.passwordForm.controls)
-    this.getFormValidationErrors();
-    if(this.keyErrors === 'required') {
-      this.errors = "*Please fill the require feild"
-    } else if (this.keyErrors === 'minlength') {
-      this.errors = '*Password should be atleast 8 characters'
-    } else if (this.passwordForm.errors != null && this.passwordForm.errors.invalid) {
-      console.log("Match error");
-      this.errors = '*' + this.passwordForm.errors.errorMessage
-    } 
-  }
+    
+  
+  get password() {
+    return this.passwordForm.get('newPassword');
+  }  
+  get confirmPassword() {
+    return this.passwordForm.get('reEnterPassword');
+  } 
 
   changePassword() {
-    this.errors = "";
-    console.log(this.passwordForm)
-   
-    this.setErrors();
-    if(this.passwordForm.valid) {
-      console.log('call API');
-      this.settingService
+    this.formSubmitted = true;
+    this.ngxService.start();
+    if(this.passwordForm.valid) { 
+      let profile = JSON.parse(localStorage.getItem('loggedInProfile'))
+      console.log("username t", profile.email);
+      
+       this.settingService.changePassword(profile.email,this.password.value,)
+              .subscribe((data: any) => {
+                console.log("change password response",data.response);
+                this.matSnack.open(data.response);
+                this.ngxService.stop();
+              })
     }
   }
   buildForm() {
 
     this.passwordForm = this.formBuilder.group({
-      newPassword: ['', Validators.required],
-      reEnterPassword: ['', Validators.minLength(8)]
-    }, {validator: this.passwordConfirming})
-
-  }
-
-  passwordConfirming(c: AbstractControl): { invalid: boolean, errorMessage: string } {
-    if (c.get('newPassword').value !== c.get('reEnterPassword').value) {
-        return {invalid: true, errorMessage: 'Passwords doesn\'t match' };
+      newPassword: ['', [Validators.required,Validators.minLength(8)]],
+      reEnterPassword: ['', [Validators.required, Validators.minLength(8)]]
     }
-}
+    )
 
-getFormValidationErrors() {
-  this.keyErrors = null;
-  Object.keys(this.passwordForm.controls).forEach(key => {
-  const controlErrors: ValidationErrors = this.passwordForm.get(key).errors;
-  if (controlErrors != null) {
-        Object.keys(controlErrors).forEach(keyError => {
-          this.keyErrors = keyError;
-          console.log('Key control: ' + key + ', keyError: ' + keyError + ', err value: ', controlErrors[keyError]);
-        });
-      }
-    });
   }
 
 }

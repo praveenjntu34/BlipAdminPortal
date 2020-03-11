@@ -9,8 +9,12 @@ export class SettingsService {
   
   constructor(private http: HttpClient) { }
 
-  changePassword(data : any) {
-    return this.http.post(environment.baseUrl + 'change-password',data);
+  changePassword(username : any, newPassword: any) {
+    var requestData = {
+      email: username,
+      password: newPassword
+    }
+    return this.http.post(environment.baseUrl + 'change-password',requestData);
   }
 
 }

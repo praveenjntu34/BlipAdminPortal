@@ -15,7 +15,7 @@ import { InstitutionsModule } from '../institutions/institutions.module';
 import { ParentsComponent } from './parents/parents.component';
 import { AddParentModalComponent } from './add-parent-modal/add-parent-modal.component';
 import { SettingsComponent } from './settings/settings.component';
-
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [PostsComponent, AddPostModalComponent, BannersComponent, AddBannerModalComponent, InstructorsComponent, ParentsComponent, AddParentModalComponent, SettingsComponent],
@@ -26,7 +26,8 @@ import { SettingsComponent } from './settings/settings.component';
     MatDialogModule,
     InstitutionsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSnackBarModule
   ]
 })
 export class InstitutionAdminModule { }

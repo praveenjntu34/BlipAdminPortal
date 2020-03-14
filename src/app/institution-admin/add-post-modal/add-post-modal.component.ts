@@ -75,7 +75,7 @@ export class AddPostModalComponent implements OnInit {
       relTenantInstitutionId: 1
     })
     var that = this;
-    this.institutionService.getInstitutionBranches(1)
+    this.institutionService.getInstitutionBranches(localStorage.getItem('loggedInTenantId'))
           .subscribe((response: any) => {
             console.log("Data", response);
             that.allBranches = response;

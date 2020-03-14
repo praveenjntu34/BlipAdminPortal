@@ -5,6 +5,7 @@ import { AddInstructorModalComponent } from 'src/app/institutions/components/add
 import { InstructorTabComponent } from 'src/app/institutions/components/instructor-tab/instructor-tab.component';
 import { EditInstructorModalComponent } from '../modals/edit-instructor-modal/edit-instructor-modal.component';
 import { DeleteInstructorModalComponent } from '../modals/delete-instructor-modal/delete-instructor-modal.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-instructors',
@@ -15,6 +16,7 @@ export class InstructorsComponent implements OnInit {
 
   instructors: any = []
   branchData: any = [];
+  private subscriptions: Subscription[] =[];
 
   constructor(private api : InstitutionService
     ,private matDialogue: MatDialog) { }
@@ -33,6 +35,8 @@ export class InstructorsComponent implements OnInit {
 
       this.instructors = response;
     }) 
+
+    this.updateInstructors();
   }
 
   openEditModal(){
@@ -55,5 +59,20 @@ openDeleteModal(){
     data: this.branchData
   })
 }
+
+ private updateInstructors() {
+  this.subscriptions.push(this.api.instructorUpdateList
+    .subscribe(isUpdated => {
+      if(isUpdated) {
+        const newDataToAdd = this.api.getNewIInstructorData();
+        this.api.resetNewInstructorData();
+
+        if(newDataToAdd != null) {
+          this.instructors.push(newDataToAdd);
+        }
+      }
+    })
+    )
+ }
 
 }

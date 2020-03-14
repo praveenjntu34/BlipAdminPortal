@@ -56,6 +56,18 @@ export class AddInstructorModalComponent implements OnInit {
     }
     this.instService.addInstructor(requestObject)
           .subscribe(data => {
+            var obj = {
+              instructorId: 1,
+              firstName: requestObject.firstname,
+              lastName: requestObject.lastname,
+              email: requestObject.email,
+              phoneNumber: requestObject.phoneNumber,
+              designation: requestObject.designation,
+              relTenantInstitutionId: requestObject.relTenantInstitutionId,
+              sectionId: requestObject.sectionId
+            }
+
+            this.instService.setNewInstructorData(obj)
             console.log("response from instructor",data)
             this.dialogRef.close();
           })

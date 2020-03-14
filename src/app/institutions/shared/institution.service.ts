@@ -12,6 +12,8 @@ export class InstitutionService {
   public updateList: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public newInstituationData: any;
 
+  public instructorUpdateList: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
+  public newInstructorData: any;
 
   updateInstitutionDetails(updatedForm: any) {
     return this.http.put(environment.baseUrl + 'institution/details',updatedForm);
@@ -160,6 +162,20 @@ getAllInstitutionsByPage(page) {
 
   public resetNewInstituationData() {
     this.newInstituationData = null;
+  }
+
+  public setNewInstructorData(response) {
+    
+    this.newInstructorData = response;
+    this.instructorUpdateList.next(true);
+  }
+
+  public getNewIInstructorData() {
+    return this.newInstructorData;
+  }
+
+  public resetNewInstructorData() {
+    this.newInstructorData = null;
   }
 
 }

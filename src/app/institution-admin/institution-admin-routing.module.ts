@@ -5,6 +5,7 @@ import { BannersComponent } from './banners/banners.component';
 import { InstructorsComponent } from './instructors/instructors.component';
 import { ParentsComponent } from './parents/parents.component';
 import { SettingsComponent } from './settings/settings.component';
+import { InstitutionProfileComponent } from './institution-profile/institution-profile.component';
 
 const institutionAminRoutes: Routes = [
 	{ 
@@ -26,7 +27,11 @@ const institutionAminRoutes: Routes = [
   { 
 	  path: 'settings',
     component: SettingsComponent,
-  }      
+  },
+  { 
+	  path: 'institution-profile',
+    component: InstitutionProfileComponent,
+  }       
 ];
 
 @NgModule({

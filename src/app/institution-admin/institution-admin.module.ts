@@ -18,9 +18,10 @@ import { SettingsComponent } from './settings/settings.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { EditInstructorModalComponent } from './modals/edit-instructor-modal/edit-instructor-modal.component';
 import { DeleteInstructorModalComponent } from './modals/delete-instructor-modal/delete-instructor-modal.component';
+import { InstitutionProfileComponent } from './institution-profile/institution-profile.component';
 
 @NgModule({
-  declarations: [PostsComponent, AddPostModalComponent, BannersComponent, AddBannerModalComponent, InstructorsComponent, ParentsComponent, AddParentModalComponent, SettingsComponent, EditInstructorModalComponent, DeleteInstructorModalComponent],
+  declarations: [PostsComponent, AddPostModalComponent, BannersComponent, AddBannerModalComponent, InstructorsComponent, ParentsComponent, AddParentModalComponent, SettingsComponent, EditInstructorModalComponent, DeleteInstructorModalComponent, InstitutionProfileComponent],
   entryComponents: [AddPostModalComponent,EditInstructorModalComponent, DeleteInstructorModalComponent, AddBannerModalComponent,AddInstructorModalComponent,InstructorTabComponent, AddParentModalComponent],
   imports: [
     CommonModule,

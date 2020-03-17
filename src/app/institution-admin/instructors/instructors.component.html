@@ -3,7 +3,7 @@
 </div>
 
 <div id="grid" class="row ">
-    <div class="col-lg-3 col-xl-2 " *ngFor="let instructor of instructors " style="border: 1px solid #DEDEDE; " style="margin-bottom: 20px;margin-top: 5px; ">
+    <div class="col-lg-3 col-xl-2 " *ngFor="let instructor of instructors; let i = index" style="border: 1px solid #DEDEDE; " style="margin-bottom: 20px;margin-top: 5px; ">
         <div class="border ">
             <div class="item-img-wrap ">
                 <img src="https://bootdey.com/img/Content/avatar/avatar1.png " class="rounded-circle " alt="workimg " style="margin-top: 5px ">
@@ -36,12 +36,12 @@
                 <div class="row">
                     <div class="col-6 edit">
                         <ul class="view-edit">
-                            <li (click)="openEditModal()">Edit</li>
+                            <li (click)="openEditModal(i)">Edit</li>
                         </ul>
                     </div>
                     <div class="col-6 delete">
                         <ul class="view-delete">
-                            <li (click)="openDeleteModal() ">Delete</li>
+                            <li (click)="openDeleteModal(i) ">Delete</li>
                         </ul>
                     </div>
                 </div>

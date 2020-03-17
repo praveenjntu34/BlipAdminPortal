@@ -6,6 +6,7 @@ import { InstructorTabComponent } from 'src/app/institutions/components/instruct
 import { EditInstructorModalComponent } from '../modals/edit-instructor-modal/edit-instructor-modal.component';
 import { DeleteInstructorModalComponent } from '../modals/delete-instructor-modal/delete-instructor-modal.component';
 import { Subscription } from 'rxjs';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-instructors',
@@ -19,10 +20,11 @@ export class InstructorsComponent implements OnInit {
   private subscriptions: Subscription[] =[];
 
   constructor(private api : InstitutionService
-    ,private matDialogue: MatDialog) { }
+    ,private matDialogue: MatDialog, private ngxService: NgxUiLoaderService) { }
 
   ngOnInit() {
-
+    
+    this.ngxService.start();
     this.api.getInstitutionBranches(localStorage.getItem('loggedInTenantId'))
     .subscribe(data => {
       console.log("branch", data);
@@ -32,20 +34,24 @@ export class InstructorsComponent implements OnInit {
     this.api.getAllInstructors(localStorage.getItem('loggedInTenantId'))
     .subscribe((response: any) => {
       console.log("instructors", response);
-
+      this.ngxService.stop();
       this.instructors = response;
     }) 
 
     this.updateInstructors();
   }
 
-  openEditModal(){
+  openEditModal(index){
     this.matDialogue.open(EditInstructorModalComponent, {
       width: '550px',
       height: '400px',
+      data: {
+        instructors: this.instructors[index],
+        branches: this.branchData
+      }
     })
  }
-openDeleteModal(){
+openDeleteModal(index){
     this.matDialogue.open(DeleteInstructorModalComponent, {
       width: '550px',
       height: '290px',

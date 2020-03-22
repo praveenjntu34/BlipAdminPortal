@@ -44,7 +44,7 @@ export class InstructorsComponent implements OnInit {
   openEditModal(index){
     this.matDialogue.open(EditInstructorModalComponent, {
       width: '550px',
-      height: '400px',
+      height: '500px',
       data: {
         instructors: this.instructors[index],
         branches: this.branchData

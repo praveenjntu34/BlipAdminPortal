@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { InstructorService } from '../../shared/instructor.service';
 
 @Component({
   selector: 'app-edit-instructor-modal',
@@ -15,7 +16,7 @@ export class EditInstructorModalComponent implements OnInit {
   selectedSections: any = [];
   setBranches: any = [];
   
-  constructor(private formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) public details: any) { 
+  constructor(private formBuilder: FormBuilder,private matDialog: MatDialog, @Inject(MAT_DIALOG_DATA) public details: any, private instructorService: InstructorService) { 
     this.instructorFormDetails = details;
     this.setBranches = details.branches
     console.log("Details", details);
@@ -43,6 +44,9 @@ export class EditInstructorModalComponent implements OnInit {
       phoneNumber: [''],
       branchId: ['', Validators.required],
       sectionId: ['', Validators.required],
+      personId: 0,
+      instructorId: 0,
+      loginCredentialId: 0
     })
 
     this.instructorForm.patchValue({
@@ -53,7 +57,20 @@ export class EditInstructorModalComponent implements OnInit {
       phoneNumber: this.instructorFormDetails.instructors.phoneNumber,
       branchId: this.instructorFormDetails.instructors.branchId,
       sectionId: this.instructorFormDetails.instructors.sectionId,
+      personId: this.instructorFormDetails.instructors.personId,
+      instructorId: this.instructorFormDetails.instructors.instructorId,
+      loginCredentialId: this.instructorFormDetails.instructors.loginCredentialId
     })
+  }
+
+  saveInstructor() {
+    
+    this.instructorService.saveInstructor(this.instructorForm.value)
+          .subscribe(res => {
+            console.log("res", res);
+            this.matDialog.closeAll();
+            window.location.reload();
+          })
   }
 
 }

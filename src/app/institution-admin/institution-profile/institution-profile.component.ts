@@ -7,6 +7,7 @@ import { EditInstitutionDetailsComponent } from 'src/app/institutions/components
 import { EditInstitutionPocDetailsComponent } from 'src/app/institutions/components/edit-institution-poc-details/edit-institution-poc-details.component';
 import { InstructorTabComponent } from 'src/app/institutions/components/instructor-tab/instructor-tab.component';
 import { AddInstructorModalComponent } from 'src/app/institutions/components/add-instructor-modal/add-instructor-modal.component';
+import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-institution-profile',
@@ -18,13 +19,13 @@ export class InstitutionProfileComponent implements OnInit {
   selectedBranchIndex: number = -1;
   bSectionsArray: Array<BSections> = new Array<BSections>();
   singleSection: Array<string> = [];
-
+  modalOptions:NgbModalOptions;
   instructors: any = []
+  modalRef: NgbModalRef;
+  branchNameModel: string;
+  sectionNameModel: string;
 
   ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
-
- 
-
    
   }
 
@@ -34,9 +35,18 @@ export class InstitutionProfileComponent implements OnInit {
   @Input() data: any;
   branchData: any = [];
   coreData: any;
+  
   constructor(private route: ActivatedRoute, private api : InstitutionService
-    ,private matDialogue: MatDialog
+    ,private matDialogue: MatDialog, private modalService: NgbModal,private instService: InstitutionService
     ) {
+      this.modalOptions = {
+        backdrop: 'static',
+        centered: true,
+        backdropClass:'customBackdrop',
+        size: 'sm',
+        windowClass: 'modal-container'
+      }
+
     this.route.params.subscribe((param:any) => {
       console.log("route param", param);
       console.log("d", this.data);
@@ -44,7 +54,7 @@ export class InstitutionProfileComponent implements OnInit {
    }
 
    public getBranch(i) {
-    console.log("got index", i)
+    console.log("got index", this.branchData[i])
     this.selectedBranchIndex = i;
     this.singleSection = this.branchData[this.selectedBranchIndex].sections;
   }
@@ -120,5 +130,54 @@ console.log("res", res)
     })
   }
 
+  openBranchModal(modalContent) {
+    this.modalRef = this.modalService.open(modalContent, this.modalOptions)
+    
+  }
+
+  addBranch() {
+
+    this.modalRef.close();
+    var branch = {
+      branchName: this.branchNameModel,
+      relTenantInstitutionId: localStorage.getItem('loggedInTenantId')
+    }
+    this.instService.addBranch(branch)
+    .subscribe((data: any) => {
+          this.branchData.push(branch)
+          this.branchNameModel = null;
+          console.log(data);
+          })
+  }
+
+  openSectionModal(sectionContent) {
+    this.modalRef = this.modalService.open(sectionContent, this.modalOptions)
+  }
+
+  addSection(){
+    var obj:any = {
+      sectionName: this.sectionNameModel
+    }
+    console.log("s", this.singleSection);
+    
+    this.singleSection.push(obj)
+
+    console.log("ss", this.singleSection);
+
+    var sectionRequestData = {
+      branchId: this.branchData[this.selectedBranchIndex].branchId,
+      sectionName: this.sectionNameModel
+    }
+
+    this.instService.addSection(sectionRequestData)
+          .subscribe((data: any) => {
+            // window.location.reload();
+            this.modalRef.close();
+
+            this.sectionNameModel = null;
+            console.log(data)
+          })
+
+  }
 
 }

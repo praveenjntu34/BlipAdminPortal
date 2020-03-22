@@ -1,4 +1,29 @@
 <div class="institution-wrapper">
+    <ng-template #branchmodal let-modal>
+        <div class="row">
+            <h5 style="margin: 5px 0 0 24px;">Add branch</h5>
+
+            <div class="" style="margin-left:24px; margin-bottom: 46px;">
+                <label for="institutionName">Name of Branch*</label>
+                <input type="text" [(ngModel)]="branchNameModel" class="branch-button" id="branchName">
+            </div>
+            <button class="btn btn-primary btn-branch" (click)="addBranch()" style="margin-left:24px">Add</button>
+        </div>
+
+    </ng-template>
+
+    <ng-template #sectionModal let-modal>
+        <div class="row">
+            <h5 style="margin: 5px 0 0 24px;">Add section</h5>
+
+            <div class="" style="margin-left:24px; margin-bottom: 46px;">
+                <label for="sectionName">Name of Section*</label>
+                <input type="text" [(ngModel)]="sectionNameModel" class="branch-button" id="branchName">
+            </div>
+            <button class="btn btn-primary btn-branch" (click)="addSection()" style="margin-left:24px">Add</button>
+        </div>
+
+    </ng-template>
     <div class="col-6 institution-title">
         <h3>{{coreData.institutionName}}</h3>
     </div>
@@ -86,6 +111,15 @@
                 </div>
             </div>
             <div class="tab-pane fade" id="pills-branch" role="tabpanel" aria-labelledby="pills-branch-tab">
+                <div class="row branch-tab">
+
+                    <div class="col-9">
+                        <h2>List of Branches</h2>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-primary" (click)="openBranchModal(branchmodal)">Add</button>
+                    </div>
+                </div>
                 <div class="shadow-sm p-3 mb-5 bg-white blip-chip" [ngStyle]="getRandomColor()" *ngFor="let branch of branchData">{{branch.branchName}}</div>
             </div>
             <div class="tab-pane fade" id="pills-section" role="tabpanel" aria-labelledby="pills-section-tab">
@@ -96,7 +130,7 @@
 
                     </div>
                     <div class="col-4 section-padding">
-                        <button class="btn btn-primary">Add</button>
+                        <button class="btn btn-primary" (click)="openSectionModal(sectionModal)">Add</button>
                     </div>
                 </div>
 

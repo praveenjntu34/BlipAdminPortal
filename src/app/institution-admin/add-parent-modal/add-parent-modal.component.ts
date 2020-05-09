@@ -35,6 +35,18 @@ export class AddParentModalComponent implements OnInit {
 
     this.parentService.addParent(this.parentForm.value)
           .subscribe(data => {
+            var obj = {
+              childrenName: this.parentForm.value.childrenName,
+              admissionId: this.parentForm.value.admissionNumber,
+              secondaryPhoneNumber: this.parentForm.value.secondaryPhoneNumber,
+              email: this.parentForm.value.email,
+              phoneNUmber: this.parentForm.value.phoneNumber,
+              firstName: this.parentForm.value.parentOneFirstName,
+              lastName: this.parentForm.value.parentOneLastName
+            }
+
+            this.parentService.setNewParentData(obj)
+            this.matDialog.closeAll();
             console.log("response", data);
             
           })

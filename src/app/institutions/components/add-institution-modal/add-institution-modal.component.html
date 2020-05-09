@@ -1,0 +1,289 @@
+<div class="container">
+    <ng-template #branchmodal let-modal>
+        <div class="row">
+            <h5 style="margin: 5px 0 0 24px;">Add branch</h5>
+
+            <div class="" style="margin-left:24px; margin-bottom: 46px;">
+                <label for="institutionName">Name of Branch*</label>
+                <input type="text" [(ngModel)]="branchNameModel" class="branch-button" id="branchName">
+            </div>
+            <button class="btn btn-primary btn-branch" (click)="addBranch()" style="margin-left:24px">Add</button>
+        </div>
+
+    </ng-template>
+    <ng-template #sectionModal let-modal>
+        <div class="row">
+            <h5 style="margin: 5px 0 0 24px;">Add section</h5>
+
+            <div class="" style="margin-left:24px; margin-bottom: 46px;">
+                <label for="sectionName">Name of Section*</label>
+                <input type="text" [(ngModel)]="sectionNameModel" class="branch-button" id="branchName">
+            </div>
+            <button class="btn btn-primary btn-branch" (click)="addSection()" style="margin-left:24px">Add</button>
+        </div>
+
+    </ng-template>
+    <div class="modal-body super-modal">
+        <div class="row">
+            <div class="col-xl-3 left-pane">
+                <div class="row tab" [ngClass]="{'tab-decorator': stepCount==1}">
+                    <a class="nav-link active" id="details-tab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="true">
+
+                        <div class="tab-item">
+                            <div *ngIf="loading1" class="lds-ring spinner">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <img *ngIf="stepCount>1 && loading_tab1 == false" src="../../../../assets/green-tick.png" alt="" width="15x" height="15px">
+                            <p>Institution Details</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="row tab" [ngClass]="{'tab-decorator': stepCount==2}">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
+
+                        <div class="tab-item">
+                            <div *ngIf="loading2" class="lds-ring spinner">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <img *ngIf="stepCount>2" src="../../../../assets/green-tick.png" alt="" width="15x" height="15px">
+                            <p>Point Of Contact</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="row tab" [ngClass]="{'tab-decorator': stepCount==3}">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#branch" role="tab" aria-controls="profile" aria-selected="false">
+                        <div class="tab-item">
+                            <img *ngIf="stepCount>3" src="../../../../assets/green-tick.png" alt="" width="15x" height="15px">
+                            <p>Branches</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="row tab" [ngClass]="{'tab-decorator': stepCount==4}">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#section" role="tab" aria-controls="profile" aria-selected="false">
+                        <div class="tab-item">
+                            <img *ngIf="stepCount>4" src="../../../../assets/green-tick.png" alt="" width="15x" height="15px">
+                            <p>Section</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-xl-9 tab-content right-pane">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <form [formGroup]="institutionDetailForm">
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="institutionName">Name of Institution*</label>
+                                <input type="text" formControlName="institutionName" class="form-control blip-input" id="institutionName" aria-describedby="emailHelp">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="eamil">Email (Institution)</label>
+                                <input type="email" formControlName="email" class="form-control blip-input" id="eamil">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="website">Website</label>
+                                <input type="text" formControlName="website" class="form-control blip-input" id="website">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="institutionTypeId">Institution Type</label>
+                                <select formControlName="institutionTypeId" [(ngModel)]="selectedTypeId" class="form-control blip-input  blip-select">
+                                    <option [value]="type.typeId" *ngFor="let type of institutionTypeNames">{{type.typeName}}</option>
+                                  </select>
+                                <!-- <input type="text" formControlName="institutionTypeId" class="form-control blip-input" id="institutionTypeId"> -->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="address1">Address1</label>
+                                <input type="text" formControlName="address1" class="form-control blip-input" id="address1">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="address2">Address2</label>
+                                <input type="text" formControlName="address2" class="form-control blip-input" id="address2">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="countryId">Country</label>
+                                <select class="form-control blip-input  blip-select">
+                                    <option value="India" selected>India</option>
+                                  </select>
+                                <!-- <input type="text" formControlName="countryId" class="form-control blip-input" id="countryId"> -->
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="stateId">State</label>
+                                <select formControlName="stateId" #st [(ngModel)]="selectedState" (change)="getCities()" class="form-control blip-input  blip-select">
+                                    <option [ngValue]="state" *ngFor="let state of allStates">{{state.stateName}}</option>
+                                  </select>
+                                <!-- <input type="text" formControlName="stateId" class="form-control blip-input" id="stateId"> -->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="cityId">City</label>
+                                <select formControlName="cityId" [(ngModel)]="selectedCity" (change)="getCitiesName()" class="form-control blip-input  blip-select">
+                                    <option [ngValue]="city" *ngFor="let city of allCities">{{city.cityName}}</option>
+                                  </select>
+                                <!-- <input type="text" formControlName="cityId" class="form-control blip-input" id="cityId"> -->
+
+                                <label for="remarks">Remarks</label>
+                                <textarea name="" id="remarks" formControlName="remarks" cols="30" rows="10"></textarea>
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="exampleInputEmail1">Image</label>
+                                <input type="file" (change)="onFileChanged($event)">
+                                <img class="image-create" [src]="img_url">
+                            </div>
+                        </div>
+                        <button *ngIf="!isEditForm" type="submit" (click)="onSubmit()" class="btn btn-primary btn-next" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Next</button>
+                        <button *ngIf="isEditForm" type="submit" (click)="updateDetails()" class="btn btn-primary btn-next" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Update</button>
+
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <form [formGroup]="institutionPOCForm" (ngSubmit)="onSubmit()">
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="primaryPOCFirstName">Primary POC FirstName*</label>
+                                <input type="text" formControlName="primaryPOCFirstName" class="form-control blip-input" [ngClass]="{ 'is-invalid': pocSubmitted && f.primaryPOCFirstName.errors }" id="primaryPOCFirstName" aria-describedby="emailHelp">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="primaryPOCLastName">Primary POC LastName</label>
+                                <input type="email" formControlName="primaryPOCLastName" [ngClass]="{ 'is-invalid': pocSubmitted && f.primaryPOCLastName.errors }" class="form-control blip-input" id="primaryPOCLastName">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="primaryPOCPhoneNumber">Primary POC PhoneNumber</label>
+                                <input type="text" formControlName="primaryPOCPhoneNumber" [ngClass]="{ 'is-invalid': pocSubmitted && f.primaryPOCPhoneNumber.errors }" class="form-control blip-input" id="primaryPOCPhoneNumber" aria-describedby="emailHelp">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="primaryPOCEmail">Primary POC Username</label>
+                                <input type="email" formControlName="primaryPOCEmail" [ngClass]="{ 'is-invalid': pocSubmitted && f.primaryPOCEmail.errors || isEmailExists }" (focusout)="checkEmailExistence()" class="form-control blip-input" id="primaryPOCEmail">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="secondaryPOCFirstName">Secondary POC FirstName</label>
+                                <input type="text" formControlName="secondaryPOCFirstName" [ngClass]="{ 'is-invalid': pocSubmitted && f.secondaryPOCFirstName.errors }" class="form-control blip-input" id="secondaryPOCFirstName" aria-describedby="emailHelp">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="secondaryPOCLastName">Secondary POC LastName</label>
+                                <input type="email" formControlName="secondaryPOCLastName" [ngClass]="{ 'is-invalid': pocSubmitted && f.secondaryPOCLastName.errors }" class="form-control blip-input" id="secondaryPOCLastName">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="secondaryPOCPhoneNumber">Secondary POC PhoneNumber</label>
+                                <input type="text" formControlName="secondaryPOCPhoneNumber" [ngClass]="{ 'is-invalid': pocSubmitted && f.secondaryPOCPhoneNumber.errors }" class="form-control blip-input" id="secondaryPOCPhoneNumber" aria-describedby="emailHelp">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="secondaryPOCEmail">Secondary POC Email</label>
+                                <input type="email" formControlName="secondaryPOCEmail" (focusout)="submittedPOC()" [ngClass]="{ 'is-invalid': pocSubmitted && f.secondaryPOCEmail.errors }" class="form-control blip-input" id="secondaryPOCEmail">
+                            </div>
+                        </div>
+                        <!-- href="#branch" -->
+                        <button type="submit" [disabled]="!institutionPOCForm.valid" (click)="addPOCForm()" class="btn btn-primary btn-next" data-toggle="tab" role="tab" aria-controls="profile" href="#branch" aria-selected="false">Next</button>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="branch" role="tabpanel" aria-labelledby="profile-tab">
+                    <div class="row branch-tab">
+
+                        <div class="col-9">
+                            <h2>List of Branches</h2>
+                        </div>
+                        <div class="col-3">
+                            <button class="btn btn-primary" (click)="openBranchModal(branchmodal)">Add</button>
+                        </div>
+                    </div>
+                    <div class="shadow-sm p-3 mb-5 bg-white blip-chip" [ngStyle]="getRandomColor()" *ngFor="let branch of branches">{{branch.branchName}}</div>
+                    <button type="submit" (click)="nextStep()" class="btn btn-primary" data-toggle="tab" href="#section" role="tab" aria-controls="section" aria-selected="false">Next</button>
+                </div>
+                <div class="tab-pane fade" id="section" role="tabpanel" aria-labelledby="profile-tab">
+
+                    <div class="row">
+                        <div class="col-8">
+                            <h4 class="section-padding">List of Sections</h4>
+
+                        </div>
+                        <div class="col-4 section-padding">
+                            <button class="btn btn-primary" (click)="openSectionModal(sectionModal)">Add</button>
+                        </div>
+                    </div>
+                    <div class="row section-area">
+                        <div class="col-6 branch-wrapper">
+                            <ul class="blip-ul">
+
+                                <li class="blip-li" *ngFor="let b of branches; let i = index" (click)="getBranch(i)" [ngClass]="{'blip-li--focused':selectedBranchIndex === i}">
+                                    <a>{{b.branchName}}</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div class="col-4 section-wrapper">
+                            <div class="chip" *ngFor="let sec of singleSection">
+                                <i class="fas fa-circle fa-dot"></i> {{sec}}
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" (click)="finalStep()" class="btn btn-primary" data-toggle="tab" href="#institution-created" role="tab" aria-controls="profile" aria-selected="false">Next</button>
+                </div>
+
+                <div class="tab-pane fade" id="institution-created" role="tabpanel" aria-labelledby="created-tab">
+
+
+                    <div class="final-wrapper">
+                        <div class="row justify-content-center">
+                            <div class="col-4 text-center">
+                                <img class="finish-image" src="../../../../assets/newyork.gif" alt="">
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-4 text-center">
+                                <img src="../../../../assets/green-tick.png" class="tick-image" alt="" width="15x" height="15px">
+                                <h4 class="ins-created"> Institution Created</h4>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-4 text-center">
+                                <p id="user-label"><b>Username   </b></p>
+                                <p id="saved-user">{{currentUsername}}</p>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-4 text-center">
+                                <p id="user-label"><b>Auto-generated Password</b></p>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center gap">
+                            <div class="col-4 text-center">
+                                <img src="../../../../assets/shield.png" class="shield-image" alt="" width="15x" height="15px">
+                                <h4 class="ins-password">{{currentGeneratePassword}}</h4>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center note">
+                            <div class="col-8 text-center">
+                                <p>*Use this above password to login into blip portal.</p>
+                            </div>
+                        </div>
+
+                        <button type="submit" (click)="closeModal()" class="btn btn-primary">Finish</button>
+
+                    </div>
+
+                </div>
+
+                <div class="row" *ngIf="isEmailExists">
+                    <p class="field-validation">*The primary POC username already exists please try a differen one</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

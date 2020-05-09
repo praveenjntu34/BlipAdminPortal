@@ -1,0 +1,35 @@
+<form [formGroup]="bannerForm" enctype='multipart/form-data' (ngSubmit)="onSubmit()">
+    <div class="row">
+        <div class="form-group col-6">
+            <div class="row">
+                <label class="blip-label" for="title">Title*</label>
+                <input type="text" formControlName="title" class="form-control blip-input" id="title" aria-describedby="emailHelp">
+            </div>
+
+            <div class="row">
+                <label class="blip-label" for="shortDescription">Short Discription</label>
+                <textarea class="form-control blip-input" formControlName="shortDescription" rows="10" id="comment"></textarea>
+            </div>
+        </div>
+        <div class="form-group col-6">
+            <div class="row">
+                <label class="blip-label" for="banner">Main banner</label>
+                <input type="file" class="blip-label" (change)="onFileChanged($event)">
+                <div class="image-wrapper">
+                    <img class="image-create" [src]="img_url">
+                </div>
+            </div>
+            <!-- <div class="row">
+                <label class="blip-label" for="banner2">Banner 2</label>
+                <input type="file" class="blip-label" (change)="onFileChangedNew($event)">
+                <div class="image-wrapper">
+                    <img class="image-create" [src]="img_url2">
+                </div>
+            </div> -->
+        </div>
+
+    </div>
+
+
+    <button type="submit" (click)="addBanner()" class="btn btn-primary btn-next" data-toggle="tab" href="#branch" role="tab" aria-controls="profile" aria-selected="false">Next</button>
+</form>

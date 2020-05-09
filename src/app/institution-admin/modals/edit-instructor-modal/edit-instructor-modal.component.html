@@ -1,0 +1,54 @@
+<form [formGroup]=instructorForm>
+    <div class="row">
+        <div class="form-group col-6">
+            <label for="instructorName">FirstName*</label>
+            <input type="text" formControlName="firstname" class="form-control blip-input" id="institutionName" aria-describedby="emailHelp">
+        </div>
+        <div class="form-group col-6">
+            <label for="lastname">Lastname</label>
+            <input type="text" formControlName="lastname" class="form-control blip-input" id="eamil">
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="form-group col-6">
+            <label for="eamil">Email</label>
+            <input type="email" formControlName="email" class="form-control blip-input" id="eamil">
+        </div>
+        <div class="form-group col-6">
+            <label for="designation">Designation</label>
+            <input type="text" formControlName="designation" class="form-control blip-input" id="website">
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="form-group col-6">
+            <label for="phoneNumber">Phone Number</label>
+            <input type="text" formControlName="phoneNumber" class="form-control blip-input" id="website">
+        </div>
+        <div class="form-group col-6">
+            <label for="branchId">Branch</label>
+            <select #st formControlName="branchId" (change)="onChangeBranch($event.target.value)" class="form-control blip-input  blip-select">
+                    <option [value]="branch.branchId" *ngFor="let branch of details.branches">{{branch.branchName}}</option>
+            </select>
+        </div>
+
+    </div>
+    <div class="row ">
+        <div class="form-group col-6 ">
+            <label for="sectionId ">Section</label>
+            <select formControlName="sectionId" class="form-control blip-input blip-select ">
+                <option [value]="section.sectionId" *ngFor="let section of selectedSections">{{section.sectionName}}</option>
+            </select>
+        </div>
+        <div class="form-group col-6">
+            <label for="exampleInputEmail1">Image</label>
+            <input type="file">
+            <img class="image-create ">
+        </div>
+    </div>
+    <div class="row ">
+
+    </div>
+    <button type="submit " class="btn btn-primary btn-next " (click)="saveInstructor()" data-toggle="tab " href="#profile " role="tab " aria-controls="profile " aria-selected="false ">Submit</button>
+</form>

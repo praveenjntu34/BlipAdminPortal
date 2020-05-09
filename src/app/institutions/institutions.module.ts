@@ -11,11 +11,18 @@ import { FormsModule } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import {MatDialogModule} from '@angular/material/dialog';
 import { InstructorTabComponent } from './components/instructor-tab/instructor-tab.component';
-import { AddInstructorModalComponent } from './components/add-instructor-modal/add-instructor-modal.component'
+import { AddInstructorModalComponent } from './components/add-instructor-modal/add-instructor-modal.component';
+import { AddInstitutionModalComponent } from './components/add-institution-modal/add-institution-modal.component';
+import { AddBranchModalComponent } from './components/add-branch-modal/add-branch-modal.component';
+import { EditInstitutionDetailsComponent } from './components/edit-institution-details/edit-institution-details.component';
+import { EditInstitutionPocDetailsComponent } from './components/edit-institution-poc-details/edit-institution-poc-details.component'
 
 @NgModule({
-  declarations: [InstitutionListComponent, InstitutionListPageComponent, InstitutionDetailComponent, InstitutionDetailPageComponent, InstructorTabComponent, AddInstructorModalComponent],
-  entryComponents: [InstructorTabComponent, AddInstructorModalComponent],
+  declarations: [InstitutionListComponent, InstitutionListPageComponent, InstitutionDetailComponent, InstitutionDetailPageComponent, 
+    InstructorTabComponent, AddInstructorModalComponent, AddInstitutionModalComponent, AddBranchModalComponent, EditInstitutionDetailsComponent, 
+    EditInstitutionPocDetailsComponent],
+  entryComponents: [InstructorTabComponent, AddInstructorModalComponent, AddInstitutionModalComponent, 
+    AddBranchModalComponent, EditInstitutionDetailsComponent, EditInstitutionPocDetailsComponent],
   imports: [
     CommonModule,
     InstitutionRoutingModule,

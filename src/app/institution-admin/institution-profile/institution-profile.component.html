@@ -1,0 +1,158 @@
+<div class="institution-wrapper">
+    <ng-template #branchmodal let-modal>
+        <div class="row">
+            <h5 style="margin: 5px 0 0 24px;">Add branch</h5>
+
+            <div class="" style="margin-left:24px; margin-bottom: 46px;">
+                <label for="institutionName">Name of Branch*</label>
+                <input type="text" [(ngModel)]="branchNameModel" class="branch-button" id="branchName">
+            </div>
+            <button class="btn btn-primary btn-branch" (click)="addBranch()" style="margin-left:24px">Add</button>
+        </div>
+
+    </ng-template>
+
+    <ng-template #sectionModal let-modal>
+        <div class="row">
+            <h5 style="margin: 5px 0 0 24px;">Add section</h5>
+
+            <div class="" style="margin-left:24px; margin-bottom: 46px;">
+                <label for="sectionName">Name of Section*</label>
+                <input type="text" [(ngModel)]="sectionNameModel" class="branch-button" id="branchName">
+            </div>
+            <button class="btn btn-primary btn-branch" (click)="addSection()" style="margin-left:24px">Add</button>
+        </div>
+
+    </ng-template>
+    <div class="col-6 institution-title">
+        <h3>{{coreData.institutionName}}</h3>
+    </div>
+    <div class="">
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item col-3">
+                <a class="nav-link active" id="pills-detail-tab" data-toggle="pill" href="#pills-details" role="tab" aria-controls="pills-detail" aria-selected="true">Institution Details</a>
+            </li>
+            <li class="nav-item col-2">
+                <a class="nav-link" id="pills-poc-tab" data-toggle="pill" href="#pills-poc" role="tab" aria-controls="pills-poc" aria-selected="false">POC</a>
+            </li>
+            <li class="nav-item col-2">
+                <a class="nav-link" id="pills-branch-tab" data-toggle="pill" href="#pills-branch" role="tab" aria-controls="pills-branch" aria-selected="false">Branch</a>
+            </li>
+            <li class="nav-item col-2">
+                <a class="nav-link" id="pills-section-tab" data-toggle="pill" href="#pills-section" role="tab" aria-controls="pills-section" aria-selected="false">Section</a>
+            </li>
+        </ul>
+    </div>
+    <div class="institution-body">
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-details" role="tabpanel" aria-labelledby="pills-details-tab">
+                <div class="row">
+                    <div class="offset-md-11 offset-11">
+                        <button class="btn btn-primary edit-buton" (click)="editInstitutionForm()">Edit <img src="../../../../assets/pencil.png" alt=""></button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p class="line-heading">Name of the Institution</p>
+                        <p>{{coreData.institutionName}}</p>
+                        <p class="line-heading">Website</p>
+                        <p>{{coreData.website}}</p>
+                        <p class="line-heading">Address</p>
+                        <p>{{coreData.address1 + " " + coreData.address2}}</p>
+                        <p class="line-heading">State</p>
+                        <p>{{coreData.stateName}}</p>
+                        <p class="line-heading">Remarks</p>
+                        <p>{{coreData.remarks}} </p>
+                    </div>
+                    <div class="col-6">
+                        <p class="line-heading">Email(Institution)</p>
+                        <p>{{coreData.email}}</p>
+                        <p class="line-heading">Institution Type</p>
+                        <p>College</p>
+                        <p class="line-heading">Country</p>
+                        <p>India</p>
+                        <p class="line-heading">City</p>
+                        <p>{{coreData.cityName}}</p>
+                        <p class="line-heading">Image</p>
+                        <img [src]="coreData.pictureStream" width="80px" height="80px" alt="">
+                    </div>
+
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pills-poc" role="tabpanel" aria-labelledby="pills-poc-tab">
+                <div class="row">
+                    <div class="offset-md-11 offset-11">
+                        <button class="btn btn-primary edit-buton" (click)="editPOCForm()">Edit <img src="../../../../assets/pencil.png" alt=""></button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p class="line-heading">Primary POC First Name</p>
+                        <p>{{pocData.primaryPOCFirstName}}</p>
+                        <p class="line-heading">Primary POC PhoneNumber</p>
+                        <p>{{pocData.primaryPOCPhoneNumber}}</p>
+                        <p class="line-heading">Secondary POC First Name</p>
+                        <p>{{(pocData.secondaryPOCName).split(" ")[0]}}</p>
+                        <p class="line-heading">Secondary POC PhoneNumber</p>
+                        <p>{{pocData.secondaryPOCPhoneNumber}}</p>
+
+                    </div>
+                    <div class="col-6">
+                        <p class="line-heading">Primary POC LatstName</p>
+                        <p>{{pocData.primaryPOCLastName}}</p>
+                        <p class="line-heading">Primary POC Email</p>
+                        <p>{{pocData.email}}</p>
+                        <p class="line-heading">Secondary POC LastName</p>
+                        <p>{{(pocData.secondaryPOCName).split(" ")[1]}}</p>
+                        <p class="line-heading">Secondary POC Email</p>
+                        <p>{{pocData.secondaryPOCEmail}}</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pills-branch" role="tabpanel" aria-labelledby="pills-branch-tab">
+                <div class="row branch-tab">
+
+                    <div class="col-9">
+                        <h2>List of Branches</h2>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-primary" (click)="openBranchModal(branchmodal)">Add</button>
+                    </div>
+                </div>
+                <div class="shadow-sm p-3 mb-5 bg-white blip-chip" [ngStyle]="getRandomColor()" *ngFor="let branch of branchData">{{branch.branchName}}</div>
+            </div>
+            <div class="tab-pane fade" id="pills-section" role="tabpanel" aria-labelledby="pills-section-tab">
+
+                <div class="row">
+                    <div class="col-8">
+                        <h4 class="section-padding">List of Sections</h4>
+
+                    </div>
+                    <div class="col-4 section-padding">
+                        <button class="btn btn-primary" (click)="openSectionModal(sectionModal)">Add</button>
+                    </div>
+                </div>
+
+                <div class="row section-area ">
+                    <div class="col-6 branch-wrapper ">
+                        <ul class="blip-ul ">
+
+                            <li class="blip-li " *ngFor="let b of branchData; let i=index " (click)="getBranch(i) " [ngClass]="{ 'blip-li--focused':selectedBranchIndex===i } ">
+                                <a>{{b.branchName}}</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-4 section-wrapper ">
+                        <div class="chip " *ngFor="let sec of singleSection ">
+                            <i class="fas fa-circle fa-dot "></i> {{sec.sectionName}}
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

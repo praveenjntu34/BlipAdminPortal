@@ -7,12 +7,15 @@
 <hr class="title-line">
 <div class="sidebar-wrapper">
     <div class="menu-items">
-        <a href=""><span class="icon icon-dashboard"></span>Dashboard</a>
-        <a href=""><span class="icon icon-institution"></span>Institutions</a>
-        <a href=""><span class="icon icon-banner"></span>Banners</a>
-        <a href=""><span class="icon icon-post"></span>Posts</a>
-        <a href=""><span class="icon icon-setting"></span>Settings</a>
-        <a href=""><span class="icon icon-logout"></span>Logout</a>
+        <a href="" *ngIf="role == 'SuperAdmin'"><span class="icon icon-dashboard" ></span>Dashboard</a>
+        <a [routerLink]="['/home/institutions']" *ngIf="role == 'SuperAdmin'"><span class="icon icon-institution"></span>Institutions</a>
+        <a [routerLink]="['/home/admin/posts']" *ngIf="role == 'InstitutionAdmin'"><span class="icon icon-post" ></span>Posts</a>
+        <a [routerLink]="['/home/admin/institution-profile']" *ngIf="role == 'InstitutionAdmin'"><span class="icon icon-banner"></span>Institution Profile</a>
+        <a [routerLink]="['/home/admin/banners']"><span class="icon icon-banner"></span>Banners</a>
+        <a [routerLink]="['/home/admin/parents']" *ngIf="role == 'InstitutionAdmin'"><span class="icon icon-post" ></span>Users</a>
+        <a [routerLink]="['/home/admin/instructors']" *ngIf="role == 'InstitutionAdmin'"><span class="icon icon-banner"></span>Instructors</a>
+        <a [routerLink]="['/home/admin/settings']"><span class="icon icon-setting"></span>Settings</a>
+        <a href="" (click)="logout()"><span class="icon icon-logout"></span>Logout</a>
     </div>
 </div>
 

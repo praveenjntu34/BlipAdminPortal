@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment.prod'
+import { BehaviorSubject } from 'rxjs';
 const localUrl = 'http://localhost:3400/institution/details'
 // const baseUrl = 'http://localhost:3400/'
 @Injectable({
@@ -8,6 +9,20 @@ const localUrl = 'http://localhost:3400/institution/details'
 })
 export class InstitutionService {
 
+  public updateList: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public newInstituationData: any;
+
+  public instructorUpdateList: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
+  public newInstructorData: any;
+
+  updateInstitutionDetails(updatedForm: any) {
+    return this.http.put(environment.baseUrl + 'institution/details',updatedForm);
+  }
+
+
+  updatePOCDetails(updatedForm: any) {
+    return this.http.post(environment.baseUrl + 'institution/pc',updatedForm);
+  }
 
   addInstructor(instructor) {
     return this.http.post(environment.baseUrl + 'instructor',instructor )
@@ -18,6 +33,9 @@ export class InstitutionService {
     return this.http.get(environment.baseUrl + 'instructor/' + relTenantInstitutionId)
   }
 
+  checkWhetherEmailExists(email) {
+    return this.http.get(environment.baseUrl + 'check-email?data=' + email)
+  }
 
   addBranch(branchData: any) {
     const branchFormData = new FormData();
@@ -62,7 +80,17 @@ export class InstitutionService {
   constructor(private http: HttpClient) { }
 
   getAllInstitutions() {
-    return this.http.get(environment.baseUrl + 'institution/details');
+    return this.http.get(environment.baseUrl + 'institution/details?pageNumber=0&size=10');
+  
+}
+
+getAllInstitutionsByPage(page) {
+  return this.http.get(environment.baseUrl + 'institution/details?pageNumber=' + page + '&size=10');
+
+}
+
+  getAllInstitutionsByCity(cityId) {
+    return this.http.get(environment.baseUrl + 'institution/details?pageNumber=0&size=10&cityId=' + cityId);
   }
 
   uploadImage(fileToUpload){
@@ -72,7 +100,6 @@ export class InstitutionService {
   }
 
   getAllStates() {
-
     return this.http.get(environment.baseUrl + "states");
   }
 
@@ -111,6 +138,44 @@ export class InstitutionService {
         branchName: "Electronics and Communicatio Engineering"
       }
     ]
+  }
+
+  public setNewInstituationData(response) {
+    // TODO: change date to required format
+    var arr = {
+      institutionId: 4,
+      institutionName: "sfcvd",
+      count: 0,
+      pictureStream:null,
+      cityName: "Kavaratti",
+      stateName: "Lakshadweep",
+    }
+    console.log("service",response);
+    
+    this.newInstituationData = response;
+    this.updateList.next(true);
+  }
+
+  public getNewInstituationData() {
+    return this.newInstituationData;
+  }
+
+  public resetNewInstituationData() {
+    this.newInstituationData = null;
+  }
+
+  public setNewInstructorData(response) {
+    
+    this.newInstructorData = response;
+    this.instructorUpdateList.next(true);
+  }
+
+  public getNewIInstructorData() {
+    return this.newInstructorData;
+  }
+
+  public resetNewInstructorData() {
+    this.newInstructorData = null;
   }
 
 }

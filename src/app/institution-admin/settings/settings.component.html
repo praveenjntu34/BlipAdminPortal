@@ -1,0 +1,78 @@
+<div class="row">
+    <div class="col-7 card profile-card">
+        <div class="row title">
+            <h4>Profile</h4>
+        </div>
+        <div class="col-10">
+            <div class="row">
+                <div class="col-3">
+                    <p>Firstname</p>
+                </div>
+                <div class="col-9">
+                    <input type="text" class="form-control blip-input" disabled [ngModel]="firstName" id="website">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <p>Lastname</p>
+                </div>
+                <div class="col-9">
+                    <input type="text" class="form-control blip-input" disabled [ngModel]="lastName" id="website">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-3">
+                    <p>Email</p>
+                </div>
+                <div class="col-9">
+                    <input type="text" class="form-control blip-input" disabled [ngModel]="email" id="website">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <p>Phone Number</p>
+                </div>
+                <div class="col-9">
+                    <input type="text" class="form-control blip-input" disabled [ngModel]="phoneNumber" id="website">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-4 card password-card">
+        <form [formGroup]=passwordForm>
+            <div class="row title">
+                <h4>Change password</h4>
+            </div>
+            <div class="row">
+                <div class="form-group col-12">
+                    <label for="newPassword">New password</label>
+                    <input type="password" formControlName="newPassword" class="form-control blip-input" id="institutionName" aria-describedby="emailHelp">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-12">
+                    <label for="reEnterPassword">Re-enter Password</label>
+                    <input type="password" formControlName="reEnterPassword" class="form-control blip-input" id="website">
+                </div>
+            </div>
+            <div class="row">
+                <button type="submit" (click)="changePassword()" class="btn btn-primary btn-nxt">Update Password</button>
+            </div>
+        </form>
+
+        <div class="row" *ngIf="formSubmitted && password.errors && password.errors.required">
+            <p class="field-validation">*Password is required</p>
+        </div>
+        <div class="row" *ngIf="formSubmitted && confirmPassword.errors && confirmPassword.errors.required && !confirmPassword.errors.filled">
+            <p class="field-validation">*Confirm Password is required</p>
+        </div>
+        <div class="row" *ngIf="password.dirty && password.errors && password.errors.minlength">
+            <p class="field-validation">*Password should be atleast 8 characters</p>
+        </div>
+        <div class="row" *ngIf="confirmPassword.dirty && confirmPassword.errors && confirmPassword.errors.cnfPassword">
+            <p class="field-validation">*Password doesn't match</p>
+        </div>
+    </div>
+</div>

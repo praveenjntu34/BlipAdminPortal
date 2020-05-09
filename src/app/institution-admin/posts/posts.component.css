@@ -1,0 +1,54 @@
+.posts-row {
+    padding: 0
+}
+
+.posts-list {
+    margin: 10px 50px;
+}
+
+.post-card {
+    padding: 23px 10px 10px 10px;
+}
+
+.bt {
+    border: none;
+    background-color: inherit;
+    font-size: 16px;
+    padding: 0;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.default-button {
+    background-color: #316AFF;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    position: relative;
+    float: right;
+    margin: 10px;
+    padding: 8px;
+}
+
+
+/* On mouse-over */
+
+.bt:hover {
+    background: #eee;
+}
+
+.default {
+    color: blue;
+}
+
+.danger {
+    color: red;
+}
+
+.post-list--item {
+    padding-bottom: 15px;
+}
+
+.btn-group {
+    margin-left: 6px;
+}

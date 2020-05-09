@@ -8,6 +8,7 @@ export class BranchSection {
 export class Branch {
     branchId: number;
     branchName: string;
+  sections: any;
     constructor(branchId:number,branchName: string){
         this.branchId = branchId;
         this.branchName = branchName;

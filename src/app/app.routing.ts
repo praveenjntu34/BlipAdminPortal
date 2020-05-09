@@ -2,6 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component'
 import { BlipLayoutComponent } from './blip-layout/blip-layout/blip-layout.component';
+import { LoginComponent } from './auth/components/login/login.component';
+import { ForgotPasswordComponent } from './auth/components/forgot-password/forgot-password.component';
+import { OtpComponent } from './auth/components/otp/otp.component';
+import { ChangePasswordComponent } from './auth/components/change-password/change-password.component';
 
 // export const appRoutes: Routes =[
 //     {
@@ -22,21 +26,28 @@ export const appRoutes: Routes = [
 
     {
         path: '',
-        redirectTo: '/institutions',
+        redirectTo: '/login',
         pathMatch: 'full'
+    },
+    {
+        path: 'login',
+        component: LoginComponent
+    },
+    {
+      path: 'forgot-password',
+      component: ForgotPasswordComponent
+    },
+    {
+      path: 'otp',
+      component: OtpComponent
+    },
+    {
+      path: 'change-password',
+      component: ChangePasswordComponent
     }
-    // ,
-    // {
-    //     path: 'auth',
-    //     loadChildren: './auth/auth.module#AuthModule'
-    // },
-    // {
-    //     path: 'menu',
-    //     loadChildren: './dashboard-menu/dashboard-menu.module#DashboardMenuModule'
-    // }
     ,
     {
-        path: '',
+        path: 'home',
         component: BlipLayoutComponent,
         children: [
             {
@@ -44,9 +55,4 @@ export const appRoutes: Routes = [
                 loadChildren: './blip-layout/blip-layout.module#BlipLayoutModule'
             }]
     }
-    // ,
-    // {
-    //     path: 'institution',
-    //     loadChildren: './institutions/institutions.module#InstitutionsModule'
-    // }
 ];

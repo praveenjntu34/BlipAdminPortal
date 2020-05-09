@@ -5,6 +5,9 @@ import { BSections } from '../institution-list/institution-list.component';
 import { MatDialog } from '@angular/material/dialog';
 import { InstructorTabComponent } from '../instructor-tab/instructor-tab.component';
 import { AddInstructorModalComponent } from '../add-instructor-modal/add-instructor-modal.component';
+import { AddInstitutionModalComponent } from '../add-institution-modal/add-institution-modal.component';
+import { EditInstitutionDetailsComponent } from '../edit-institution-details/edit-institution-details.component';
+import { EditInstitutionPocDetailsComponent } from '../edit-institution-poc-details/edit-institution-poc-details.component';
 
 @Component({
   selector: 'app-institution-detail',
@@ -20,6 +23,7 @@ export class InstitutionDetailComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
 
+    console.log("core",this.coreData);
 
     this.api.getInstitutionBranches(this.coreData.relTenantInstitutionId)
               .subscribe(data => {
@@ -62,6 +66,26 @@ export class InstitutionDetailComponent implements OnInit, OnChanges {
     this.singleSection = this.branchData[this.selectedBranchIndex].sections;
   }
   
+  editInstitutionForm(){
+    console.log("this", this.coreData)
+    this.matDialogue.open(EditInstitutionDetailsComponent, {
+      width: '1300px',
+      height: '700px',
+      panelClass: 'custom-dialog-container',
+      data: this.coreData
+    });
+  }
+
+  editPOCForm(){
+    console.log("this", this.pocData)
+    this.matDialogue.open(EditInstitutionPocDetailsComponent, {
+      width: '1200px',
+      height: '700px',
+      panelClass: 'custom-dialog-container',
+      data: this.pocData
+    });
+  }
+
   getRandomColor() {
     return {
       'border-color': this.myArray[Math.floor(Math.random() * this.myArray.length)]
@@ -74,7 +98,8 @@ export class InstitutionDetailComponent implements OnInit, OnChanges {
   openModal(){
      this.matDialogue.open(InstructorTabComponent, {
        width: '550px',
-       height: '400px'
+       height: '400px',
+      
      })
   }
 

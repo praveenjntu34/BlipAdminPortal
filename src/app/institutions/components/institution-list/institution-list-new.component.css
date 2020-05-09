@@ -65,6 +65,26 @@ h3 {
     padding: 8px;
 }
 
+.no-instructor-image {
+    position: relative;
+    left: 30%;
+    top: 30px;
+}
+
+@media only screen and (max-width: 1280px) {
+    .custom-dialog-container {
+        width: '800px';
+        height: '500px';
+    }
+}
+
+@media only screen and (max-width: 1440px) {
+    .custom-dialog-container {
+        width: '1200px';
+        height: '700px';
+    }
+}
+
 .pincode-bar {
     margin-left: 10px;
     border: solid rgba(144, 144, 144, 0.23) 1px;
@@ -78,6 +98,10 @@ h3 {
     border: none;
     border-radius: 2px;
     vertical-align: middle;
+}
+
+.custom-page {
+    cursor: pointer;
 }
 
 .pincode-title p {
@@ -157,9 +181,17 @@ select {
     left: 15px;
 }
 
+select:focus {
+    outline: none;
+}
+
 .state {
     border: solid rgba(144, 144, 144, 0.23) 1px;
     padding: 0
+}
+
+.select-style {
+    border: none;
 }
 
 .expand-more {
@@ -310,13 +342,6 @@ input:focus {
     top: 130px;
 }
 
-.btn-branch {
-    right: 14px;
-    bottom: 8px;
-    margin-top: 32px;
-    position: absolute;
-}
-
 .branch-button {
     width: 80%;
     background: #F6F8F9;
@@ -394,4 +419,10 @@ li {
     height: 100px;
     left: 300px;
     top: 200px;
+}
+
+::ng-deep .cdk-overlay-container {
+    /* Do you changes here */
+    left: 100px;
+    top: 0px
 }

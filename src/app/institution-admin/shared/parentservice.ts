@@ -26,10 +26,30 @@ export class ParentService{
       // return this.http.post(environment.baseUrl + 'post',post )
   }
 
+  addParentCsv(file) {
+    let headers = new Headers();
+
+    const formData =  new FormData();
+    formData.append('file',file);
+    return this.http.post(environment.baseUrl + 'parent/file', formData);
+  }
+
+  deleteParent(deleteData) {
+    return this.http.post(environment.baseUrl + 'parent/delete', deleteData);
+
+  }
+
+  updateparent(data) {
+    return this.http.post(environment.baseUrl + 'update-parent', data);
+  }
+
   getAllParents(relTenantInstitutionId) {
     return this.http.get(environment.baseUrl + 'parent?relTenantInstitutionId=' + relTenantInstitutionId);
   }
 
+  getSingleParents(childId) {
+    return this.http.get(environment.baseUrl + 'parent/single?childId=' + childId);
+  }
   constructor(private http: HttpClient) { }
 
 

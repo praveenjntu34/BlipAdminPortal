@@ -1,8 +1,11 @@
 <div class="row">
     <div class="col-md-12">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-4">
                 <h3>List of Users</h3>
+            </div>
+            <div class="col-md-4">
+                <button class="default-button" (click)="addParenCsvModal()">Add Using CSV</button>
             </div>
             <div class="col-md-4">
                 <button class="default-button" (click)="addParenModal()">Add Parent</button>
@@ -12,7 +15,7 @@
         <div class="institution-list">
             <div class="row card-group">
                 <div class="col-md-6 col-lg-4 col-xl-3" *ngFor="let parent of data; let in = index;">
-                    <div class="card institution-list--item" (click)="goToDetails(in)">
+                    <div class="card institution-list--item">
                         <div class="row">
                             <div class="col-12 title-name">
                                 <label for="">Name: </label>
@@ -38,37 +41,37 @@
                         <div class="col-md-6 col-lg-6 col-xl-6">
                             <div class="row btn-group">
                                 <div class="col-3">
-                                    <button class="btn bt default">Edit</button>
+                                    <button class="btn bt default" (click)="openEditModal(in)">Edit</button>
                                 </div>
                                 <div class="col-1">
 
                                 </div>
                                 <div class="col-3">
-                                    <button class="btn bt danger">Delete</button>
+                                    <button (click)="deleteUser(in)" class="btn bt danger">Delete</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div *ngIf="data.length == 0 && searchable" class="no-instructor-image">
-                <img src="../../../../assets/no-institution.png" alt=" ">
+            <div *ngIf="data.length==0 && searchable " class="no-instructor-image ">
+                <img src="../../../../assets/no-institution.png " alt=" ">
             </div>
 
         </div>
 
-        <div class="row pagination">
-            <nav aria-label="...">
-                <ul class="pagination">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+        <div class="row pagination ">
+            <nav aria-label="... ">
+                <ul class="pagination ">
+                    <li class="page-item disabled ">
+                        <a class="page-link " href="# " tabindex="-1 ">Previous</a>
                     </li>
-                    <!-- <li class="page-item"><a class="page-link" href="#">1</a></li> -->
-                    <li class="page-item" [class.active]="selectedPage == k + 1" *ngFor="let page of pageArray; let k = index" (click)="getCurrentPage(k)">
-                        <a class="page-link">{{k + 1}}<span class="sr-only"></span></a>
+                    <!-- <li class="page-item "><a class="page-link " href="# ">1</a></li> -->
+                    <li class="page-item " [class.active]="selectedPage==k + 1 " *ngFor="let page of pageArray; let k=i ndex " (click)="getCurrentPage(k) ">
+                        <a class="page-link ">{{k + 1}}<span class="sr-only "></span></a>
                     </li>
-                    <li class="page-item">
-                        <a class="page-link">Next</a>
+                    <li class="page-item ">
+                        <a class="page-link ">Next</a>
                     </li>
                 </ul>
             </nav>

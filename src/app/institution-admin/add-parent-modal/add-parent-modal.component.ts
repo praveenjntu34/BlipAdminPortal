@@ -63,7 +63,7 @@ export class AddParentModalComponent implements OnInit {
       parentOneLastName: ['', Validators.required],
       email: ['', Validators.required],
       phoneNumber: [],
-      parentTwoName: [],
+      secondaryParentName: [],
       admissionNumber: '',
       childrenName: '',
       secondaryPhoneNumber: '',

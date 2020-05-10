@@ -19,10 +19,12 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { EditInstructorModalComponent } from './modals/edit-instructor-modal/edit-instructor-modal.component';
 import { DeleteInstructorModalComponent } from './modals/delete-instructor-modal/delete-instructor-modal.component';
 import { InstitutionProfileComponent } from './institution-profile/institution-profile.component';
+import { EditParentModalComponent } from './modals/edit-parent-modal/edit-parent-modal.component';
+import { AddParentCsvComponent } from './add-parent-csv/add-parent-csv.component';
 
 @NgModule({
-  declarations: [PostsComponent, AddPostModalComponent, BannersComponent, AddBannerModalComponent, InstructorsComponent, ParentsComponent, AddParentModalComponent, SettingsComponent, EditInstructorModalComponent, DeleteInstructorModalComponent, InstitutionProfileComponent],
-  entryComponents: [AddPostModalComponent,EditInstructorModalComponent, DeleteInstructorModalComponent, AddBannerModalComponent,AddInstructorModalComponent,InstructorTabComponent, AddParentModalComponent],
+  declarations: [PostsComponent, AddPostModalComponent, BannersComponent, AddBannerModalComponent, InstructorsComponent, ParentsComponent, AddParentModalComponent, SettingsComponent, EditInstructorModalComponent, DeleteInstructorModalComponent, InstitutionProfileComponent, EditParentModalComponent, AddParentCsvComponent],
+  entryComponents: [AddPostModalComponent,EditInstructorModalComponent, AddParentCsvComponent,DeleteInstructorModalComponent, AddBannerModalComponent,AddInstructorModalComponent,InstructorTabComponent, AddParentModalComponent, EditParentModalComponent],
   imports: [
     CommonModule,
     InstitutionAdminRoutingModule,

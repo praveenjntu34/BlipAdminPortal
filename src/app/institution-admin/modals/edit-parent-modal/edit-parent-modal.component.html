@@ -1,0 +1,61 @@
+<form [formGroup]="parentForm">
+    <div class="row">
+        <div class="form-group col-6">
+            <label for="parentOneFirstName">Parent1 Firstname*</label>
+            <input type="text" formControlName="parentOneFirstName" class="form-control blip-input" id="institutionName" aria-describedby="emailHelp">
+        </div>
+        <div class="form-group col-6">
+            <label for="parentOneLastName">Parent1 Lastname</label>
+            <input type="email" formControlName="parentOneLastName" class="form-control blip-input" id="eamil">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-6">
+            <label for="email">Email</label>
+            <input type="text" formControlName="email" class="form-control blip-input" id="website">
+        </div>
+        <div class="form-group col-6">
+            <label for="phoneNumber">Phone Number</label>
+            <input type="text" formControlName="phoneNumber" class="form-control blip-input" id="website">
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="form-group col-6">
+            <label for="secondaryParentName">Parent2 Name</label>
+            <input type="text" formControlName="secondaryParentName" class="form-control blip-input" id="address1">
+        </div>
+        <div class="form-group col-6">
+            <label for="admissionNumber">Admission Number</label>
+            <input type="text" formControlName="admissionNumber" class="form-control blip-input" id="address2">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-6">
+            <label for="secondaryPhoneNumber">Secondary Phone Number</label>
+            <input type="text" formControlName="secondaryPhoneNumber" class="form-control blip-input" id="address1">
+        </div>
+        <div class="form-group col-6">
+            <label for="childrenName">Children Name</label>
+            <input type="text" formControlName="childrenName" class="form-control blip-input" id="address1">
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="form-group col-6">
+            <label for="stateId">Branch</label>
+            <select formControlName="branchId" #st [(ngModel)]="selectedBranchId" (change)="getSections(st.value)" class="form-control blip-input  blip-select">
+                        <option [value]="branch.branchId" *ngFor="let branch of allBranches">{{branch.branchName}}</option>
+                    </select>
+        </div>
+        <div class="form-group col-6">
+            <label for="sectionId">Section</label>
+            <select formControlName="sectionId" #sc [(ngModel)]="selectedSectionId" class="form-control blip-input  blip-select">
+                    <option [value]="section.sectionId" *ngFor="let section of allSections">{{section.sectionName}}</option>
+                </select>
+        </div>
+    </div>
+    <button type="submit" (click)="updateParent()" class="btn btn-primary btn-next" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Save</button>
+
+
+</form>

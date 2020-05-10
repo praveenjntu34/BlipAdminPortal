@@ -4,6 +4,8 @@ import { AddParentModalComponent } from '../add-parent-modal/add-parent-modal.co
 import { ParentService } from '../shared/parentservice';
 import { Subscription } from 'rxjs';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { EditParentModalComponent } from '../modals/edit-parent-modal/edit-parent-modal.component';
+import { AddParentCsvComponent } from '../add-parent-csv/add-parent-csv.component';
 
 @Component({
   selector: 'app-parents',
@@ -18,6 +20,15 @@ export class ParentsComponent implements OnInit {
 
    }
 
+   addCsv() {
+
+    //  this.parentService.addParentCsv(this.bannerForm.value.bannerStream)
+    //         .subscribe((data: any) => {
+    //           console.log("response", data);
+    //         })
+    }
+   
+
   ngOnInit() {
     this.ngxService.start();
     this.parentService.getAllParents(localStorage.getItem('loggedInTenantId'))
@@ -29,6 +40,14 @@ export class ParentsComponent implements OnInit {
     this.updateparents();
   }
 
+  addParenCsvModal(){
+    this.matDialog.open(AddParentCsvComponent, {
+      width: '1200px',
+      height: '700px',
+      panelClass: 'custom-dialog-container'
+    })
+  } 
+
   addParenModal(){
     this.matDialog.open(AddParentModalComponent, {
       width: '1200px',
@@ -37,6 +56,29 @@ export class ParentsComponent implements OnInit {
     })
   } 
 
+  openEditModal(index){
+    this.matDialog.open(EditParentModalComponent, {
+      width: '550px',
+      height: '500px',
+      data:this.data[index].childId,
+    })
+ }
+
+ deleteUser(index) {
+   console.log(this.data[index]);
+   var object = {
+     personId: this.data[index].personId,
+     loginCredentialId: this.data[index].loginCredentialId,
+     parentId: this.data[index].parentId,
+     childId: this.data[index].childId
+   }
+
+   this.parentService.deleteParent(object)
+        .subscribe(res => {
+          console.log(res);
+          
+        })
+ }
   private updateparents() {
     this.subscriptions.push(this.parentService.parentUpdateList
       .subscribe(isUpdated => {

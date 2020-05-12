@@ -89,7 +89,7 @@
                         <div class="card institution-list--item " (click)="goToDetails(in) ">
                             <div class="row ">
                                 <div class="col-md-8 col-lg-8 col-xl-7 ">
-                                    <p class="institution-list--title ">{{institution.institutionName}}</p>
+                                    <p class="institution-list--title ">{{institution.institutionName | slice:0:8}}</p>
                                 </div>
                                 <div class="col-md-4 col-lg-4 col-xl-5 ">
                                     <img width="60 " height="60 " [src]="getPicture(institution.pictureStream) ">

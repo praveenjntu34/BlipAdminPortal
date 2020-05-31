@@ -16,9 +16,10 @@ import { AddInstitutionModalComponent } from './components/add-institution-modal
 import { AddBranchModalComponent } from './components/add-branch-modal/add-branch-modal.component';
 import { EditInstitutionDetailsComponent } from './components/edit-institution-details/edit-institution-details.component';
 import { EditInstitutionPocDetailsComponent } from './components/edit-institution-poc-details/edit-institution-poc-details.component'
+import { TruncatePipe } from './shared/truncate.pipe';
 
 @NgModule({
-  declarations: [InstitutionListComponent, InstitutionListPageComponent, InstitutionDetailComponent, InstitutionDetailPageComponent, 
+  declarations: [InstitutionListComponent,TruncatePipe, InstitutionListPageComponent, InstitutionDetailComponent, InstitutionDetailPageComponent, 
     InstructorTabComponent, AddInstructorModalComponent, AddInstitutionModalComponent, AddBranchModalComponent, EditInstitutionDetailsComponent, 
     EditInstitutionPocDetailsComponent],
   entryComponents: [InstructorTabComponent, AddInstructorModalComponent, AddInstitutionModalComponent, 

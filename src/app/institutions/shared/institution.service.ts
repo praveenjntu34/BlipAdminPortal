@@ -72,6 +72,10 @@ export class InstitutionService {
     return this.http.post(environment.baseUrl + 'institution/poc',pocData )
   }
 
+  deleteBranch(branchIndex) {
+    return this.http.delete(environment.baseUrl + 'institution/branch/' + branchIndex )
+  }
+
 
   createInstitutionDetails(data : any) {
     return this.http.post(environment.baseUrl + 'institution/details',data);

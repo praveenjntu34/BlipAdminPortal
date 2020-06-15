@@ -1,4 +1,45 @@
 <div class="institution-wrapper">
+
+    <ng-template #branchmodal let-modal>
+        <div class="row">
+            <h5 style="margin: 5px 0 0 24px;">Add branch</h5>
+
+            <div class="" style="margin-left:24px; margin-bottom: 46px;">
+                <label for="institutionName">Name of Branch*</label>
+                <input type="text" [(ngModel)]="branchNameModel" class="branch-button" id="branchName">
+            </div>
+            <button class="btn btn-primary btn-branch" (click)="addBranch()" style="margin: 0 10px 9px 222px;">Add</button>
+        </div>
+
+    </ng-template>
+
+    <ng-template #sectionModal let-modal>
+        <div class="row">
+            <h5 style="margin: 5px 0 0 24px;">Add section</h5>
+
+            <div class="" style="margin-left:24px; margin-bottom: 46px;">
+                <label for="sectionName">Name of Section*</label>
+                <input type="text" [(ngModel)]="sectionNameModel" class="branch-button" id="branchName">
+            </div>
+            <button class="btn btn-primary btn-branch" (click)="addSection()" style="margin: 0 10px 9px 222px;">Add</button>
+        </div>
+
+    </ng-template>
+
+
+    <ng-template #deleteModal let-modal>
+        <div class="row">
+            <h5 style="margin: 5px 0 0 24px;">Delete branch</h5>
+
+            <div class="" style="margin-left:24px; margin-bottom: 46px;">
+                <label for="institutionName">Are you sure want to delete this branch?</label>
+            
+            </div>
+            <button class="btn btn-danger btn-branch" (click)="deleteBranch()" style="margin: 0 10px 9px 222px;">Delete</button>
+        </div>
+
+    </ng-template>
+
     <div class="col-6 institution-title">
         <h3>{{coreData.institutionName}}</h3>
     </div>
@@ -89,7 +130,18 @@
                 </div>
             </div>
             <div class="tab-pane fade" id="pills-branch" role="tabpanel" aria-labelledby="pills-branch-tab">
-                <div class="shadow-sm p-3 mb-5 bg-white blip-chip" [ngStyle]="getRandomColor()" *ngFor="let branch of branchData">{{branch.branchName + " "}} <img src="../../../../assets/cancel-grey.png" (click)="deleteBranch()" width="15px" height="15px" style="cursor: pointer;" alt=""></div>
+
+                <div class="row branch-tab">
+
+                    <div class="col-9">
+                        <h2>List of Branches</h2>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-primary" (click)="openBranchModal(branchmodal)">Add</button>
+                    </div>
+                </div>
+                
+                <div class="shadow-sm p-3 mb-5 bg-white blip-chip" [ngStyle]="getRandomColor()" *ngFor="let branch of branchData; let branchIndex = index;">{{branch.branchName + " "}} <img src="../../../../assets/cancel-grey.png" (click)="deleteWarn(deleteModal,branchIndex)" width="15px" height="15px" style="cursor: pointer;" alt=""></div>
 
             </div>
             <div class="tab-pane fade" id="pills-section" role="tabpanel" aria-labelledby="pills-section-tab">
@@ -100,18 +152,16 @@
 
                     </div>
                     <div class="col-4 section-padding">
-                        <button class="btn btn-primary">Add</button>
+                        <button class="btn btn-primary" (click)="openSectionModal(sectionModal)">Add</button>
                     </div>
                 </div>
 
                 <div class="row section-area ">
                     <div class="col-6 branch-wrapper ">
                         <ul class="blip-ul ">
-
                             <li class="blip-li " *ngFor="let b of branchData; let i=index " (click)="getBranch(i) " [ngClass]="{ 'blip-li--focused':selectedBranchIndex===i } ">
                                 <a>{{b.branchName}}</a>
                             </li>
-
                         </ul>
                     </div>
                     <div class="col-4 section-wrapper ">
@@ -125,9 +175,9 @@
             </div>
             <div class="tab-pane fade " id="pills-instructor" role="tabpanel " aria-labelledby="pills-instructor-tab ">
 
-                <div class="row offset-md-11 offset-11 ">
+                <!-- <div class="row offset-md-11 offset-11 ">
                     <button class="btn btn-primary " (click)="add() ">+Add</button>
-                </div>
+                </div> -->
                 <div *ngIf="instructors.length == 0" class="no-instructor-image">
                     <img src="../../../../assets/no-instructors.png " alt=" ">
                 </div>

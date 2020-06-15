@@ -27,6 +27,16 @@ button>img {
     font-weight: bold;
 }
 
+.branch-tab {
+    margin-top: 10px;
+}
+
+.custom-class {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
 .branch-wrapper {
     padding-right: 0;
 }

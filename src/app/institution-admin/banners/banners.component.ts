@@ -33,8 +33,8 @@ export class BannersComponent implements OnInit {
 
   openModal() {
     this.matDialogue.open(AddBannerModalComponent, {
-      width: '1000px',
-      height: '600px',
+      width: '800px',
+      height: '500px',
       panelClass: 'custom-dialog-container'
     })
   }

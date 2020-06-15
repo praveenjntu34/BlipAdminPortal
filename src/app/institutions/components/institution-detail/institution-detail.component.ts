@@ -8,6 +8,10 @@ import { AddInstructorModalComponent } from '../add-instructor-modal/add-instruc
 import { AddInstitutionModalComponent } from '../add-institution-modal/add-institution-modal.component';
 import { EditInstitutionDetailsComponent } from '../edit-institution-details/edit-institution-details.component';
 import { EditInstitutionPocDetailsComponent } from '../edit-institution-poc-details/edit-institution-poc-details.component';
+import { NgbModalRef, NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-institution-detail',
@@ -19,6 +23,12 @@ export class InstitutionDetailComponent implements OnInit, OnChanges {
   bSectionsArray: Array<BSections> = new Array<BSections>();
   singleSection: Array<string> = [];
 
+  modalOptions:NgbModalOptions;
+  modalRef: NgbModalRef;
+  branchNameModel: string;
+  sectionNameModel: string;
+
+  deletedBranchIndex: number;
   instructors: any = []
 
   ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
@@ -52,13 +62,39 @@ export class InstitutionDetailComponent implements OnInit, OnChanges {
   branchData: any = [];
   @Input() coreData: any;
   constructor(private route: ActivatedRoute, private api : InstitutionService
-    ,private matDialogue: MatDialog
+    ,private matDialogue: MatDialog,private instService: InstitutionService,private ngxService: NgxUiLoaderService, private modalService: NgbModal
     ) {
+
+      this.modalOptions = {
+        backdrop: 'static',
+        centered: true,
+        backdropClass:'customBackdrop',
+        size: 'sm',
+        windowClass: 'custom-class'
+      }
     this.route.params.subscribe((param:any) => {
       console.log("route param", param);
       console.log("d", this.data);
     })
    }
+
+
+
+  addBranch() {
+
+    this.modalRef.close();
+    var branch = {
+      branchName: this.branchNameModel,
+      relTenantInstitutionId: this.coreData.relTenantInstitutionId
+    }
+    this.instService.addBranch(branch)
+    .subscribe((data: any) => {
+          this.branchData.push(branch)
+          this.branchNameModel = null;
+          console.log(data);
+          window.location.reload();
+          })
+  }
 
    public getBranch(i) {
     console.log("got index", i)
@@ -69,18 +105,23 @@ export class InstitutionDetailComponent implements OnInit, OnChanges {
   editInstitutionForm(){
     console.log("this", this.coreData)
     this.matDialogue.open(EditInstitutionDetailsComponent, {
-      width: '1300px',
-      height: '700px',
+      width: '800px',
+      height: '500px',
       panelClass: 'custom-dialog-container',
       data: this.coreData
     });
   }
 
+  openBranchModal(modalContent) {
+    this.modalRef = this.modalService.open(modalContent, this.modalOptions)
+    
+  }
+
   editPOCForm(){
     console.log("this", this.pocData)
     this.matDialogue.open(EditInstitutionPocDetailsComponent, {
-      width: '1200px',
-      height: '700px',
+      width: '800px',
+      height: '500px',
       panelClass: 'custom-dialog-container',
       data: this.pocData
     });
@@ -103,9 +144,54 @@ export class InstitutionDetailComponent implements OnInit, OnChanges {
      })
   }
 
-  deleteBranch(){
-    console.log("Branch deleted");
+  openSectionModal(sectionContent) {
+    this.modalRef = this.modalService.open(sectionContent, this.modalOptions)
+  }
+
+  addSection(){
+    var obj:any = {
+      sectionName: this.sectionNameModel
+    }
+    console.log("s", this.singleSection);
     
+    this.singleSection.push(obj)
+
+    console.log("ss", this.singleSection);
+
+    var sectionRequestData = {
+      branchId: this.branchData[this.selectedBranchIndex].branchId,
+      sectionName: this.sectionNameModel
+    }
+
+    this.instService.addSection(sectionRequestData)
+          .subscribe((data: any) => {
+            // window.location.reload();
+            this.modalRef.close();
+
+            this.sectionNameModel = null;
+            console.log(data)
+          })
+
+  }
+
+  deleteWarn(deleteContent, branchIndex){
+    this.modalRef = this.modalService.open(deleteContent, this.modalOptions)
+    this.deletedBranchIndex = this.branchData[branchIndex].branchId;
+    console.log("Branch deleted", this.branchData[branchIndex]);
+  }
+
+  deleteBranch(){
+    this.ngxService.start();
+    var that = this;
+    this.instService.deleteBranch(this.deletedBranchIndex)
+          .subscribe(data => {
+            console.log(data);
+            this.ngxService.stop();
+            this.modalRef.close();
+            window.location.reload();
+            
+          })
+    console.log("Branch deleted");
   }
   add() {
     this.matDialogue.open(AddInstructorModalComponent, {

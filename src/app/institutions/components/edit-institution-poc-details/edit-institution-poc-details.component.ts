@@ -16,6 +16,8 @@ export class EditInstitutionPocDetailsComponent implements OnInit {
 
   constructor(private instService: InstitutionService,@Inject(MAT_DIALOG_DATA) public details: any, private matDialog: MatDialog, private formBuilder: FormBuilder) {
     this.formDetails = details;
+    console.log("Form inside", this.formDetails);
+    
 
    }
 
@@ -39,7 +41,7 @@ export class EditInstitutionPocDetailsComponent implements OnInit {
         primaryPOCFirstName: this.formDetails.primaryPOCFirstName,
         primaryPOCLastName: this.formDetails.primaryPOCLastName,
         primaryPOCPhoneNumber: this.formDetails.primaryPOCPhoneNumber,
-        primaryPOCEmail:this.formDetails.primaryPOCEmail,
+        primaryPOCEmail:this.formDetails.email,
         secondaryPOCFirstName: this.formDetails.secondaryPOCName.split(" ")[0],
         secondaryPOCLastName: this.formDetails.secondaryPOCName.split(" ")[1],
         secondaryPOCPhoneNumber: this.formDetails.secondaryPOCPhoneNumber,

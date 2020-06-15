@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { InstructorService } from '../../shared/instructor.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-edit-instructor-modal',
@@ -15,8 +16,9 @@ export class EditInstructorModalComponent implements OnInit {
 
   selectedSections: any = [];
   setBranches: any = [];
-  
-  constructor(private formBuilder: FormBuilder,private matDialog: MatDialog, @Inject(MAT_DIALOG_DATA) public details: any, private instructorService: InstructorService) { 
+  selectedBranchId: number;
+  selectedSectionId: number;
+  constructor(private formBuilder: FormBuilder,private matDialog: MatDialog, @Inject(MAT_DIALOG_DATA) public details: any,private ngxService: NgxUiLoaderService, private instructorService: InstructorService) { 
     this.instructorFormDetails = details;
     this.setBranches = details.branches
     console.log("Details", details);
@@ -49,6 +51,9 @@ export class EditInstructorModalComponent implements OnInit {
       loginCredentialId: 0
     })
 
+    this.selectedBranchId = this.instructorFormDetails.instructors.branchId;
+    this.onChangeBranch(this.instructorFormDetails.instructors.branchId);
+    this.selectedSectionId = this.instructorFormDetails.instructors.sectionId;
     this.instructorForm.patchValue({
       firstname: this.instructorFormDetails.instructors.firstName,
       lastname: this.instructorFormDetails.instructors.lastName,
@@ -64,13 +69,22 @@ export class EditInstructorModalComponent implements OnInit {
   }
 
   saveInstructor() {
-    
+    this.ngxService.start();
     this.instructorService.saveInstructor(this.instructorForm.value)
           .subscribe(res => {
+            console.log("saved and returned");
+            
+            this.ngxService.stop();
+            this.matDialog.closeAll();
             console.log("res", res);
             this.matDialog.closeAll();
             window.location.reload();
           })
   }
+
+  getSections(branchId) {
+   
+  }
+
 
 }

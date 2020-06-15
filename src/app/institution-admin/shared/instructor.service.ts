@@ -13,7 +13,7 @@ export class InstructorService{
   saveInstructor(data) {
     console.log('j', data);
     
-    return this.http.post(environment.baseUrl + 'update-instructor', data);
+    return this.http.put(environment.baseUrl + 'editInstructor', data);
   }
 
   constructor(private http: HttpClient) { }

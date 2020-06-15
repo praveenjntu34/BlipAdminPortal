@@ -8,6 +8,7 @@ import { EditInstitutionPocDetailsComponent } from 'src/app/institutions/compone
 import { InstructorTabComponent } from 'src/app/institutions/components/instructor-tab/instructor-tab.component';
 import { AddInstructorModalComponent } from 'src/app/institutions/components/add-instructor-modal/add-instructor-modal.component';
 import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-institution-profile',
@@ -24,6 +25,8 @@ export class InstitutionProfileComponent implements OnInit {
   modalRef: NgbModalRef;
   branchNameModel: string;
   sectionNameModel: string;
+  deletedBranchIndex: number;
+
 
   ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
    
@@ -37,16 +40,16 @@ export class InstitutionProfileComponent implements OnInit {
   coreData: any;
   
   constructor(private route: ActivatedRoute, private api : InstitutionService
-    ,private matDialogue: MatDialog, private modalService: NgbModal,private instService: InstitutionService
+    ,private matDialogue: MatDialog, private ngxService: NgxUiLoaderService,private modalService: NgbModal,private instService: InstitutionService
     ) {
+     
       this.modalOptions = {
         backdrop: 'static',
         centered: true,
         backdropClass:'customBackdrop',
         size: 'sm',
-        windowClass: 'modal-container'
+        windowClass: 'custom-class'
       }
-
     this.route.params.subscribe((param:any) => {
       console.log("route param", param);
       console.log("d", this.data);
@@ -62,8 +65,8 @@ export class InstitutionProfileComponent implements OnInit {
   editInstitutionForm(){
     console.log("this", this.coreData)
     this.matDialogue.open(EditInstitutionDetailsComponent, {
-      width: '1300px',
-      height: '700px',
+      width: '800px',
+      height: '500px',
       panelClass: 'custom-dialog-container',
       data: this.coreData
     });
@@ -72,8 +75,8 @@ export class InstitutionProfileComponent implements OnInit {
   editPOCForm(){
     console.log("this", this.pocData)
     this.matDialogue.open(EditInstitutionPocDetailsComponent, {
-      width: '1200px',
-      height: '700px',
+      width: '800px',
+      height: '500px',
       panelClass: 'custom-dialog-container',
       data: this.pocData
     });
@@ -147,6 +150,7 @@ console.log("res", res)
           this.branchData.push(branch)
           this.branchNameModel = null;
           console.log(data);
+          window.location.reload();
           })
   }
 
@@ -178,6 +182,27 @@ console.log("res", res)
             console.log(data)
           })
 
+  }
+
+
+  deleteWarn(deleteContent, branchIndex){
+    this.modalRef = this.modalService.open(deleteContent, this.modalOptions)
+    this.deletedBranchIndex = this.branchData[branchIndex].branchId;
+    console.log("Branch deleted", this.branchData[branchIndex]);
+  }
+
+  deleteBranch(){
+    this.ngxService.start();
+    var that = this;
+    this.instService.deleteBranch(this.deletedBranchIndex)
+          .subscribe(data => {
+            console.log(data);
+            this.ngxService.stop();
+            this.modalRef.close();
+            window.location.reload();
+            
+          })
+    console.log("Branch deleted");
   }
 
 }

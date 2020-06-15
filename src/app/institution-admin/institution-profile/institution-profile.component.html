@@ -12,6 +12,19 @@
 
     </ng-template>
 
+    <ng-template #deleteModal let-modal>
+        <div class="row">
+            <h5 style="margin: 5px 0 0 24px;">Delete branch</h5>
+
+            <div class="" style="margin-left:24px; margin-bottom: 46px;">
+                <label for="institutionName">Are you sure want to delete this branch?</label>
+            
+            </div>
+            <button class="btn btn-danger btn-branch" (click)="deleteBranch()" style="margin: 0 10px 9px 222px;">Delete</button>
+        </div>
+
+    </ng-template>
+
     <ng-template #sectionModal let-modal>
         <div class="row">
             <h5 style="margin: 5px 0 0 24px;">Add section</h5>
@@ -120,7 +133,7 @@
                         <button class="btn btn-primary" (click)="openBranchModal(branchmodal)">Add</button>
                     </div>
                 </div>
-                <div class="shadow-sm p-3 mb-5 bg-white blip-chip" [ngStyle]="getRandomColor()" *ngFor="let branch of branchData">{{branch.branchName}}</div>
+                <div class="shadow-sm p-3 mb-5 bg-white blip-chip" [ngStyle]="getRandomColor()" *ngFor="let branch of branchData; let branchIndex = index;">{{branch.branchName + " "}} <img src="../../../../assets/cancel-grey.png" (click)="deleteWarn(deleteModal,branchIndex)" width="15px" height="15px" style="cursor: pointer;" alt=""></div>
             </div>
             <div class="tab-pane fade" id="pills-section" role="tabpanel" aria-labelledby="pills-section-tab">
 

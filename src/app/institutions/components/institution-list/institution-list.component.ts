@@ -123,7 +123,9 @@ export class InstitutionListComponent implements OnInit,OnChanges, OnDestroy {
   }
 
   goToDetails(index) {
-    this.router.navigate(['/home/institutions',this.data[index].institutionId])
+    console.log("indexed", this.data[index]);
+    
+    this.router.navigate(['/home/institutions',this.data[index].relTenantInstitutionId])
   }
 
   private updateTableData() {

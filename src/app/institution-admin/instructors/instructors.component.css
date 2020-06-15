@@ -182,32 +182,6 @@ body {
 
 /*************pagination***********/
 
-.gallery-bottom .pagination {
-    margin-top: 10px;
-    align-self: center;
-}
-
-.pagination>li>a,
-.pagination>li>span {
-    background-color: #ccc;
-    padding: 3px 9px;
-    color: #fff;
-    border: 0px;
-}
-
-.pagination>li>a {
-    margin-right: 5px;
-}
-
-.pagination>.active>a,
-.pagination>.active>span,
-.pagination>.active>a:hover,
-.pagination>.active>span:hover,
-.pagination>.active>a:focus,
-.pagination>.active>span:focus {
-    background-color: #32c5d2;
-}
-
 .price-slider {
     margin-bottom: 70px;
 }
@@ -256,6 +230,16 @@ body {
     padding: 0;
     color: #316AFF;
     border-top: solid #DEDEDE 1px;
+}
+
+li {
+    cursor: pointer;
+}
+
+.pagination {
+    margin-top: 25px;
+    position: absolute;
+    left: calc(50% - 100px);
 }
 
 .view-edit li:hover {

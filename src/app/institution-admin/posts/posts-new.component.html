@@ -60,21 +60,4 @@
         </div>
     </div>
 
-    <div class="row pagination ">
-        <nav aria-label="... ">
-            <ul class="pagination ">
-                <li class="page-item disabled ">
-                    <a class="page-link " href="# " tabindex="-1 ">Previous</a>
-                </li>
-                <!-- <li class="page-item "><a class="page-link " href="# ">1</a></li> -->
-                <li class="page-item " [class.active]="selectedPage==k + 1" *ngFor="let page of pageArray; let k=index " (click)="getCurrentPage(k + 1) ">
-                    <a class="page-link custom-page">{{k + 1}}<span class="sr-only "></span></a>
-                </li>
-                <li class="page-item ">
-                    <a class="page-link ">Next</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-
 </div>

@@ -10,6 +10,16 @@
     padding: 23px 10px 10px 10px;
 }
 
+.pagination {
+    margin-top: 25px;
+    position: absolute;
+    left: calc(50% - 100px);
+}
+
+li {
+    cursor: pointer;
+}
+
 .bt {
     border: none;
     background-color: inherit;

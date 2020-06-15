@@ -43,8 +43,8 @@ export class ParentService{
     return this.http.post(environment.baseUrl + 'update-parent', data);
   }
 
-  getAllParents(relTenantInstitutionId) {
-    return this.http.get(environment.baseUrl + 'parent?relTenantInstitutionId=' + relTenantInstitutionId);
+  getAllParents(relTenantInstitutionId, pageNumber) {
+    return this.http.get(environment.baseUrl + 'parent?relTenantInstitutionId=' + relTenantInstitutionId + '&pageNumber=' + pageNumber + '&size=12');
   }
 
   getSingleParents(childId) {

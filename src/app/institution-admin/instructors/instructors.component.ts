@@ -19,6 +19,10 @@ export class InstructorsComponent implements OnInit {
   branchData: any = [];
   private subscriptions: Subscription[] =[];
 
+  pageArray: Array<number>;
+  selectedPage: number = 1;
+  currentIndex: number = 1;
+
   constructor(private api : InstitutionService
     ,private matDialogue: MatDialog, private ngxService: NgxUiLoaderService) { }
 
@@ -31,11 +35,12 @@ export class InstructorsComponent implements OnInit {
       this.branchData = data;
     })
 
-    this.api.getAllInstructors(localStorage.getItem('loggedInTenantId'))
+    this.api.getAllInstructors(localStorage.getItem('loggedInTenantId'),0)
     .subscribe((response: any) => {
       console.log("instructors", response);
+      this.pageArray = new Array(Math.ceil(response.pages))
       this.ngxService.stop();
-      this.instructors = response;
+      this.instructors = response.instructors;
     }) 
 
     this.updateInstructors();
@@ -64,6 +69,19 @@ openDeleteModal(index){
     height: '500px',
     data: this.branchData
   })
+}
+
+getCurrentPage(pageNo: number) {
+  this.ngxService.start();
+  console.log("default config");
+  
+  this.selectedPage = pageNo;
+  this.api.getAllInstructors(localStorage.getItem('loggedInTenantId'),pageNo - 1)
+    .subscribe((response: any) => {
+      console.log("instructors", response);
+      this.ngxService.stop();
+      this.instructors = response.instructors;
+    }) 
 }
 
  private updateInstructors() {

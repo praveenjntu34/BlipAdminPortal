@@ -27,15 +27,15 @@ export class InstitutionDetailComponent implements OnInit, OnChanges {
 
     this.api.getInstitutionBranches(this.coreData.relTenantInstitutionId)
               .subscribe(data => {
-                console.log("branch", data);
+                console.log("branches", data);
                 this.branchData = data;
               })
           
-    this.api.getAllInstructors(this.coreData.relTenantInstitutionId)
+    this.api.getAllInstructors(this.coreData.relTenantInstitutionId,0)
               .subscribe((response: any) => {
                 console.log("instructors", response);
 
-                this.instructors = response;
+                this.instructors = response.instructors;
               })          
     this.api.getPOCDetails(this.coreData.relTenantInstitutionId)
     .subscribe(res => {
@@ -103,6 +103,10 @@ export class InstitutionDetailComponent implements OnInit, OnChanges {
      })
   }
 
+  deleteBranch(){
+    console.log("Branch deleted");
+    
+  }
   add() {
     this.matDialogue.open(AddInstructorModalComponent, {
       width: '800px',

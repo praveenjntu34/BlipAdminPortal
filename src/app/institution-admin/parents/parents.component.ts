@@ -15,6 +15,10 @@ import { AddParentCsvComponent } from '../add-parent-csv/add-parent-csv.componen
 export class ParentsComponent implements OnInit {
 
   data: any = [];
+  pageArray: Array<number>;
+  selectedPage: number = 1;
+  currentIndex: number = 1;
+
   private subscriptions: Subscription[] =[];
   constructor(private matDialog: MatDialog, private parentService: ParentService,private ngxService: NgxUiLoaderService) {
 
@@ -31,10 +35,13 @@ export class ParentsComponent implements OnInit {
 
   ngOnInit() {
     this.ngxService.start();
-    this.parentService.getAllParents(localStorage.getItem('loggedInTenantId'))
-          .subscribe(response => {
+    this.parentService.getAllParents(localStorage.getItem('loggedInTenantId'), 0)
+          .subscribe((response: any) => {
             console.log(response);
-            this.data = response;
+            this.data = response.parents;
+            this.pageArray = new Array(Math.ceil(response.pages))
+            console.log("pp", this.pageArray);
+            
             this.ngxService.stop();
           })
     this.updateparents();
@@ -93,5 +100,18 @@ export class ParentsComponent implements OnInit {
       })
       )
    }
+
+   getCurrentPage(pageNo: number) {
+    this.ngxService.start();
+    console.log("default config");
+    
+    this.selectedPage = pageNo;
+    this.parentService.getAllParents(localStorage.getItem('loggedInTenantId'), pageNo - 1)
+    .subscribe((response: any) => {
+      console.log(response);
+      this.data = response.parents;
+      this.ngxService.stop();
+    })
+  }
 
 }

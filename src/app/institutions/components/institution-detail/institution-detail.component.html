@@ -89,7 +89,8 @@
                 </div>
             </div>
             <div class="tab-pane fade" id="pills-branch" role="tabpanel" aria-labelledby="pills-branch-tab">
-                <div class="shadow-sm p-3 mb-5 bg-white blip-chip" [ngStyle]="getRandomColor()" *ngFor="let branch of branchData">{{branch.branchName}}</div>
+                <div class="shadow-sm p-3 mb-5 bg-white blip-chip" [ngStyle]="getRandomColor()" *ngFor="let branch of branchData">{{branch.branchName + " "}} <img src="../../../../assets/cancel-grey.png" (click)="deleteBranch()" width="15px" height="15px" style="cursor: pointer;" alt=""></div>
+
             </div>
             <div class="tab-pane fade" id="pills-section" role="tabpanel" aria-labelledby="pills-section-tab">
 

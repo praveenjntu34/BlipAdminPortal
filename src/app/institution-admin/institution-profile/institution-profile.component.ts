@@ -100,7 +100,7 @@ export class InstitutionProfileComponent implements OnInit {
       this.branchData = data;
     })
 
-this.api.getAllInstructors(localStorage.getItem('loggedInTenantId'))
+this.api.getAllInstructors(localStorage.getItem('loggedInTenantId'),0)
     .subscribe((response: any) => {
       console.log("instructors", response);
 

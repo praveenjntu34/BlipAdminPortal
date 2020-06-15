@@ -18,6 +18,12 @@
     border-color: #316AFF transparent transparent transparent;
 }
 
+.pagination {
+    margin-top: 25px;
+    position: absolute;
+    left: calc(50% - 100px);
+}
+
 .lds-ring div:nth-child(1) {
     animation-delay: -0.45s;
 }
@@ -69,6 +75,10 @@ h3 {
     position: relative;
     left: 30%;
     top: 30px;
+}
+
+li {
+    cursor: pointer;
 }
 
 .pincode-bar {

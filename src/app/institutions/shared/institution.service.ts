@@ -28,9 +28,9 @@ export class InstitutionService {
     return this.http.post(environment.baseUrl + 'instructor',instructor )
   }
 
-  getAllInstructors(relTenantInstitutionId) {
+  getAllInstructors(relTenantInstitutionId, pageNumber) {
     
-    return this.http.get(environment.baseUrl + 'instructor/' + relTenantInstitutionId)
+    return this.http.get(environment.baseUrl + 'instructor/' + relTenantInstitutionId + '?pageNumber=' + pageNumber + '&size=12')
   }
 
   checkWhetherEmailExists(email) {

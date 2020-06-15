@@ -23,7 +23,7 @@
 
                         <div class="row">
                             <div class="col-2 box">
-                                <p class="head-title">{{(parent.firstName.substring(0,1) | uppercase) + (parent.lastName.substring(0,1) | uppercase)}}</p>
+                                <p style="font-size: 14px;" class="head-title">{{(parent.firstName.substring(0,1) | uppercase) + (parent.lastName.substring(0,1) | uppercase)}}</p>
                             </div>
                             <div class="col-10">
                                 <div class="row">
@@ -57,16 +57,15 @@
             </div>
 
         </div>
-
-        <div class="row pagination ">
+        <div class="row pagination">
             <nav aria-label="... ">
-                <ul class="pagination ">
+                <ul class="pagination">
                     <li class="page-item disabled ">
                         <a class="page-link " href="# " tabindex="-1 ">Previous</a>
                     </li>
                     <!-- <li class="page-item "><a class="page-link " href="# ">1</a></li> -->
-                    <li class="page-item " [class.active]="selectedPage==k + 1 " *ngFor="let page of pageArray; let k=i ndex " (click)="getCurrentPage(k) ">
-                        <a class="page-link ">{{k + 1}}<span class="sr-only "></span></a>
+                    <li class="page-item" [class.active]="selectedPage==k + 1" *ngFor="let page of pageArray; let k=index " (click)="getCurrentPage(k + 1) ">
+                        <a class="page-link custom-page">{{k + 1}}<span class="sr-only "></span></a>
                     </li>
                     <li class="page-item ">
                         <a class="page-link ">Next</a>
@@ -74,5 +73,5 @@
                 </ul>
             </nav>
         </div>
+
     </div>
-</div>

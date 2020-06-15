@@ -24,8 +24,8 @@ export class PostService{
       // return this.http.post(environment.baseUrl + 'post',post )
   }
 
-  getAllPosts(relTenantInstitutionId) {
-    return this.http.get(environment.baseUrl + 'post/' + relTenantInstitutionId);
+  getAllPosts(relTenantInstitutionId, pageNumber) {
+    return this.http.get(environment.baseUrl + 'post/' + relTenantInstitutionId + '?pageNumber=' + pageNumber + '&size=12');
   }
 
 

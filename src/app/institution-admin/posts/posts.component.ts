@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { AddPostModalComponent } from '../add-post-modal/add-post-modal.component';
 import { PostService } from '../shared/post.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-posts',
@@ -15,7 +16,11 @@ export class PostsComponent implements OnInit {
   // ]
 
   posts: any;
-  constructor(private matDialogue: MatDialog, private postService: PostService) { 
+  pageArray: Array<number>;
+  selectedPage: number = 1;
+  currentIndex: number = 1;
+
+  constructor(private matDialogue: MatDialog, private postService: PostService, private ngxService: NgxUiLoaderService) { 
     
   }
 
@@ -27,12 +32,27 @@ export class PostsComponent implements OnInit {
     })
   }
   ngOnInit() {
-    this.postService.getAllPosts(1)
+    this.postService.getAllPosts(localStorage.getItem("loggedInTenantId"),0)
           .subscribe((data: any) => {
-            this.posts = data;
+            this.posts = data.postList;
             console.log(this.posts);
-            
+            this.pageArray = new Array(Math.ceil(data.pages))
+   
           })
+  }
+
+  getCurrentPage(pageNo: number) {
+    this.ngxService.start();
+    console.log("default config");
+    
+    this.selectedPage = pageNo;
+    this.postService.getAllPosts(localStorage.getItem("loggedInTenantId"),pageNo -1)
+    .subscribe((data: any) => {
+      this.posts = data.postList;
+      console.log(this.posts);
+      this.pageArray = new Array(Math.ceil(data.pages))
+      this.ngxService.stop();
+    })
   }
 
 }

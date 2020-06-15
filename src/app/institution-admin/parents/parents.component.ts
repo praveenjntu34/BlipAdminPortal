@@ -49,16 +49,16 @@ export class ParentsComponent implements OnInit {
 
   addParenCsvModal(){
     this.matDialog.open(AddParentCsvComponent, {
-      width: '1200px',
-      height: '700px',
+      width: '550px',
+      height: '500px',
       panelClass: 'custom-dialog-container'
     })
   } 
 
   addParenModal(){
     this.matDialog.open(AddParentModalComponent, {
-      width: '1200px',
-      height: '700px',
+      width: '550px',
+      height: '500px',
       panelClass: 'custom-dialog-container'
     })
   } 
@@ -67,7 +67,7 @@ export class ParentsComponent implements OnInit {
     this.matDialog.open(EditParentModalComponent, {
       width: '550px',
       height: '500px',
-      data:this.data[index].childId,
+      data:this.data[index],
     })
  }
 

@@ -26,8 +26,8 @@ export class PostsComponent implements OnInit {
 
   openAddPostModal() {
     this.matDialogue.open(AddPostModalComponent, {
-      width: '1000px',
-      height: '600px',
+      width: '550px',
+      height: '500px',
       panelClass: 'custom-dialog-container'
     })
   }

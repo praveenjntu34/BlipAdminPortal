@@ -25,7 +25,7 @@ export class EditParentModalComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) public dataChild: number,private parentService: ParentService, private institutionService: InstitutionService) { 
     this.childId = dataChild;
-    // console.log("sdd", this.parentFormDetails);
+     console.log("sdd", this.dataChild);
     
   }
 

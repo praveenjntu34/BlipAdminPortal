@@ -79,9 +79,16 @@ export class ParentsComponent implements OnInit {
      parentId: this.data[index].parentId,
      childId: this.data[index].childId
    }
+   this.ngxService.start();
 
+  //  private int childId;
+  //  private int parentId;
+  //  private int personId;
+  //  private int loginCredentialId;
    this.parentService.deleteParent(object)
-        .subscribe(res => {
+   .subscribe(res => {
+    this.ngxService.stop();
+    window.location.reload();
           console.log(res);
           
         })

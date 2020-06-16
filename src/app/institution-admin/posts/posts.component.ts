@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material';
 import { AddPostModalComponent } from '../add-post-modal/add-post-modal.component';
 import { PostService } from '../shared/post.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { EditPostModalComponent } from '../modals/edit-post-modal/edit-post-modal.component';
+import { windowWhen } from 'rxjs/operators';
 
 @Component({
   selector: 'app-posts',
@@ -31,6 +33,14 @@ export class PostsComponent implements OnInit {
       panelClass: 'custom-dialog-container'
     })
   }
+
+  openEditModal(index){
+    this.matDialogue.open(EditPostModalComponent, {
+      width: '550px',
+      height: '400px',
+      data:this.posts[index],
+    })
+ }
   ngOnInit() {
     this.postService.getAllPosts(localStorage.getItem("loggedInTenantId"),0)
           .subscribe((data: any) => {
@@ -41,6 +51,14 @@ export class PostsComponent implements OnInit {
           })
   }
 
+  deletePost(index) {
+    this.ngxService.start();
+    this.postService.delete(this.posts[index].postId) 
+          .subscribe(data => {
+            this.ngxService.stop();
+            window.location.reload();
+          })
+  }
   getCurrentPage(pageNo: number) {
     this.ngxService.start();
     console.log("default config");

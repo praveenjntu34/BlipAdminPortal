@@ -45,13 +45,13 @@
                     <div class="col-md-6 col-lg-6 col-xl-6">
                         <div class="row btn-group">
                             <div class="col-3">
-                                <button class="btn bt default">Edit</button>
+                                <button class="btn bt default" (click)="openEditModal(in)">Edit</button>
                             </div>
                             <div class="col-1">
 
                             </div>
                             <div class="col-3">
-                                <button class="btn bt danger">Delete</button>
+                                <button (click)="deletePost(in)" class="btn bt danger">Delete</button>
                             </div>
                         </div>
                     </div>

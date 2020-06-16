@@ -28,7 +28,13 @@ export class PostService{
     return this.http.get(environment.baseUrl + 'post/' + relTenantInstitutionId + '?pageNumber=' + pageNumber + '&size=12');
   }
 
+  update(data) {
+    return this.http.put(environment.baseUrl + 'updatePost', data);
+  }
 
+  delete(id) {
+    return this.http.delete(environment.baseUrl + 'deletePost/' + id);
+  }
   addPostFile(file) {
     let headers = new Headers();
 

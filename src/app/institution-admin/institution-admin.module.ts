@@ -21,10 +21,11 @@ import { DeleteInstructorModalComponent } from './modals/delete-instructor-modal
 import { InstitutionProfileComponent } from './institution-profile/institution-profile.component';
 import { EditParentModalComponent } from './modals/edit-parent-modal/edit-parent-modal.component';
 import { AddParentCsvComponent } from './add-parent-csv/add-parent-csv.component';
+import { EditPostModalComponent } from './modals/edit-post-modal/edit-post-modal.component';
 
 @NgModule({
-  declarations: [PostsComponent, AddPostModalComponent, BannersComponent, AddBannerModalComponent, InstructorsComponent, ParentsComponent, AddParentModalComponent, SettingsComponent, EditInstructorModalComponent, DeleteInstructorModalComponent, InstitutionProfileComponent, EditParentModalComponent, AddParentCsvComponent],
-  entryComponents: [AddPostModalComponent,EditInstructorModalComponent, AddParentCsvComponent,DeleteInstructorModalComponent, AddBannerModalComponent,AddInstructorModalComponent,InstructorTabComponent, AddParentModalComponent, EditParentModalComponent],
+  declarations: [PostsComponent, AddPostModalComponent, BannersComponent, AddBannerModalComponent, InstructorsComponent, ParentsComponent, AddParentModalComponent, SettingsComponent, EditInstructorModalComponent, DeleteInstructorModalComponent, InstitutionProfileComponent, EditParentModalComponent, AddParentCsvComponent, EditPostModalComponent],
+  entryComponents: [AddPostModalComponent,EditPostModalComponent,EditInstructorModalComponent, AddParentCsvComponent,DeleteInstructorModalComponent, AddBannerModalComponent,AddInstructorModalComponent,InstructorTabComponent, AddParentModalComponent, EditParentModalComponent],
   imports: [
     CommonModule,
     InstitutionAdminRoutingModule,

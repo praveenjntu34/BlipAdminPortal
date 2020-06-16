@@ -1,9 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { ParentService } from '../../shared/parentservice';
 import { InstitutionService } from 'src/app/institutions/shared/institution.service';
 import { Branch } from 'src/app/institutions/shared/branch-section.model';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-edit-parent-modal',
@@ -14,7 +15,7 @@ export class EditParentModalComponent implements OnInit {
 
   parentForm: FormGroup;
   childId: number;
-  data: any;
+  userData: any;
 
   allBranches: Branch[] = [];
   allSections: any = [];
@@ -23,8 +24,8 @@ export class EditParentModalComponent implements OnInit {
   
 
 
-  constructor(private formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) public dataChild: number,private parentService: ParentService, private institutionService: InstitutionService) { 
-    this.childId = dataChild;
+  constructor(private formBuilder: FormBuilder,private ngxService: NgxUiLoaderService, private matDialog: MatDialog,  @Inject(MAT_DIALOG_DATA) public dataChild: any,private parentService: ParentService, private institutionService: InstitutionService) { 
+    this.userData = dataChild;
      console.log("sdd", this.dataChild);
     
   }
@@ -45,30 +46,16 @@ export class EditParentModalComponent implements OnInit {
       email: ['', Validators.required],
       phoneNumber: [],
       secondaryParentName: [],
-      admissionNumber: '',
-      childrenName: '',
       secondaryPhoneNumber: '',
       relTenantInstitutionId: 0,
-      sectionId: 0,
-      branchId: 0,
       personId: 0,
       loginCredentialId: 0,
-      parentId: 0,
-      childId: 0
+      parentId: 0
     })
 
-    this.parentService.getSingleParents(this.childId)
-    .subscribe(response => {
-      console.log("rr",response);
-      this.data = response;
-      this.patchForm()
-      // this.ngxService.stop();
-    })
-
-    
-
-    console.log("Net", this.data);
-    
+  
+    this.patchParentForm();
+  
    
 
 
@@ -83,32 +70,45 @@ export class EditParentModalComponent implements OnInit {
   updateParent() {
     console.log("here", this.parentForm.value);
 
+    this.ngxService.start();
+    var obj = {
+      email: this.userData.email,
+      loginCredentialId: this.userData.loginCredentialId,
+      parentId: this.userData.parentId,
+      parentOneFirstName: this.userData.firstName,
+      parentOneLastName: this.userData.lastName,
+      personId: this.userData.personId,
+      phoneNumber: this.userData.phoneNumber,
+      secondaryParentName: this.userData.secondaryParentName,
+      secondaryPhoneNumber: this.userData.secondaryPhoneNUmber
+    }
+
     this.parentService.updateparent(this.parentForm.value)
           .subscribe(res => {
+            this.ngxService.stop();
             console.log("response", res);
+            this.matDialog.closeAll();
+            window.location.reload(); 
             
           })
   }
 
-  patchForm() {
-    console.log("Net2", this.data[0].branchId);
+  patchParentForm() {
+    console.log("Net2", this.userData.branchId);
     
-    this.selectedBranchId = this.data[0].branchId;
-    this.selectedSectionId = this.data[0].sectionId;
+    this.selectedBranchId = this.userData.branchId;
+    this.selectedSectionId = this.userData.sectionId;
     this.parentForm.patchValue({
-      parentOneFirstName: this.data[0].firstName,
-      parentOneLastName: this.data[0].lastName,
-      email: this.data[0].email,
-      phoneNumber: this.data[0].phoneNumber,
-      secondaryParentName: this.data[0].secondaryParentName,
-      admissionNumber: this.data[0].admissionId,
-      childrenName: this.data[0].childrenName,
-      secondaryPhoneNumber: this.data[0].secondaryPhoneNUmber,
+      parentOneFirstName: this.userData.firstName,
+      parentOneLastName: this.userData.lastName,
+      email: this.userData.email,
+      phoneNumber: this.userData.phoneNumber,
+      secondaryParentName: this.userData.secondaryParentName,
+      secondaryPhoneNumber: this.userData.secondaryPhoneNUmber,
       relTenantInstitutionId: localStorage.getItem('loggedInTenantId'),
-      personId: this.data[0].personId,
-      loginCredentialId: this.data[0].loginCredentialId,
-      parentId: this.data[0].parentId,
-      childId: this.data[0].childId
+      personId: this.userData.personId,
+      loginCredentialId: this.userData.loginCredentialId,
+      parentId: this.userData.parentId
     })
   }
 

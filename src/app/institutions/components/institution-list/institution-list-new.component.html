@@ -40,10 +40,10 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="row pincode-bar">
-                        <div class="col-md-4 col-lg-4 col-xl-2 pincode-title">
+                        <div class="col-md-4 col-lg-4 col-xl-3 pincode-title">
                             <p>Pincode Search</p>
                         </div>
-                        <div class="col-md-6 col-lg-6 col-xl-8 pincode-search">
+                        <div class="col-md-6 col-lg-6 col-xl-7 pincode-search">
                             <input type="text" placeholder="Enter pincode ex(524002)">
                         </div>
                         <div class="col-md-2 col-lg-2 icon-img">
@@ -66,7 +66,7 @@
                                 <option value="6">Maharastra</option>
                               </select> -->
 
-                        <select #st (change)="getCities(st.value)" (change)="getCities(st.value)" class="select-style">
+                        <select #st (change)="getCities(st.value)" (change)="getCities(st.value)" style="background: white;" class="select-style">
                             <option [value]="state.stateId" *ngFor="let state of allStates">{{state.stateName}}</option>
                       </select>
                         <span>
@@ -75,7 +75,7 @@
                 </div>
                 <div class="col-md-2 state">
                     <div class="row">
-                        <select #ct [(ngModel)]="selectedCityId" (change)="filterCity(ct.value)" class="select-style">
+                        <select #ct [(ngModel)]="selectedCityId" (change)="filterCity(ct.value)" style="background: white;" class="select-style">
                             <option [value]="city.cityId" *ngFor="let city of allCities">{{city.cityName}}</option>
                         </select>
 

@@ -77,7 +77,6 @@ export class EditInstructorModalComponent implements OnInit {
             this.ngxService.stop();
             this.matDialog.closeAll();
             console.log("res", res);
-            this.matDialog.closeAll();
             window.location.reload();
           })
   }

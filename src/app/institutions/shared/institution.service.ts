@@ -76,6 +76,10 @@ export class InstitutionService {
     return this.http.delete(environment.baseUrl + 'institution/branch/' + branchIndex )
   }
 
+  deleteInstructor(instructorId) {
+    return this.http.delete(environment.baseUrl + 'deleteInstructor/' + instructorId )
+  }
+
 
   createInstitutionDetails(data : any) {
     return this.http.post(environment.baseUrl + 'institution/details',data);

@@ -84,6 +84,18 @@ getCurrentPage(pageNo: number) {
     }) 
 }
 
+deleteInstructor(index) {
+  console.log(this.instructors[index].instructorId);
+  this.ngxService.start()
+  
+  this.api.deleteInstructor(this.instructors[index].instructorId)
+        .subscribe(data => {
+          this.ngxService.stop();
+          window.location.reload();
+        })
+
+}
+
  private updateInstructors() {
   this.subscriptions.push(this.api.instructorUpdateList
     .subscribe(isUpdated => {

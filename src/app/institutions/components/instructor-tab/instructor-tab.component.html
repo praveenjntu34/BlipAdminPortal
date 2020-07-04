@@ -1,5 +1,5 @@
 <div class="row">
-    <img src="../../../../assets/round_1.png" alt="">
+    <img src="https://bootdey.com/img/Content/avatar/avatar1.png " alt="">
 </div>
 <div class=" instructor-details">
     <div class="row row-black">
@@ -7,7 +7,7 @@
             <p class="title">Name</p>
         </div>
         <div class="col-7">
-            <p class="data">Rachel Trace</p>
+            <p class="data">{{instructorDetails.firstName + " " + instructorDetails.lastName}}</p>
         </div>
     </div>
     <div class="row">
@@ -15,7 +15,7 @@
             <p class="title">Designation</p>
         </div>
         <div class="col-7">
-            <p class="data">Assistant Professor</p>
+            <p class="data">{{instructorDetails.designation}}</p>
         </div>
     </div>
     <div class="row row-black">
@@ -31,7 +31,7 @@
             <p class="title">Phone Number</p>
         </div>
         <div class="col-7">
-            <p class="data">+91-9000041105</p>
+            <p class="data">{{instructorDetails.phoneNumber}}</p>
         </div>
     </div>
     <div class="row row-black">
@@ -39,7 +39,7 @@
             <p class="title">Email</p>
         </div>
         <div class="col-7">
-            <p class="data">racheltrace@gmail.com</p>
+            <p class="data">{{instructorDetails.email}}</p>
         </div>
     </div>
 </div>

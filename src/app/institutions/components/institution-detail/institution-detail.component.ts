@@ -136,10 +136,11 @@ export class InstitutionDetailComponent implements OnInit, OnChanges {
     
   }
 
-  openModal(){
+  openModal(index){
      this.matDialogue.open(InstructorTabComponent, {
        width: '550px',
        height: '400px',
+       data: this.instructors[index]
       
      })
   }

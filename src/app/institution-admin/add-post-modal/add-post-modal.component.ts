@@ -4,6 +4,7 @@ import { InstitutionService } from 'src/app/institutions/shared/institution.serv
 import { Branch } from '../shared/branch.model';
 import { PostService } from '../shared/post.service'
 import { MatDialog } from '@angular/material';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-add-post-modal',
@@ -17,7 +18,7 @@ export class AddPostModalComponent implements OnInit {
   postId: number;
   allSections: any = [];
   selectedSectionId: number = 0;
-  constructor(private formBuilder: FormBuilder, private institutionService: InstitutionService,private matDialog: MatDialog, private postService: PostService) { }
+  constructor(private formBuilder: FormBuilder,private ngxService: NgxUiLoaderService, private institutionService: InstitutionService,private matDialog: MatDialog, private postService: PostService) { }
 
   onFileChanged(event) {
     let file: File = event.target.files[0];
@@ -50,11 +51,15 @@ export class AddPostModalComponent implements OnInit {
       sectionId: this.selectedSectionId
     })
 
+    this.ngxService.start();
     this.postForm.patchValue({
       postId: this.postId
     })
     this.postService.addPost(this.postForm.value)
           .subscribe(data => {
+            this.ngxService.stop();
+            this.matDialog.closeAll();
+            window.location.reload();
             console.log("response", data);
             
           })

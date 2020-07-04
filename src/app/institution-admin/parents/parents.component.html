@@ -8,6 +8,9 @@
             <div class="col-md-4">
                 <button class="default-button" (click)="addParenModal()">Add User</button>
             </div>
+            <div class="col-md-4">
+                <button class="default-button" (click)="addParenCsvModal()">Add Using Csv</button>
+            </div>
         </div>
 
         <div class="institution-list">
@@ -16,8 +19,8 @@
                     <div class="card institution-list--item">
                         <div class="row">
                             <div class="col-12 title-name">
-                                <label for="">Name: </label>
-                                <p class="institution-list--title">{{parent.firstName + " " + parent.lastName}}</p>
+                                <label for="">Admission Id: </label>
+                                <p class="institution-list--title">{{parent.admissionId}}</p>
                             </div>
                         </div>
 

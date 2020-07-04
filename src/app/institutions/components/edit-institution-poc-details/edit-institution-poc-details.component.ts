@@ -62,7 +62,7 @@ export class EditInstitutionPocDetailsComponent implements OnInit {
     this.instService.updatePOCDetails(this.institutionPOCForm.value)
           .subscribe((response: any) => {
             this.matDialog.closeAll();
-
+            window.location.reload();
             console.log("update response", response)
           })
     console.log("login",this.institutionPOCForm.value)

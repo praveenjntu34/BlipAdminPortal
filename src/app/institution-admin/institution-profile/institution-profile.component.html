@@ -18,7 +18,7 @@
 
             <div class="" style="margin-left:24px; margin-bottom: 46px;">
                 <label for="institutionName">Are you sure want to delete this branch?</label>
-            
+
             </div>
             <button class="btn btn-danger btn-branch" (click)="deleteBranch()" style="margin: 0 10px 9px 222px;">Delete</button>
         </div>
@@ -49,10 +49,10 @@
                 <a class="nav-link" id="pills-poc-tab" data-toggle="pill" href="#pills-poc" role="tab" aria-controls="pills-poc" aria-selected="false">POC</a>
             </li>
             <li class="nav-item col-2">
-                <a class="nav-link" id="pills-branch-tab" data-toggle="pill" href="#pills-branch" role="tab" aria-controls="pills-branch" aria-selected="false">Branch</a>
+                <a class="nav-link" id="pills-branch-tab" data-toggle="pill" href="#pills-branch" role="tab" aria-controls="pills-branch" aria-selected="false">Year</a>
             </li>
             <li class="nav-item col-2">
-                <a class="nav-link" id="pills-section-tab" data-toggle="pill" href="#pills-section" role="tab" aria-controls="pills-section" aria-selected="false">Section</a>
+                <a class="nav-link" id="pills-section-tab" data-toggle="pill" href="#pills-section" role="tab" aria-controls="pills-section" aria-selected="false">Branch</a>
             </li>
         </ul>
     </div>
@@ -61,7 +61,7 @@
             <div class="tab-pane fade show active" id="pills-details" role="tabpanel" aria-labelledby="pills-details-tab">
                 <div class="row">
                     <div class="offset-md-11 offset-11">
-                        <button class="btn btn-primary edit-buton" (click)="editInstitutionForm()">Edit <img src="../../../../assets/pencil.png" alt=""></button>
+                        <!-- <button class="btn btn-primary edit-buton" (click)="editInstitutionForm()">Edit <img src="../../../../assets/pencil.png" alt=""></button> -->
                     </div>
                 </div>
                 <div class="row">
@@ -95,7 +95,7 @@
             <div class="tab-pane fade" id="pills-poc" role="tabpanel" aria-labelledby="pills-poc-tab">
                 <div class="row">
                     <div class="offset-md-11 offset-11">
-                        <button class="btn btn-primary edit-buton" (click)="editPOCForm()">Edit <img src="../../../../assets/pencil.png" alt=""></button>
+                        <!-- <button class="btn btn-primary edit-buton" (click)="editPOCForm()">Edit <img src="../../../../assets/pencil.png" alt=""></button> -->
                     </div>
                 </div>
                 <div class="row">
@@ -113,7 +113,7 @@
                     <div class="col-6">
                         <p class="line-heading">Primary POC LatstName</p>
                         <p>{{pocData.primaryPOCLastName}}</p>
-                        <p class="line-heading">Primary POC Email</p>
+                        <p class="line-heading">Institution Code</p>
                         <p>{{pocData.email}}</p>
                         <p class="line-heading">Secondary POC LastName</p>
                         <p>{{(pocData.secondaryPOCName).split(" ")[1]}}</p>
@@ -127,23 +127,23 @@
                 <div class="row branch-tab">
 
                     <div class="col-9">
-                        <h2>List of Branches</h2>
+                        <h2>List of Years</h2>
                     </div>
                     <div class="col-3">
-                        <button class="btn btn-primary" (click)="openBranchModal(branchmodal)">Add</button>
+                        <!-- <button class="btn btn-primary" (click)="openBranchModal(branchmodal)">Add</button> -->
                     </div>
                 </div>
-                <div class="shadow-sm p-3 mb-5 bg-white blip-chip" [ngStyle]="getRandomColor()" *ngFor="let branch of branchData; let branchIndex = index;">{{branch.branchName + " "}} <img src="../../../../assets/cancel-grey.png" (click)="deleteWarn(deleteModal,branchIndex)" width="15px" height="15px" style="cursor: pointer;" alt=""></div>
+                <div class="shadow-sm p-3 mb-5 bg-white blip-chip" [ngStyle]="getRandomColor()" *ngFor="let branch of branchData; let branchIndex = index;">{{branch.branchName + " "}}</div>
             </div>
             <div class="tab-pane fade" id="pills-section" role="tabpanel" aria-labelledby="pills-section-tab">
 
                 <div class="row">
                     <div class="col-8">
-                        <h4 class="section-padding">List of Sections</h4>
+                        <h4 class="section-padding">List of Branches</h4>
 
                     </div>
                     <div class="col-4 section-padding">
-                        <button class="btn btn-primary" (click)="openSectionModal(sectionModal)">Add</button>
+                        <!-- <button class="btn btn-primary" (click)="openSectionModal(sectionModal)">Add</button> -->
                     </div>
                 </div>
 

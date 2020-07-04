@@ -11,7 +11,7 @@
             </div>
 
             <div class="row">
-                <label for="stateId">Branch</label>
+                <label for="stateId">Year</label>
                 <select formControlName="branchId" #st [(ngModel)]="selectedBranchId" (change)="getSections(st.value)" class="form-control blip-input  blip-select">
                     <option [value]="branch.branchId" *ngFor="let branch of allBranches">{{branch.branchName}}</option>
                   </select>
@@ -19,7 +19,7 @@
             </div>
 
             <div class="row">
-                <label for="stateId">Section</label>
+                <label for="stateId">Branch</label>
                 <select formControlName="sectionId" #sc [(ngModel)]="selectedSectionId" (change)="getSectionsId(sc.value)" class="form-control blip-input  blip-select">
                     <option [value]="section.sectionId" *ngFor="let section of allSections">{{section.sectionName}}</option>
                 </select>
@@ -35,5 +35,5 @@
     </div>
 
 
-    <button type="submit" (click)="addPost()" class="btn btn-primary btn-next" data-toggle="tab" href="#branch" role="tab" aria-controls="profile" aria-selected="false">Next</button>
+    <button type="submit" (click)="addPost()" class="btn btn-primary btn-next" data-toggle="tab" href="#branch" role="tab" aria-controls="profile" aria-selected="false">Save</button>
 </form>

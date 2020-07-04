@@ -36,7 +36,8 @@ export class InstitutionListComponent implements OnInit,OnChanges, OnDestroy {
   allStates: State [] = [];
   allCities: City[] = [];
   title = 'ng-bootstrap-modal-demo';
-  searchable: boolean = false;
+  searchable: boolean = true;
+  show: boolean = false;
   pageArray: Array<number>;
   selectedPage: number = 1;
   currentIndex: number = 1;
@@ -62,11 +63,19 @@ export class InstitutionListComponent implements OnInit,OnChanges, OnDestroy {
 
 
   filterCity(cityId) {
+    
     this.searchable = true;
     console.log("get", cityId);
     this.instService.getAllInstitutionsByCity(cityId)
           .subscribe((response: any) => {
+           
+            
             this.data = response;
+            if(this.data.length == 0) {
+              this.show = true;
+            } else {
+              this.show = false;
+            }
           })
   }
 

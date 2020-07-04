@@ -1,10 +1,10 @@
 <div class="container">
     <ng-template #branchmodal let-modal>
         <div class="row">
-            <h5 style="margin: 5px 0 0 24px;">Add branch</h5>
+            <h5 style="margin: 5px 0 0 24px;">Add Year</h5>
 
             <div class="" style="margin-left:24px; margin-bottom: 46px;">
-                <label for="institutionName">Name of Branch*</label>
+                <label for="institutionName">Name of Year*</label>
                 <input type="text" [(ngModel)]="branchNameModel" class="branch-button" id="branchName">
             </div>
             <button class="btn btn-primary btn-branch" (click)="addBranch()" style="margin-left:24px">Add</button>
@@ -13,10 +13,10 @@
     </ng-template>
     <ng-template #sectionModal let-modal>
         <div class="row">
-            <h5 style="margin: 5px 0 0 24px;">Add section</h5>
+            <h5 style="margin: 5px 0 0 24px;">Add Branch</h5>
 
             <div class="" style="margin-left:24px; margin-bottom: 46px;">
-                <label for="sectionName">Name of Section*</label>
+                <label for="sectionName">Name of Branch*</label>
                 <input type="text" [(ngModel)]="sectionNameModel" class="branch-button" id="branchName">
             </div>
             <button class="btn btn-primary btn-branch" (click)="addSection()" style="margin-left:24px">Add</button>
@@ -60,7 +60,7 @@
                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#branch" role="tab" aria-controls="profile" aria-selected="false">
                         <div class="tab-item">
                             <img *ngIf="stepCount>3" src="../../../../assets/green-tick.png" alt="" width="15x" height="15px">
-                            <p>Branches</p>
+                            <p>Years</p>
                         </div>
                     </a>
                 </div>
@@ -68,7 +68,7 @@
                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#section" role="tab" aria-controls="profile" aria-selected="false">
                         <div class="tab-item">
                             <img *ngIf="stepCount>4" src="../../../../assets/green-tick.png" alt="" width="15x" height="15px">
-                            <p>Section</p>
+                            <p>Branch</p>
                         </div>
                     </a>
                 </div>
@@ -142,7 +142,7 @@
                                 <img class="image-create" [src]="img_url">
                             </div>
                         </div>
-                        <button *ngIf="!isEditForm" type="submit" (click)="onSubmit()" class="btn btn-primary btn-next" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Next</button>
+                        <button *ngIf="!isEditForm" type="submit" [disabled]="buttonDisable" (click)="onSubmit()" class="btn btn-primary btn-next" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Next</button>
                         <button *ngIf="isEditForm" type="submit" (click)="updateDetails()" class="btn btn-primary btn-next" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Update</button>
 
                     </form>
@@ -165,7 +165,7 @@
                                 <input type="text" formControlName="primaryPOCPhoneNumber" [ngClass]="{ 'is-invalid': pocSubmitted && f.primaryPOCPhoneNumber.errors }" class="form-control blip-input" id="primaryPOCPhoneNumber" aria-describedby="emailHelp">
                             </div>
                             <div class="form-group col-6">
-                                <label for="primaryPOCEmail">Primary POC Username</label>
+                                <label for="primaryPOCEmail">Institution Code</label>
                                 <input type="email" formControlName="primaryPOCEmail" [ngClass]="{ 'is-invalid': pocSubmitted && f.primaryPOCEmail.errors || isEmailExists }" (focusout)="checkEmailExistence()" class="form-control blip-input" id="primaryPOCEmail">
                             </div>
                         </div>
@@ -197,7 +197,7 @@
                     <div class="row branch-tab">
 
                         <div class="col-9">
-                            <h2>List of Branches</h2>
+                            <h2>List of Years</h2>
                         </div>
                         <div class="col-3">
                             <button class="btn btn-primary" (click)="openBranchModal(branchmodal)">Add</button>
@@ -210,7 +210,7 @@
 
                     <div class="row">
                         <div class="col-8">
-                            <h4 class="section-padding">List of Sections</h4>
+                            <h4 class="section-padding">List of Branches</h4>
 
                         </div>
                         <div class="col-4 section-padding">

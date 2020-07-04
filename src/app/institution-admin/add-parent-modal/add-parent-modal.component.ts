@@ -4,6 +4,7 @@ import { InstitutionService } from 'src/app/institutions/shared/institution.serv
 import { MatDialog } from '@angular/material';
 import { Branch } from 'src/app/institutions/shared/branch-section.model';
 import { ParentService } from '../shared/parentservice';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-add-parent-modal',
@@ -17,7 +18,7 @@ export class AddParentModalComponent implements OnInit {
   allSections: any = [];
   selectedSectionId: number = 0;
   
-  constructor(private formBuilder: FormBuilder, private institutionService: InstitutionService,private parentService: ParentService,private matDialog: MatDialog) { }
+  constructor(private formBuilder: FormBuilder,private ngxService: NgxUiLoaderService, private institutionService: InstitutionService,private parentService: ParentService,private matDialog: MatDialog) { }
 
 
   getSections(branchId) {
@@ -32,9 +33,12 @@ export class AddParentModalComponent implements OnInit {
       sectionId: this.selectedSectionId,
       relTenantInstitutionId:localStorage.getItem('loggedInTenantId')
     })
+    this.ngxService.start();
 
     this.parentService.addParent(this.parentForm.value)
           .subscribe(data => {
+            this.ngxService.stop();
+            window.location.reload();
             var obj = {
               childrenName: this.parentForm.value.childrenName,
               admissionId: this.parentForm.value.admissionNumber,

@@ -20,6 +20,8 @@ export class AddInstitutionModalComponent implements OnInit {
 
   @Input() data: any;
 
+  buttonDisable: boolean = true;
+
   name:string;
   stepCount: number = 1;
   loading1: boolean = false;
@@ -82,7 +84,7 @@ export class AddInstitutionModalComponent implements OnInit {
     
     this.formDetails = details;
     
-
+    localStorage.removeItem('pictureId')
     this.modalOptions = {
       backdrop: 'static',
       centered: true,
@@ -140,6 +142,7 @@ export class AddInstitutionModalComponent implements OnInit {
     };
     this.instService.uploadImage(file)
           .subscribe((data:any) => {
+            this.buttonDisable = false;
             this.sendPicture = data.pictureStream;
             console.log("file uploaded succesfully", data);
             localStorage.setItem("pictureId",data.pictureId);
@@ -210,33 +213,37 @@ export class AddInstitutionModalComponent implements OnInit {
  
 
   onSubmit() {
-    this.stepCount++;
-    this.loading1 = true;
-    this.institutionDetailForm.patchValue({
-      pictureId: localStorage.getItem('pictureId'),
-      stateId: this.selectedState.stateId,
-      cityId: this.selectedCity.cityId
-    })
 
-    console.log("form validation check", this.institutionDetailForm.value);
-    var that = this;
-    this.instService.createInstitutionDetails(this.institutionDetailForm.value)
-          .subscribe((response: any) => {
-
-            var obj = {
-              institutionId: response.institutionId,
-              pictureStream: this.sendPicture,
-              institutionName: that.institutionDetailForm.value.institutionName,
-              stateName: that.stateCopy.stateName,
-              cityName: that.cityCopy.cityName
-            }
-            this.instService.setNewInstituationData(obj);
-            this.loading1 = false
-            this.loading_tab1 = false;
-            console.log("Succesfully added institution", response)
-            localStorage.setItem('currentRelTenantInstitutionId', response.relTenantInstitutionId)
-          })
-    console.log("After API")
+      console.log("there", localStorage.getItem('pictureId'));
+      this.stepCount++;
+      this.loading1 = true;
+      this.institutionDetailForm.patchValue({
+        pictureId: localStorage.getItem('pictureId'),
+        stateId: this.selectedState.stateId,
+        cityId: this.selectedCity.cityId
+      })
+  
+      console.log("form validation check", this.institutionDetailForm.value);
+      var that = this;
+      this.instService.createInstitutionDetails(this.institutionDetailForm.value)
+            .subscribe((response: any) => {
+  
+              var obj = {
+                institutionId: response.institutionId,
+                pictureStream: this.sendPicture,
+                institutionName: that.institutionDetailForm.value.institutionName,
+                stateName: that.stateCopy.stateName,
+                cityName: that.cityCopy.cityName
+              }
+              this.instService.setNewInstituationData(obj);
+              this.loading1 = false
+              this.loading_tab1 = false;
+              console.log("Succesfully added institution", response)
+              localStorage.setItem('currentRelTenantInstitutionId', response.relTenantInstitutionId)
+            })
+      console.log("After API")
+      
+    
   }
 
   checkEmailExistence() {

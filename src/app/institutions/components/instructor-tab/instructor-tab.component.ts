@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {MatDialogRef, MatDialogContainer} from '@angular/material/dialog';
+import { Component, OnInit, Inject } from '@angular/core';
+import {MatDialogRef, MatDialogContainer, MAT_DIALOG_DATA, MatDialog} from '@angular/material/dialog';
 @Component({
   selector: 'app-instructor-tab',
   templateUrl: './instructor-tab.component.html',
@@ -7,7 +7,12 @@ import {MatDialogRef, MatDialogContainer} from '@angular/material/dialog';
 })
 export class InstructorTabComponent implements OnInit {
 
-  constructor(private dialogRef: MatDialogRef<MatDialogContainer >) { }
+  instructorDetails:any;
+  constructor(private dialogRef: MatDialogRef<MatDialogContainer>, @Inject(MAT_DIALOG_DATA) public details: any, private matDialog: MatDialog) { 
+    this.instructorDetails = details;
+    console.log("sw", details);
+    
+  }
 
   ngOnInit() {
   }

@@ -32,6 +32,7 @@ export class InstitutionListComponent implements OnInit,OnChanges, OnDestroy {
   private subscriptions: Subscription[] = [];
   data: any;
   name:string;
+  searched_pincode: string;
   img_url: string;
   allStates: State [] = [];
   allCities: City[] = [];
@@ -59,6 +60,21 @@ export class InstitutionListComponent implements OnInit,OnChanges, OnDestroy {
       height: '500px',
       panelClass: 'custom-dialog-container'
     })
+  }
+
+  searchByPincode() {
+    console.log("Pincode", this.searched_pincode);
+    this.instService.getAllInstitutionsByPincode(this.searched_pincode)
+          .subscribe((response: any) => {
+           
+            
+            this.data = response;
+            if(this.data.length == 0) {
+              this.show = true;
+            } else {
+              this.show = false;
+            }
+          })
   }
 
 

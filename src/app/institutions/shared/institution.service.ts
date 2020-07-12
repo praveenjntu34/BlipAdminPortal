@@ -101,6 +101,10 @@ getAllInstitutionsByPage(page) {
     return this.http.get(environment.baseUrl + 'institution/details?pageNumber=0&size=10&cityId=' + cityId);
   }
 
+  getAllInstitutionsByPincode(pincode) {
+    return this.http.get(environment.baseUrl + 'institution/details?pageNumber=0&size=10&pincode=' + pincode);
+  }
+
   uploadImage(fileToUpload){
     const formData =  new FormData();
     formData.append('file',fileToUpload, fileToUpload.name);

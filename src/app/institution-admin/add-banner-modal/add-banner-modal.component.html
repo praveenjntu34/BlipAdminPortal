@@ -19,15 +19,20 @@
                     <img class="image-create" [src]="img_url">
                 </div>
             </div>
-            <!-- <div class="row">
-                <label class="blip-label" for="banner2">Banner 2</label>
-                <input type="file" class="blip-label" (change)="onFileChangedNew($event)">
-                <div class="image-wrapper">
-                    <img class="image-create" [src]="img_url2">
-                </div>
-            </div> -->
-        </div>
 
+        </div>
+    </div>
+
+    <div class="row" *ngIf="role == 'SuperAdmin'">
+        <div class="col-6">
+
+            <mat-form-field appearance="fill" style="width: 100%;">
+                <mat-label>Select Instittution</mat-label>
+                <mat-select (openedChange)="changedCombo($event)" [formControl]="toppings" multiple>
+                    <mat-option *ngFor="let topping of toppingList" [value]="topping.relTenantInstitutionId">{{topping.institutionName}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
     </div>
 
 

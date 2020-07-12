@@ -35,7 +35,11 @@ export class AddParentModalComponent implements OnInit {
     })
     this.ngxService.start();
 
+    console.log("test", this.parentForm.value.parentTwoName);
+    console.log("test2", this.parentForm.value);
     this.parentService.addParent(this.parentForm.value)
+
+    
           .subscribe(data => {
             this.ngxService.stop();
             window.location.reload();
@@ -46,7 +50,8 @@ export class AddParentModalComponent implements OnInit {
               email: this.parentForm.value.email,
               phoneNUmber: this.parentForm.value.phoneNumber,
               firstName: this.parentForm.value.parentOneFirstName,
-              lastName: this.parentForm.value.parentOneLastName
+              lastName: this.parentForm.value.parentOneLastName,
+              secondaryParentName: this.parentForm.value.parentTwoName
             }
 
             this.parentService.setNewParentData(obj)
@@ -67,7 +72,7 @@ export class AddParentModalComponent implements OnInit {
       parentOneLastName: ['', Validators.required],
       email: ['', Validators.required],
       phoneNumber: [],
-      secondaryParentName: [],
+      secondaryParentName: '',
       admissionNumber: '',
       childrenName: '',
       secondaryPhoneNumber: '',

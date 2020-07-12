@@ -29,33 +29,33 @@
             <label for="secondaryPhoneNumber">Secondary Phone Number</label>
             <input type="text" formControlName="secondaryPhoneNumber" class="form-control blip-input" id="address1">
         </div>
-       
-    </div>
-    <div class="row">
-        <!-- <div class="form-group col-6">
-            <label for="admissionNumber">Admission Number</label>
-            <input type="text" formControlName="admissionNumber" class="form-control blip-input" id="address2">
-        </div> -->
-        <!-- <div class="form-group col-6">
-            <label for="childrenName">Children Name</label>
-            <input type="text" formControlName="childrenName" class="form-control blip-input" id="address1">
-        </div> -->
 
     </div>
-    <!-- <div class="row">
+    <div class="row">
         <div class="form-group col-6">
-            <label for="stateId">Branch</label>
+            <label for="admissionNumber">Admission Number</label>
+            <input type="text" formControlName="admissionNumber" class="form-control blip-input" id="address2">
+        </div>
+        <div class="form-group col-6">
+            <label for="childrenName">Children Name</label>
+            <input type="text" formControlName="childrenName" class="form-control blip-input" id="address1">
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="form-group col-6">
+            <label for="stateId">Year</label>
             <select formControlName="branchId" #st [(ngModel)]="selectedBranchId" (change)="getSections(st.value)" class="form-control blip-input  blip-select">
                         <option [value]="branch.branchId" *ngFor="let branch of allBranches">{{branch.branchName}}</option>
                     </select>
         </div>
         <div class="form-group col-6">
-            <label for="sectionId">Section</label>
+            <label for="sectionId">Branch</label>
             <select formControlName="sectionId" #sc [(ngModel)]="selectedSectionId" class="form-control blip-input  blip-select">
                     <option [value]="section.sectionId" *ngFor="let section of allSections">{{section.sectionName}}</option>
                 </select>
         </div>
-    </div> -->
+    </div>
     <button type="submit" (click)="updateParent()" class="btn btn-primary btn-next" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Save</button>
 
 

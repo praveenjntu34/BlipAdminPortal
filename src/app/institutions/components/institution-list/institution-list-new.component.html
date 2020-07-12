@@ -44,7 +44,7 @@
                             <p>Pincode Search</p>
                         </div>
                         <div class="col-md-6 col-lg-6 col-xl-7 pincode-search">
-                            <input type="text" placeholder="Enter pincode ex(524002)">
+                            <input type="text" (input)="searchByPincode()" [(ngModel)]="searched_pincode" placeholder="Enter pincode ex(524002)">
                         </div>
                         <div class="col-md-2 col-lg-2 icon-img">
                             <div class="pincode-icon">

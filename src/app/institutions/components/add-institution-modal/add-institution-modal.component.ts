@@ -185,9 +185,13 @@ export class AddInstitutionModalComponent implements OnInit {
       cityId: ['', Validators.required],
       stateId: ['', Validators.required],
       countryId: 1,
-      remarks: ['', Validators.required], 
+      remark1: ['', Validators.required], 
+      remark2: ['', Validators.required], 
+      remark3: ['', Validators.required], 
+      remark4: ['', Validators.required], 
       status: [1],
       pictureId: [''],
+      pincode: [''],
       institutionId: ['']
     })
 

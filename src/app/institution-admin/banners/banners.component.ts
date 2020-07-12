@@ -22,12 +22,22 @@ export class BannersComponent implements OnInit {
 
   ngOnInit() {
     let id = localStorage.getItem('loggedInTenantId');
-    this.bannerService.getAllBanners(id)
-          .subscribe(response => {
-            console.log("rrr", response);
-            
-            this.banners = response;
-          })
+    if(localStorage.getItem('loggedInRole') === 'SuperAdmin') {
+      this.bannerService.getAllBanners(id)
+      .subscribe(response => {
+        console.log("rrr", response);
+        
+        this.banners = response;
+      })
+    } else {
+      this.bannerService.getAllBannersForInstitution(id)
+      .subscribe(response => {
+        console.log("rrr", response);
+        
+        this.banners = response;
+      })
+    }
+   
     this.updateBannerData();
   }
 

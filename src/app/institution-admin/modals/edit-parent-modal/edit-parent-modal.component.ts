@@ -50,7 +50,11 @@ export class EditParentModalComponent implements OnInit {
       relTenantInstitutionId: 0,
       personId: 0,
       loginCredentialId: 0,
-      parentId: 0
+      parentId: 0,
+      admissionNumber: '',
+      childrenName: '',
+      childId: 0
+
     })
 
   
@@ -108,7 +112,10 @@ export class EditParentModalComponent implements OnInit {
       relTenantInstitutionId: localStorage.getItem('loggedInTenantId'),
       personId: this.userData.personId,
       loginCredentialId: this.userData.loginCredentialId,
-      parentId: this.userData.parentId
+      parentId: this.userData.parentId,
+      childId: this.userData.childId,
+      admissionNumber: this.userData.admissionId,
+      childrenName: this.userData.childrenName
     })
   }
 

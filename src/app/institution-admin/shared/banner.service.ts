@@ -27,7 +27,19 @@ export class BannerService{
     return this.http.delete(environment.baseUrl + 'delete-banner/' + data);
   }
 
+  getAllInstitutions() {
+    return this.http.get(environment.baseUrl + 'institution/simple/list');
+  }
 
+  addMultipleBanner(banner_file, requestData) {
+
+    let headers = new Headers();
+
+    const formData =  new FormData();
+    formData.append('banner_file',banner_file);
+    formData.append('data', JSON.stringify(requestData))
+    return this.http.post(environment.baseUrl + 'add-multitple-banners', formData);
+  }
   addBannerFile(file) {
     let headers = new Headers();
 
@@ -39,6 +51,10 @@ export class BannerService{
 
   getAllBanners(relTenantInstitutionId) {
     return this.http.get(environment.baseUrl + 'banner/' + relTenantInstitutionId);
+  }
+
+  getAllBannersForInstitution(relTenantInstitutionId) {
+    return this.http.get(environment.baseUrl + 'banner/institution/' + relTenantInstitutionId);
   }
 
 

@@ -7,6 +7,10 @@ import { EditInstructorModalComponent } from '../modals/edit-instructor-modal/ed
 import { DeleteInstructorModalComponent } from '../modals/delete-instructor-modal/delete-instructor-modal.component';
 import { Subscription } from 'rxjs';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { s3Conf } from '../../../environments/environment.prod'
+import * as AWS from 'aws-sdk/global';
+import * as S3 from 'aws-sdk/clients/s3';
+
 
 @Component({
   selector: 'app-instructors',
@@ -28,6 +32,10 @@ export class InstructorsComponent implements OnInit {
 
   ngOnInit() {
     
+  
+ 
+  
+
     this.ngxService.start();
     this.api.getInstitutionBranches(localStorage.getItem('loggedInTenantId'))
     .subscribe(data => {
@@ -45,6 +53,20 @@ export class InstructorsComponent implements OnInit {
 
     this.updateInstructors();
   }
+
+  setDefaultPic(index) {
+    this.instructors[index].image = 'https://bootdey.com/img/Content/avatar/avatar1.png'
+  }
+  openModal(index){
+    this.matDialogue.open(InstructorTabComponent, {
+      width: '550px',
+      height: '400px',
+      data: this.instructors[index]
+     
+    })
+ }
+ 
+
 
   openEditModal(index){
     this.matDialogue.open(EditInstructorModalComponent, {

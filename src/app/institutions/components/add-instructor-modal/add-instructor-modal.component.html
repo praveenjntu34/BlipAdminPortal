@@ -43,8 +43,8 @@
         </div>
         <div class="form-group col-6">
             <label for="exampleInputEmail1">Image</label>
-            <input type="file">
-            <img class="image-create ">
+            <input type="file" (change)="onFileChanged($event)">
+            <img class="image-create" [src]="img_url">
         </div>
     </div>
     <div class="row ">

@@ -42,7 +42,7 @@
         </div>
 
     </div>
-    <div class="row">
+    <!-- <div class="row">
         <div class="form-group col-6">
             <label for="stateId">Year</label>
             <select formControlName="branchId" #st [(ngModel)]="selectedBranchId" (change)="getSections(st.value)" class="form-control blip-input  blip-select">
@@ -54,6 +54,13 @@
             <select formControlName="sectionId" #sc [(ngModel)]="selectedSectionId" class="form-control blip-input  blip-select">
                     <option [value]="section.sectionId" *ngFor="let section of allSections">{{section.sectionName}}</option>
                 </select>
+        </div>
+    </div> -->
+    <div class="row">
+        <div class="form-group col-6">
+            <mat-slide-toggle class="example-margin" (change)="changeTog($event)" [color]="color" [checked]="chk">
+                Enable/Disable
+            </mat-slide-toggle>
         </div>
     </div>
     <button type="submit" (click)="updateParent()" class="btn btn-primary btn-next" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Save</button>

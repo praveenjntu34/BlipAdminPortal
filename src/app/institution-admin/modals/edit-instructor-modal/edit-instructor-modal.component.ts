@@ -3,6 +3,10 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { InstructorService } from '../../shared/instructor.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import * as uuid from 'uuid';
+import { s3Conf } from '../../../../environments/environment.prod'
+import * as AWS from 'aws-sdk/global';
+import * as S3 from 'aws-sdk/clients/s3';
 
 @Component({
   selector: 'app-edit-instructor-modal',
@@ -14,15 +18,53 @@ export class EditInstructorModalComponent implements OnInit {
   instructorFormDetails: any;
   instructorForm: FormGroup;
 
+  chk;
+  instructorImage: String;
   selectedSections: any = [];
   setBranches: any = [];
   selectedBranchId: number;
   selectedSectionId: number;
+
+
+  img_url: any;
+  bucket;
+
+  s3UploadedUrl: String = "";
+
   constructor(private formBuilder: FormBuilder,private matDialog: MatDialog, @Inject(MAT_DIALOG_DATA) public details: any,private ngxService: NgxUiLoaderService, private instructorService: InstructorService) { 
     this.instructorFormDetails = details;
     this.setBranches = details.branches
     console.log("Details", details);
     
+  }
+
+  onFileChanged(event) {
+
+    console.log("appeared");
+    
+    let file: File = event.target.files[0];
+    let reader = new FileReader();
+    reader.readAsDataURL(file); 
+    reader.onload = (e: any) => {
+      this.img_url = e.target.result;
+    };
+  
+  
+      const params = {
+        Bucket: 'blip',
+        Key: 'instructors/' + uuid.v4() + '.jpeg',
+        Body: file,
+        ACL:'public-read'
+      };
+  
+      this.bucket.upload(params, (err, data) => {
+        console.log("Success msg", data);
+        this.s3UploadedUrl = data.Location;
+        this.instructorForm.patchValue({
+          image: this.s3UploadedUrl
+        })
+      })
+  
   }
 
   onChangeBranch(value) {
@@ -37,6 +79,15 @@ export class EditInstructorModalComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.bucket = new S3(
+      {
+        accessKeyId: s3Conf.accessKeyId,
+        secretAccessKey: s3Conf.secretAccessKey,
+        region: 'ap-south-1'
+      }
+    );
+
     this.setBranches = this.details.branches;
     this.instructorForm = this.formBuilder.group({
       firstname: ['', Validators.required],
@@ -48,8 +99,13 @@ export class EditInstructorModalComponent implements OnInit {
       sectionId: ['', Validators.required],
       personId: 0,
       instructorId: 0,
-      loginCredentialId: 0
+      loginCredentialId: 0,
+      enabled: '',
+      image: ''
     })
+
+    this.chk = this.instructorFormDetails.instructors.enabled;
+    this.instructorImage = this.instructorFormDetails.instructors.image;
 
     this.selectedBranchId = this.instructorFormDetails.instructors.branchId;
     this.onChangeBranch(this.instructorFormDetails.instructors.branchId);
@@ -64,11 +120,26 @@ export class EditInstructorModalComponent implements OnInit {
       sectionId: this.instructorFormDetails.instructors.sectionId,
       personId: this.instructorFormDetails.instructors.personId,
       instructorId: this.instructorFormDetails.instructors.instructorId,
-      loginCredentialId: this.instructorFormDetails.instructors.loginCredentialId
+      loginCredentialId: this.instructorFormDetails.instructors.loginCredentialId,
+      enabled: this.instructorFormDetails.instructors.enabled,
+      image: this.instructorFormDetails.instructors.image
     })
   }
 
+  changeTog(event) {
+    this.instructorForm.patchValue({
+      enabled: event.checked,
+      image: this.s3UploadedUrl
+    })
+
+    console.log("tog", this.instructorForm.value.enabled);
+    
+  }
+
   saveInstructor() {
+    console.log("s3",this.s3UploadedUrl);
+    
+   
     this.ngxService.start();
     this.instructorService.saveInstructor(this.instructorForm.value)
           .subscribe(res => {

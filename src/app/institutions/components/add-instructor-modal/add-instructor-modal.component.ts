@@ -2,6 +2,11 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { InstitutionService } from '../../shared/institution.service';
 import {MAT_DIALOG_DATA, MatDialogRef, MatDialogContainer} from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import * as uuid from 'uuid';
+import { s3Conf } from '../../../../environments/environment.prod'
+import * as AWS from 'aws-sdk/global';
+import * as S3 from 'aws-sdk/clients/s3';
+
 @Component({
   selector: 'app-add-instructor-modal',
   templateUrl: './add-instructor-modal.component.html',
@@ -12,6 +17,12 @@ export class AddInstructorModalComponent implements OnInit {
   instructorForm: FormGroup;
   selectedSections: any = [];
   setBranches: any = [];
+
+  img_url: any;
+  bucket;
+
+  s3UploadedUrl: String = "";
+
   constructor(private instService: InstitutionService,private formBuilder: FormBuilder, 
     private dialogRef: MatDialogRef<MatDialogContainer>
     ,@Inject(MAT_DIALOG_DATA) public branches: any) { 
@@ -19,6 +30,14 @@ export class AddInstructorModalComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.bucket = new S3(
+      {
+        accessKeyId: s3Conf.accessKeyId,
+        secretAccessKey: s3Conf.secretAccessKey,
+        region: 'ap-south-1'
+      }
+    );
+
     this.instructorForm = this.formBuilder.group({
       firstname: ['', Validators.required],
       lastname: ['',Validators.required],
@@ -31,6 +50,34 @@ export class AddInstructorModalComponent implements OnInit {
 
     console.log("Inside dialog", this.branches)
   }
+
+  onFileChanged(event) {
+
+    console.log("appeared");
+    
+    let file: File = event.target.files[0];
+    let reader = new FileReader();
+    reader.readAsDataURL(file); 
+    reader.onload = (e: any) => {
+      this.img_url = e.target.result;
+    };
+  
+  
+      const params = {
+        Bucket: 'blip',
+        Key: 'instructors/' + uuid.v4() + '.jpeg',
+        Body: file,
+        ACL:'public-read'
+      };
+  
+      this.bucket.upload(params, (err, data) => {
+        console.log("Success msg", data);
+        this.s3UploadedUrl = data.Location;
+        
+      })
+  
+  }
+
 
   onChangeBranch(value) {
     console.log(this.setBranches);
@@ -52,7 +99,8 @@ export class AddInstructorModalComponent implements OnInit {
       designation : this.instructorForm.value.designation,
       phoneNumber: this.instructorForm.value.phoneNumber,
       sectionId: this.instructorForm.value.sectionId,
-      relTenantInstitutionId: this.branches[0].relTenantInstitutionId
+      relTenantInstitutionId: this.branches[0].relTenantInstitutionId,
+      image: this.s3UploadedUrl
     }
     this.instService.addInstructor(requestObject)
           .subscribe(data => {

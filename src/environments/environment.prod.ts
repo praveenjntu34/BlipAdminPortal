@@ -4,3 +4,11 @@ export const environment = {
   baseUrl : 'http://localhost:3400/',
   enableDebug: false
 };
+
+export const s3Conf = (
+  {
+    accessKeyId: 'AKIAZBCOP7BWFGUXAV4A',
+    secretAccessKey: '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',
+    region: 'us-east-1'
+  }
+);

@@ -23,6 +23,7 @@ import { EditParentModalComponent } from './modals/edit-parent-modal/edit-parent
 import { AddParentCsvComponent } from './add-parent-csv/add-parent-csv.component';
 import { EditPostModalComponent } from './modals/edit-post-modal/edit-post-modal.component';
 import {MatSelectModule} from '@angular/material';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [PostsComponent, AddPostModalComponent, BannersComponent, AddBannerModalComponent, InstructorsComponent, ParentsComponent, AddParentModalComponent, SettingsComponent, EditInstructorModalComponent, DeleteInstructorModalComponent, InstitutionProfileComponent, EditParentModalComponent, AddParentCsvComponent, EditPostModalComponent],
@@ -35,7 +36,8 @@ import {MatSelectModule} from '@angular/material';
     FormsModule,
     ReactiveFormsModule,
     MatSnackBarModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSlideToggleModule
   ]
 })
 export class InstitutionAdminModule { }

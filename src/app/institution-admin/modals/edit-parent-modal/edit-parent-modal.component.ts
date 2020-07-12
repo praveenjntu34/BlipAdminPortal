@@ -5,6 +5,7 @@ import { ParentService } from '../../shared/parentservice';
 import { InstitutionService } from 'src/app/institutions/shared/institution.service';
 import { Branch } from 'src/app/institutions/shared/branch-section.model';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import {ThemePalette} from '@angular/material/core';
 
 @Component({
   selector: 'app-edit-parent-modal',
@@ -16,12 +17,14 @@ export class EditParentModalComponent implements OnInit {
   parentForm: FormGroup;
   childId: number;
   userData: any;
+  color: ThemePalette = 'accent';
 
   allBranches: Branch[] = [];
   allSections: any = [];
   selectedBranchId: number;
   selectedSectionId: number;
   
+  chk;
 
 
   constructor(private formBuilder: FormBuilder,private ngxService: NgxUiLoaderService, private matDialog: MatDialog,  @Inject(MAT_DIALOG_DATA) public dataChild: any,private parentService: ParentService, private institutionService: InstitutionService) { 
@@ -53,7 +56,8 @@ export class EditParentModalComponent implements OnInit {
       parentId: 0,
       admissionNumber: '',
       childrenName: '',
-      childId: 0
+      childId: 0,
+      enabled: ''
 
     })
 
@@ -97,9 +101,17 @@ export class EditParentModalComponent implements OnInit {
           })
   }
 
-  patchParentForm() {
-    console.log("Net2", this.userData.branchId);
+  changeTog(event) {
+    this.parentForm.patchValue({
+      enabled: event.checked
+    })
+
+    console.log("tog", this.parentForm.value.enabled);
     
+  }
+  patchParentForm() {
+    console.log("Net2", this.userData.enabled);
+    this.chk = this.userData.enabled;
     this.selectedBranchId = this.userData.branchId;
     this.selectedSectionId = this.userData.sectionId;
     this.parentForm.patchValue({
@@ -115,7 +127,8 @@ export class EditParentModalComponent implements OnInit {
       parentId: this.userData.parentId,
       childId: this.userData.childId,
       admissionNumber: this.userData.admissionId,
-      childrenName: this.userData.childrenName
+      childrenName: this.userData.childrenName,
+      enabled: this.userData.enabled
     })
   }
 
